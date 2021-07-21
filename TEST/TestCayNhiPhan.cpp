@@ -10,7 +10,8 @@
 #define MAXLOP 500
 #define MAXCAUHOI 200
 #define STACKSIZE 1000
-
+int maxid = 10000;
+bool stop = 1;
 using namespace std;
 
 //==============================================================================================================
@@ -77,8 +78,7 @@ void themMonHoc(DSMH &tree, monHoc input){
 		}
 }
 
-int maxid = 10000;
-bool stop = 1;
+
 void taoMangRd (int arr[], int min, int max)
 {
 	for(int i = min; i <= max ; i++)
@@ -176,6 +176,40 @@ void Them1MonHoc(DSMH &tree, monHoc ch, int maxid , int arr1[], int arr2[])
 		Insert_node(tree,x,ch);
 	}
 }
+
+void Them1MonHocDaSua(DSMH &tree, monHoc ch, int maxid , int arr1[], int arr2[])
+{
+	int x;
+	if (tree == NULL)
+	{
+		x = maxid/2;
+		Insert_node(tree,x,ch);
+	}
+	else
+	{
+		// khi = false thi tiep tuc random 1 so cho toi khi khac tat ca id trong dsch
+		
+		if (countNode(tree->left) < countNode(tree->right))
+		{
+			int nt = countNode(tree->left);
+			x =	rdMang(arr1,nt);
+		}
+		else 
+		{
+			int np = countNode(tree->right);
+			x =	rdMang(arr2,np);
+		}
+		Insert_node(tree,x,ch);
+	}
+}
+void suaThongTin1MonHoc(DSMH &p, int id, monHoc mh){
+	while (p != NULL && p->id != id)
+	if(id < p->id)
+	p = p->left;
+	else
+	p = p->right;
+	p->mh = mh;
+}
 void inMonHoc(monHoc mh){
 	cout<<"Ma MH: "<<mh.MAMH<<"\n";
 	cout<<"Ten MH: "<<mh.TENMH<<"\n";
@@ -201,16 +235,7 @@ NODE *FindNode(DSMH p, int id)
 	return p;
 }
 //Nhap mon hoc
-monHoc nhapMonHoc(DSMH root){
-	monHoc mh;
-	cin.ignore();
-	cout<<"Nhap MaMonHoc(999 la dung nhap): ";
-	getline(cin,mh.MAMH);
-	cout<<"Nhap TenMonHoc: ";
-	getline(cin, mh.TENMH);
-		return mh;
-			
-}
+
 void DiTimNodeTheMang(DSMH &X, DSMH &Y) // NODE Y là node th? m?ng cho node c?n xóa - node này s? d?m nh?n nhi?m v? tìm ra node trái nh?t(TÌM NODE TRÁI NH?T CÂY CON PH?I) ho?c ph?i nh?t(TÌM NODE PH?I NH?T C?A CÂY CON TRÁI)
 {
 	// CÁCH 1: TÌM NODE TRÁI NH?T C?A CÂY CON PH?I
@@ -408,26 +433,6 @@ void LuuFileMH(DSMH root, string filename, int idlonnhat) // NLR
 		DSMH p = root;
 		while (p != NULL )
 		{
-//			if(p->id == idlonnhat)
-//			{
-////				cout << "ID lon nhat: " << idlonnhat;
-////				system("pause");
-//				fileOut << p->id << endl;
-//				fileOut << p->mh.MAMH << endl;
-//				fileOut << p->mh.TENMH << endl;
-//				fileOut << p->mh.cauHoiMH.n << endl;
-//				if(p->mh.cauHoiMH.n > 0){
-//					for(int i = 0; i < p->mh.cauHoiMH.n; i++){
-//						fileOut << p->mh.cauHoiMH.listCauHoi[i]->noiDung << endl;
-//						fileOut << p->mh.cauHoiMH.listCauHoi[i]->A << endl;
-//						fileOut << p->mh.cauHoiMH.listCauHoi[i]->B << endl;
-//						fileOut << p->mh.cauHoiMH.listCauHoi[i]->C << endl;
-//						fileOut << p->mh.cauHoiMH.listCauHoi[i]->D << endl;
-//						fileOut << p->mh.cauHoiMH.listCauHoi[i]->dapAn<<endl;
-//					}
-//				}
-//				break;
-//			}
 			fileOut << p->id << endl;
 			fileOut << p->mh.MAMH << endl;
 			fileOut << p->mh.TENMH << endl;
@@ -475,20 +480,72 @@ NODE *Search_CH(DSMH p, int id)
 }
 void In1MH_CoCauHoi(NODE* ch, int k)
 {
-	gotoxy(13,4+k);
+	gotoxy(15,4+k);
 	cout << ch->id;
-	gotoxy(35,4+k);
+	gotoxy(37,4+k);
 	cout << ch->mh.MAMH;
-	gotoxy(55,4+k);
+	gotoxy(57,4+k);
 	cout<< ch->mh.TENMH;
 	
 }
-
+void ChuanHoaTen (string &text)
+{
+	if(text[0] == 32)
+	{
+		text.erase(0,1);
+		ChuanHoaTen(text);
+	}
+	if(text[text.length()-1] == 32)
+	{
+		text.erase(text.length()-1,1);
+		ChuanHoaTen(text);
+	}
+} 
+bool CheckMonNhap_Test(DSMH dsm, int* arr[],int sl, string mamon, string tenmon)
+{
+	
+	for(int i = 0; i < sl; i++)
+	{
+		DSMH p = FindNode(dsm, *arr[i]);
+		if(mamon.compare(p->mh.MAMH) == 0 || tenmon.compare(p->mh.MAMH) == 0)
+		{
+			return false;
+		}
+	}
+	return true;
+}
+bool Exit (char &s, bool &sCheck)
+{
+	AnConTro();
+	gotoxy(127,26);
+	vekhungTB(10,36);
+	string tb = "Ban co chac chan muon thoat ? (Y/N)";
+	InTB(tb,130,30);
+	batPhim(s,sCheck);
+	while(1)
+	{
+		AnConTro();
+		if((s == 'y' || s == 'Y')&& sCheck == true)
+		{
+			XoaTB(130,26);
+			return true;
+		}
+		else if((s == 'n' || s == 'N') && sCheck == true)
+		{
+			XoaTB(130,26);
+			return false;
+		}else if((s == ESC) && sCheck == true)
+		{
+			XoaTB(130,26);
+			return false;
+		}
+		batPhim(s,sCheck);
+	}
+}
 // ==================== IN DANH SACH mon hoc ==========================
-void InDSMH_CoCauHoi(DSMH root, int page, int *arr[])
+void InDSMH_CoCauHoi(DSMH root, int page,int& maxpage, int *arr[])
 {
 	int k = 2;
-	int maxpage;
 	int sl = countNode(root);
 	if(sl <= 10)
 	{
@@ -506,22 +563,326 @@ void InDSMH_CoCauHoi(DSMH root, int page, int *arr[])
 		k += 3;
 	}
 	gotoxy(125/2,36);
-	cout << "Trang " << page + 1 << "/" << maxpage + 1;
+	cout << "Trang " << page + 1 <<"/" << maxpage + 1;
 }
+void NhapMonHoc_Test(DSMH &dsm, int sl, int page, int maxpage, int idlonnhat, int *arr[], int arr1[], int arr2[])
+{	
+	gotoxy(5,38);
+	veKhung(5,120);
+	gotoxy(7,40);
+	cout << "Ma mon :";
+	gotoxy(15,39);
+	veKhung(3,30);
+	gotoxy(80,40);
+	cout << "Ten mon :";
+	gotoxy(88,39);
+	veKhung(3,35);
+	string tenmon;
+	string mamon;
+	char s;
+	bool state = true;
+	bool sCheck;
+	string tb;
+	int hd;
+	int td;
+	gotoxy(17,40);
+	HienConTro();
+	batPhim(s,sCheck);
+	while (1)
+	{
+		if(s == ESC)
+		{
+			if(Exit(s,sCheck) == true)
+			{
+				break;				
+			}
+			else
+			{
+				if (state == true)
+				{
+					gotoxy(17+mamon.length(),40);
+				}
+				else gotoxy(90+tenmon.length(),40);
+				HienConTro();
+				batPhim(s,sCheck);
+			}
+		}
+		if(sl <= 10)
+		{
+			maxpage = 0;
+		}
+		else if(sl % 10 == 0) 
+		{
+			maxpage = sl/10 -1;
+		}
+		else maxpage = sl/10;
+		if (s == LEFT && sCheck == false)
+		{
+			if (state == false)
+			{
+				gotoxy(17+mamon.length(),40);
+				state = true;
+			}
+		}
+		if (s == RIGHT && sCheck == false)
+		{
+			if (state == true)
+			{
+				gotoxy(90+tenmon.length(),40);
+				state = false;
+			}
+		}
+		if (((s >= 'a' && s <= 'z') || (s >= 'A' && s <= 'Z') || (s >= '0' && s <= '9')  ) && sCheck == true)
+		{
+			HienConTro();
+			if (state == false )
+			{
+				if (tenmon.length() < 30)
+				{
+					cout << InHoa(s);
+					tenmon += InHoa(s);
+				}
+			}
+			else 
+			{
+				if (mamon.length() < 20)
+				{
+					cout << InHoa(s);
+					mamon += InHoa(s);
+				}
+			}
+		}
+		if(s == ' ')
+		{
+			if(state == false)
+				{
+					if(tenmon.length() == 0)
+					{
+						gotoxy(90+tenmon.length(),40);
+					}
+					else if(tenmon[tenmon.length()-1]!= ' ')
+					{
+						cout << InHoa(s);
+						tenmon += InHoa(s);	
+					}
+				}
+		}
+		if (s == BACKSPACE)
+		{
+			if (state == false)
+			{
+				if (tenmon.length() > 0)
+				{
+					AnConTro();
+					gotoxy(wherex()-1,wherey());
+					cout << " ";
+					gotoxy(wherex()-1,wherey());
+					HienConTro();
+					tenmon.erase(tenmon.length()-1);
+				}
+			}
+			else
+			{
+				if (mamon.length() > 0)
+				{
+					AnConTro();
+					gotoxy(wherex()-1,wherey());
+					cout << " ";
+					gotoxy(wherex()-1,wherey());
+					HienConTro();
+					mamon.erase(mamon.length()-1);
+				}
+			}
+		}
+		if (s == PAGEDOWN && sCheck == false)
+		{
+			AnConTro();
+			int sl = countNode(dsm);
+			if(sl <= 10)
+			{
+				maxpage = 0;
+			}
+			else if (sl % 10 == 0)
+			{
+				maxpage = sl/10 - 1;
+			}
+			else maxpage = sl/10;
+			if(page < maxpage)
+			{
+					for(int i = 0; i < 28;i++)
+					{
+						gotoxy(15,6+i);
+						cout << "      ";
+						gotoxy(37,6+i);
+						cout << "             ";
+						gotoxy(57,6+i);
+						cout << "                                                             ";
+					}
+				page ++;
+				InDSMH_CoCauHoi(dsm,page,maxpage, arr);
+			}
+			if(state == true)
+			{
+				gotoxy(17+mamon.length(),40);
+			}
+			else
+			{
+				gotoxy(90+tenmon.length(),40);	
+			}
+			HienConTro();
+		}
+		if(s == PAGEUP && sCheck == false)
+		{
+			AnConTro();
+			if (page > 0 )
+			{
+				for(int i = 0; i < 28;i++)
+					{
+						gotoxy(15,6+i);
+						cout << "      ";
+						gotoxy(37,6+i);
+						cout << "             ";
+						gotoxy(57,6+i);
+						cout << "                                                             ";
+						
+					}
+				page--;
+				InDSMH_CoCauHoi(dsm,page, maxpage, arr);
+			}
+			if(state == true)
+			{
+				gotoxy(17+mamon.length(),40);
+			}
+			else
+			{
+				gotoxy(90+tenmon.length(),40);	
+			}
+			HienConTro();
+		}
+		if (s == ENTER)
+		{
+			AnConTro();
+			ChuanHoaTen(tenmon);
+			if(tenmon.length() == 0 || mamon.length() == 0)
+			{
+				tb = "Ban chua nhap ten mon hoac ma mon, vui long dien day du thong tin";
+				InTB(tb,129,30);
+				AnConTro();
+				Sleep(750);
+				XoaTB(130,26);
+				gotoxy(17+mamon.length(),40);
+			}
+			else
+			{
+				if(CheckMonNhap_Test(dsm,arr,sl,mamon,tenmon) == false)
+				{
+					XoaTB(129,26);
+					tb = "Ma mon hoac ten mon da bi trung, vui long nhap lai";
+					InTB(tb,132,30);
+					AnConTro();
+					Sleep(750);
+					XoaTB(130,26);
+					gotoxy(17+mamon.length(),40);
+				}
+				else
+				{
+					monHoc mh ;
+					mh.MAMH = mamon;
+					mh.TENMH = tenmon;
+					Them1MonHoc(dsm, mh, maxid, arr1, arr2);
+					int sl = countNode(dsm);
+						for(int i = 0; i < sl; i++)
+						{
+							arr[i] = new int;
+						}
+						int i=0;
+						DSMH Stack[STACKSIZE];
+						DSMH p = dsm;
+						int sp = -1;
+						do
+						{ 
+							while (p != NULL)
+							{
+								Stack[++sp]= p;
+								p = p->left;
+							}
+							if (sp != -1)
+							{
+								p = Stack[sp--];
+								//in vao danh sach ch
+								*arr[i] = p->id;
+								i++;
+								p = p->right;
+							}
+							else break;
+						} while (1);
+					idlonnhat = *arr[sl-1];
+					LuuFileMH(dsm, "DSMONHOCVACH.txt", idlonnhat);
+					AnConTro();
+					XoaTB(130,26);
+					gotoxy(129,30);
+					tb = "Them mon vao danh sach thanh cong";
+					InTB(tb,129,30);
+					AnConTro();
+					Sleep(750);
+					XoaTB(130,26);
+					for(int i = 0; i < 28;i++)
+			{
+				gotoxy(15,6+i);
+				cout << "      ";
+				gotoxy(37,6+i);
+				cout << "              ";
+				gotoxy(57,6+i);
+				cout << "                                                             ";
+			}
+			InDSMH_CoCauHoi(dsm,page, maxpage, arr);
+			mamon = "";
+			tenmon = "";
+			gotoxy(17,40);
+			cout << "                           ";
+			gotoxy(90,40);
+			cout << "                           ";
+			gotoxy(17+mamon.length(),40);
+			HienConTro();
+			state = true;
+				}
+			}
+			
+		}
+	batPhim(s,sCheck);
+	}
+	AnConTro();
+	for(int i = 0; i < 5; i++)
+	{
+		gotoxy(5,38+i);
+		cout << "                                                                                                                        ";
+	}
+}
+//void suaThongTinMH(DSMH &dsm){
+//	NLR(dsm);
+//	cout<<"\ngchon mon can sua: ";
+//	int id;
+//	cin>>id;
+//	monHoc mh;
+//	mh = nhapMonHoc();
+//	suaThongTin1MonHoc(dsm, id, mh);
+//	NLR(dsm);
+//}
 void FunctionMH(DSMH &dsm, int &idlonnhat, int arr1[], int arr2[])
 {
-	gotoxy(40,43);
+	gotoxy(0,0);
+	veKhungThuCong();
+	gotoxy(30,43);
 	cout << "ENTER: Chon	ESC: Thoat	PGUP: Qua trang	PGDOWN: Lui trang F1: Them mon hoc F2: Sua mon hoc F3: Xoa mon";
-	gotoxy(130,26);
+	gotoxy(127,26);
 	vekhungTB(10,36);
+	AnConTro();
 //	veNut(3,15,150,5,"Them CH",240);
 //	veNut(3,15,150,10,"Xoa CH",20);
 //	veNut(3,15,150,15,"Xem CH",20);
 //	veNut(3,15,150,20,"Xem CH theo mon",20);
 	int page = 0;
 	int maxpage;
-	int hd;
-	int td;
 	int sl = countNode(dsm);
 	int *arr [sl];
 	for(int i = 0; i < sl; i++)
@@ -555,7 +916,7 @@ void FunctionMH(DSMH &dsm, int &idlonnhat, int arr1[], int arr2[])
 	}
 	gotoxy(5,2);
 	vekhungDSMH_CoCauHoi(34,120,5);
-	InDSMH_CoCauHoi(dsm,page,arr);
+	InDSMH_CoCauHoi(dsm,page, maxpage,arr);
 	int state = 0;
 	char s;
 	bool sCheck;
@@ -601,15 +962,17 @@ void FunctionMH(DSMH &dsm, int &idlonnhat, int arr1[], int arr2[])
 				{
 					for(int i = 0; i < 28;i++)
 					{
-						gotoxy(6,6+i);
-						cout << "                                                          ";
-						gotoxy(66,6+i);
-						cout << "                                                          ";
+						gotoxy(15,6+i);
+						cout << "      ";
+						gotoxy(37,6+i);
+						cout << "          ";
+						gotoxy(57,6+i);
+						cout << "                                                             ";
 					}
-					gotoxy(wherex()-1,wherey());
+					gotoxy(7,6);
 					cout << " ";
 					page --;
-					InDSMH_CoCauHoi(dsm,page,arr);
+					InDSMH_CoCauHoi(dsm,page, maxpage, arr);
 					gotoxy(7,33);
 					cout << muiten;
 					state = 9;
@@ -628,14 +991,16 @@ void FunctionMH(DSMH &dsm, int &idlonnhat, int arr1[], int arr2[])
 					{
 						for(int i = 0; i < 28;i++)
 						{
-							gotoxy(6,6+i);
-							cout << "                                                          ";
-							gotoxy(66,6+i);
-							cout << "                                                          ";
+							gotoxy(15,6+i);
+							cout << "      ";
+							gotoxy(37,6+i);
+							cout << "              ";
+							gotoxy(57,6+i);
+							cout << "                                                             ";
 						}
 					}
 					page++;
-					InDSMH_CoCauHoi(dsm,page,arr);
+					InDSMH_CoCauHoi(dsm,page, maxpage, arr);
 					state = 0;
 					gotoxy(7,6);
 					cout << muiten;
@@ -645,7 +1010,7 @@ void FunctionMH(DSMH &dsm, int &idlonnhat, int arr1[], int arr2[])
 			{
 				if(arr[state + page*10 + 1] != NULL)
 				{
-					gotoxy(wherex()-1,wherey());
+					gotoxy(7,wherey());
 					cout << " ";
 					state ++;
 					gotoxy(7,wherey() + 3);
@@ -665,17 +1030,23 @@ void FunctionMH(DSMH &dsm, int &idlonnhat, int arr1[], int arr2[])
 			AnConTro();
 			if(page < maxpage)
 			{
-					for(int i = 0; i < 28;i++)
-					{
-						gotoxy(6,6+i);
-						cout << "                      ";
-						gotoxy(31,6+i);
-						cout << "                      ";
-						gotoxy(54,6+i);
-						cout << "                                                                    ";
-					}
+				gotoxy(wherex()-1,wherey());
+				cout << " ";
+				for(int i = 0; i < 28;i++)
+				{
+					gotoxy(15,6+i);
+					cout << "      ";
+					gotoxy(37,6+i);
+					cout << "              ";
+					gotoxy(57,6+i);
+					cout << "                                                             ";
+				}
+				gotoxy(7,6);
+				cout << muiten;
+				state = 0;
 				page ++;
-				InDSMH_CoCauHoi(dsm,page,arr);
+				InDSMH_CoCauHoi(dsm,page, maxpage, arr);
+				gotoxy(7,6);
 			}
 		}
 		if(s == PAGEUP && sCheck == false)
@@ -683,78 +1054,43 @@ void FunctionMH(DSMH &dsm, int &idlonnhat, int arr1[], int arr2[])
 			AnConTro();
 			if (page > 0 )
 			{
+				gotoxy(wherex()-1,wherey());
+				cout << " ";
 				for(int i = 0; i < 28;i++)
-					{
-						gotoxy(6,6+i);
-						cout << "                      ";
-						gotoxy(31,6+i);
-						cout << "                      ";
-						gotoxy(54,6+i);
-						cout << "                                                                    ";
-						
-					}
+				{
+					gotoxy(15,6+i);
+					cout << "      ";
+					gotoxy(37,6+i);
+					cout << "              ";
+					gotoxy(57,6+i);
+					cout << "                                                             ";
+				}
+				gotoxy(7,6);
+				cout << muiten;
+				state = 0;
 				page--;
-				InDSMH_CoCauHoi(dsm,page,arr);
+				InDSMH_CoCauHoi(dsm,page, maxpage, arr);
+				gotoxy(7,6);
 			}
 		}
 		if(s == F2){
-			system("cls");
-						NLR(dsm);
-						cout<<"\nid lon nhat: "<<idlonnhat<<endl;
-						cout<<"so luong: "<<sl<<endl;
-						for(int i = 0; i < sl; i++){
-							cout<<" ,"<<*arr[i];
-						}
-						system("pause");
+			int iTam;
+			if(page == 0)
+				iTam = state;
+			else
+				iTam = page*10 +state;
+			int idTam = *arr[iTam];
+			gotoxy(46,0);
+			cout<<"                                  ";
+			gotoxy(46,0);
+			cout<<"iTam: "<<iTam<<" id: "<<idTam;
+			gotoxy(7,6 +3*state);
+			cout<<muiten;
 		}
 		if(s == F1){
-						system("cls");
-						NLR(dsm);
-						cout<<"\nid lon nhat: "<<idlonnhat<<endl;
-						cout<<"so luong: "<<sl<<endl;
-						for(int i = 0; i < sl; i++){
-							cout<<" ,"<<*arr[i];
-						}
-						system("pause");
-				monHoc mh = nhapMonHoc(dsm);
-				Them1MonHoc(dsm, mh, maxid, arr1, arr2);
-				int sl = countNode(dsm);
-						for(int i = 0; i < sl; i++)
-						{
-							arr[i] = new int;
-						}
-						int i=0;
-						DSMH Stack[STACKSIZE];
-						DSMH p = dsm;
-						int sp = -1;
-						do
-						{ 
-							while (p != NULL)
-							{
-								Stack[++sp]= p;
-								p = p->left;
-							}
-							if (sp != -1)
-							{
-								p = Stack[sp--];
-								//in vao danh sach ch
-								*arr[i] = p->id;
-								i++;
-								p = p->right;
-							}
-							else break;
-						} while (1);
-						idlonnhat = *arr[sl-1];
-						NLR(dsm);
-						cout<<"\nid lon nhat: "<<idlonnhat<<endl;
-						cout<<"so luong: "<<sl<<endl;
-						for(int i = 0; i < sl; i++){
-							cout<<" ,"<<*arr[i];
-						}
-						system("pause");
-						gotoxy(5,2);
-						vekhungDSMH_CoCauHoi(34,120,5);
-//						InDSMH_CoCauHoi(dsm,page,arr);
+			NhapMonHoc_Test(dsm,sl, page, maxpage, idlonnhat, arr,arr1,arr2);
+			gotoxy(7,6 +3*state);
+			cout<<muiten;
 		}
 //		if(s == ENTER)
 //		{

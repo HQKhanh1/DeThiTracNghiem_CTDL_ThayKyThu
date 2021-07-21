@@ -11445,7 +11445,8 @@ void mainProcess(dslop &dsl, dssv &ds, DSMH &dsm, NODECH &dsch, int arr1[], int 
 						{
 							ChangeColor(15);
 							system("cls");
-							FunctionLop(dsl);
+//							FunctionLop(dsl);
+							FunctionCH(dsch, dsm, dsl, idlonnhat, arr1, arr2);
 							break;
 						}
 //						case 1:	//IN DANH SACH LOP

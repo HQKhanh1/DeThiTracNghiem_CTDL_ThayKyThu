@@ -921,7 +921,7 @@ void vekhungDSMH_CoCauHoi(int dai, int rong, int socot)
 					cout << "ID";
 					j += 1;
 				}
-				else if(j == 24+ 10)
+				else if(j == 24+ 7)
 				{
 					cout << "MA MON HOC";
 					j += 4;
