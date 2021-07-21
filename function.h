@@ -997,6 +997,10 @@ void DocFileDSMH (DSMH &dsm)
 	{
 		getline(fileIn,mh.maMH,'\n');
 		getline(fileIn,mh.tenMH,'\n');
+//		getline(fileIn, mh->dsch.n,'\n');
+//		for(int i = 0; i < mh->dsch.n){
+//			//them
+//		}	
 		InsertMon(dsm,mh);
 	}
 	fileIn.close();
@@ -1053,11 +1057,11 @@ void InDSLop (dslop dsl, int &page)
 		}
 		gotoxy(5+6,4+k);
 		cout << dsl.l[i]->tenLop;
-		gotoxy(5+6+50,4+k);
+		gotoxy(5+6+50+8,4+k);
 		cout << dsl.l[i]->maLop;
-		gotoxy(5+6+50+40,4+k);
-		int x = StringToInt(dsl.l[i]->nienKhoa);
-		cout <<  2000 + x << "-" << 2000 + x + 5;
+//		gotoxy(5+6+50+40,4+k);
+//		int x = StringToInt(dsl.l[i]->nienKhoa);
+//		cout <<  2000 + x << "-" << 2000 + x + 5;
 		k += 3;
 	}
 	gotoxy(125/2,36);
@@ -3778,11 +3782,16 @@ void NhapLopXoa(dslop &dsl,int &page)
 				{
 					for(int i = 0; i < 29;i++)
 					{
+//						gotoxy(6,6+i);
+//						cout << "                                      ";
+//						gotoxy(46,6+i);
+//						cout << "                                      ";
+//						gotoxy(86,6+i);
+//						cout << "                                      ";
 						gotoxy(6,6+i);
 						cout << "                                      ";
-						gotoxy(46,6+i);
-						cout << "                                      ";
-						gotoxy(86,6+i);
+						gotoxy(68,6+i);
+						HienConTro();
 						cout << "                                      ";
 					}
 					gotoxy(wherex()-1,wherey());
@@ -3809,12 +3818,17 @@ void NhapLopXoa(dslop &dsl,int &page)
 					
 						for(int i = 0; i < 29;i++)
 						{
+//							gotoxy(6,6+i);
+//							cout << "                                      ";
+//							gotoxy(46,6+i);
+//							cout << "                                      ";
+//							gotoxy(86,6+i);
+//							cout << "                                      ";
 							gotoxy(6,6+i);
-							cout << "                                      ";
-							gotoxy(46,6+i);
-							cout << "                                      ";
-							gotoxy(86,6+i);
-							cout << "                                      ";
+						cout << "                                      ";
+						gotoxy(68,6+i);
+						HienConTro();
+						cout << "                                      ";
 						}
 					}
 					page++;
@@ -3850,12 +3864,17 @@ void NhapLopXoa(dslop &dsl,int &page)
 			{
 				for(int i = 0; i < 28;i++)
 				{
+//					gotoxy(6,6+i);
+//					cout << "                                      ";
+//					gotoxy(46,6+i);
+//					cout << "                                      ";
+//					gotoxy(86,6+i);
+//					cout << "                                      ";
 					gotoxy(6,6+i);
-					cout << "                                      ";
-					gotoxy(46,6+i);
-					cout << "                                      ";
-					gotoxy(86,6+i);
-					cout << "                                      ";
+						cout << "                                      ";
+						gotoxy(68,6+i);
+						HienConTro();
+						cout << "                                      ";
 				}
 				gotoxy(wherex()-1,wherey());
 				cout << " ";
@@ -3876,12 +3895,17 @@ void NhapLopXoa(dslop &dsl,int &page)
 			{
 				for(int i = 0; i < 28;i++)
 				{
+//					gotoxy(6,6+i);
+//					cout << "                                      ";
+//					gotoxy(46,6+i);
+//					cout << "                                      ";
+//					gotoxy(86,6+i);
+//					cout << "                                      ";
 					gotoxy(6,6+i);
-					cout << "                                      ";
-					gotoxy(46,6+i);
-					cout << "                                      ";
-					gotoxy(86,6+i);
-					cout << "                                      ";
+						cout << "                                      ";
+						gotoxy(68,6+i);
+						HienConTro();
+						cout << "                                      ";
 				}
 				gotoxy(wherex()-1,wherey());
 				cout << " ";
@@ -3941,12 +3965,17 @@ void NhapLopXoa(dslop &dsl,int &page)
 			}
 			for(int i = 0; i < 28;i++)
 			{
+//				gotoxy(6,6+i);
+//				cout << "                                      ";
+//				gotoxy(46,6+i);
+//				cout << "                                      ";
+//				gotoxy(86,6+i);
+//				cout << "                                     ";
 				gotoxy(6,6+i);
-				cout << "                                      ";
-				gotoxy(46,6+i);
-				cout << "                                      ";
-				gotoxy(86,6+i);
-				cout << "                                     ";
+						cout << "                                      ";
+						gotoxy(68,6+i);
+						HienConTro();
+						cout << "                                      ";
 			}
 				
 			page = 0;
@@ -4194,11 +4223,16 @@ void NhapLopChinh(dslop &dsl , int &page)
 				{
 					for(int i = 0; i < 29;i++)
 					{
+//						gotoxy(6,6+i);
+//						cout << "                                      ";
+//						gotoxy(46,6+i);
+//						cout << "                                      ";
+//						gotoxy(86,6+i);
+//						cout << "                                      ";
 						gotoxy(6,6+i);
 						cout << "                                      ";
-						gotoxy(46,6+i);
-						cout << "                                      ";
-						gotoxy(86,6+i);
+						gotoxy(68,6+i);
+						HienConTro();
 						cout << "                                      ";
 					}
 					gotoxy(wherex()-1,wherey());
@@ -4225,11 +4259,16 @@ void NhapLopChinh(dslop &dsl , int &page)
 					
 						for(int i = 0; i < 29;i++)
 						{
+//							gotoxy(6,6+i);
+//							cout << "                                      ";
+//							gotoxy(46,6+i);
+//							cout << "                                      ";
+//							gotoxy(86,6+i);
+//							cout << "                                      ";
 							gotoxy(6,6+i);
 							cout << "                                      ";
-							gotoxy(46,6+i);
-							cout << "                                      ";
-							gotoxy(86,6+i);
+							gotoxy(68,6+i);
+							HienConTro();
 							cout << "                                      ";
 						}
 					}
@@ -4266,12 +4305,17 @@ void NhapLopChinh(dslop &dsl , int &page)
 			{
 				for(int i = 0; i < 28;i++)
 				{
+//					gotoxy(6,6+i);
+//					cout << "                                      ";
+//					gotoxy(46,6+i);
+//					cout << "                                      ";
+//					gotoxy(86,6+i);
+//					cout << "                                      ";
 					gotoxy(6,6+i);
-					cout << "                                      ";
-					gotoxy(46,6+i);
-					cout << "                                      ";
-					gotoxy(86,6+i);
-					cout << "                                      ";
+						cout << "                                      ";
+						gotoxy(68,6+i);
+						HienConTro();
+						cout << "                                      ";
 				}
 				gotoxy(wherex()-1,wherey());
 				cout << " ";
@@ -4292,12 +4336,17 @@ void NhapLopChinh(dslop &dsl , int &page)
 			{
 				for(int i = 0; i < 28;i++)
 				{
+//					gotoxy(6,6+i);
+//					cout << "                                      ";
+//					gotoxy(46,6+i);
+//					cout << "                                      ";
+//					gotoxy(86,6+i);
+//					cout << "                                      ";
 					gotoxy(6,6+i);
-					cout << "                                      ";
-					gotoxy(46,6+i);
-					cout << "                                      ";
-					gotoxy(86,6+i);
-					cout << "                                      ";
+						cout << "                                      ";
+						gotoxy(68,6+i);
+						HienConTro();
+						cout << "                                      ";
 				}
 				gotoxy(wherex()-1,wherey());
 				cout << " ";
@@ -4330,12 +4379,17 @@ void NhapLopChinh(dslop &dsl , int &page)
 			}
 			for(int i = 0; i < 28;i++)
 			{
+//				gotoxy(6,6+i);
+//				cout << "                                      ";
+//				gotoxy(46,6+i);
+//				cout << "                                      ";
+//				gotoxy(86,6+i);
+//				cout << "                                     ";
 				gotoxy(6,6+i);
-				cout << "                                      ";
-				gotoxy(46,6+i);
-				cout << "                                      ";
-				gotoxy(86,6+i);
-				cout << "                                     ";
+						cout << "                                      ";
+						gotoxy(68,6+i);
+						HienConTro();
+						cout << "                                      ";
 			}
 			page = 0;
 			int hd = wherex();
@@ -4388,16 +4442,20 @@ void FunctionLop(dslop &dsl)
 	bool sCheck;
 	gotoxy(5,2);
 	int state = 0;
-	vekhungDS(34,120,3);	
+	vekhungDS(34,120,2);	
 	veNut(3,15,140,10,"Them lop",240);
 	veNut(3,15,140,15,"Xoa lop",20);
 	veNut(3,15,140,20,"Sua lop",20);
-	gotoxy(22,3);
+//	gotoxy(22,3);
+//	cout << "TEN LOP";
+//	gotoxy(63,3);
+//	cout << "MA LOP";
+//	gotoxy(101,3);
+//	cout << "NIEN KHOA";
+	gotoxy(35,3);
 	cout << "TEN LOP";
-	gotoxy(63,3);
+	gotoxy(90,3);
 	cout << "MA LOP";
-	gotoxy(101,3);
-	cout << "NIEN KHOA";
 	if (dsl.solop != 0) 
 	{
 		InDSLop(dsl,page);
@@ -4470,11 +4528,16 @@ void FunctionLop(dslop &dsl)
 			{
 					for(int i = 0; i < 28;i++)
 					{
+//						gotoxy(6,6+i);
+//						cout << "                                      ";
+//						gotoxy(46,6+i);
+//						cout << "                                      ";
+//						gotoxy(86,6+i);
+//						cout << "                                      ";
 						gotoxy(6,6+i);
 						cout << "                                      ";
-						gotoxy(46,6+i);
-						cout << "                                      ";
-						gotoxy(86,6+i);
+						gotoxy(68,6+i);
+						HienConTro();
 						cout << "                                      ";
 					}
 				page ++;
@@ -4488,12 +4551,17 @@ void FunctionLop(dslop &dsl)
 			{
 				for(int i = 0; i < 28;i++)
 				{
+//					gotoxy(6,6+i);
+//					cout << "                                      ";
+//					gotoxy(46,6+i);
+//					cout << "                                      ";
+//					gotoxy(86,6+i);
+//					cout << "                                      ";
 					gotoxy(6,6+i);
-					cout << "                                      ";
-					gotoxy(46,6+i);
-					cout << "                                      ";
-					gotoxy(86,6+i);
-					cout << "                                      ";
+						cout << "                                      ";
+						gotoxy(68,6+i);
+						HienConTro();
+						cout << "                                      ";
 				}
 				page--;
 				InDSLop(dsl,page);
@@ -4514,11 +4582,16 @@ void FunctionLop(dslop &dsl)
 						XoaLop(dsl,page);
 						for(int i = 0; i < 28;i++)
 						{
+//							gotoxy(6,6+i);
+//							cout << "                                      ";
+//							gotoxy(46,6+i);
+//							cout << "                                      ";
+//							gotoxy(86,6+i);
+//							cout << "                                      ";
 							gotoxy(6,6+i);
 							cout << "                                      ";
-							gotoxy(46,6+i);
-							cout << "                                      ";
-							gotoxy(86,6+i);
+							gotoxy(68,6+i);
+							HienConTro();
 							cout << "                                      ";
 						}
 						InDSLop(dsl,page);
@@ -4530,12 +4603,17 @@ void FunctionLop(dslop &dsl)
 						ChinhLop(dsl,page);
 						for(int i = 0; i < 28;i++)
 						{
+//							gotoxy(6,6+i);
+//							cout << "                                      ";
+//							gotoxy(46,6+i);
+//							cout << "                                      ";
+//							gotoxy(86,6+i);
+//							cout << "                                      ";
 							gotoxy(6,6+i);
-							cout << "                                      ";
-							gotoxy(46,6+i);
-							cout << "                                      ";
-							gotoxy(86,6+i);
-							cout << "                                      ";
+						cout << "                                      ";
+						gotoxy(68,6+i);
+						HienConTro();
+						cout << "                                      ";
 						}
 						InDSLop(dsl,page);
 						AnConTro();
@@ -4628,14 +4706,18 @@ void NhapMaLop(dslop &dsl , int page)
 					cout << "Nhap ma lop :";
 					gotoxy(5+17,39);
 					veKhung(3,20);
-					gotoxy(22,3);
+//					gotoxy(22,3);
+//					cout << "TEN LOP";
+//					gotoxy(63,3);
+//					cout << "MA LOP";
+//					gotoxy(101,3);
+//					cout << "NIEN KHOA";
+					gotoxy(35,3);
 					cout << "TEN LOP";
-					gotoxy(63,3);
+					gotoxy(90,3);
 					cout << "MA LOP";
-					gotoxy(101,3);
-					cout << "NIEN KHOA";
 					gotoxy(5,2);
-					vekhungDS(34,120,3);
+					vekhungDS(34,120,2);
 				}
 			}
 			else
@@ -4875,13 +4957,14 @@ void FunctionSV(dslop &dsl)
 	int hd;
 	int td;	
 	gotoxy(5,2);
-	vekhungDS(34,120,3);
-	gotoxy(22,3);
+//	vekhungDS(34,120,3);
+	vekhungDS(34,120,2);
+	gotoxy(35,3);
 	cout << "TEN LOP";
-	gotoxy(63,3);
+	gotoxy(90,3);
 	cout << "MA LOP";
-	gotoxy(101,3);
-	cout << "NIEN KHOA";
+//	gotoxy(101,3);
+//	cout << "NIEN KHOA";
 	InDSLop(dsl,page);
 	string malop = "";
 	gotoxy(7,6);
@@ -4931,10 +5014,11 @@ void FunctionSV(dslop &dsl)
 					{
 						gotoxy(6,6+i);
 						cout << "                                      ";
-						gotoxy(46,6+i);
+						gotoxy(68,6+i);
+						HienConTro();
 						cout << "                                      ";
-						gotoxy(86,6+i);
-						cout << "                                      ";
+//						gotoxy(86,6+i);
+//						cout << "                                      ";
 					}
 					gotoxy(wherex()-1,wherey());
 					cout << " ";
@@ -4963,10 +5047,10 @@ void FunctionSV(dslop &dsl)
 						{
 							gotoxy(6,6+i);
 							cout << "                                      ";
-							gotoxy(46,6+i);
+							gotoxy(68,6+i);
 							cout << "                                      ";
-							gotoxy(86,6+i);
-							cout << "                                      ";
+//							gotoxy(86,6+i);
+//							cout << "                                      ";
 						}
 					}
 					page++;
@@ -5005,10 +5089,10 @@ void FunctionSV(dslop &dsl)
 				{
 					gotoxy(6,6+i);
 					cout << "                                      ";
-					gotoxy(46,6+i);
+					gotoxy(68,6+i);
 					cout << "                                      ";
-					gotoxy(86,6+i);
-					cout << "                                      ";
+//					gotoxy(86,6+i);
+//					cout << "                                      ";
 				}
 				gotoxy(wherex()-1,wherey());
 				cout << " ";
@@ -5031,10 +5115,10 @@ void FunctionSV(dslop &dsl)
 				{
 					gotoxy(6,6+i);
 					cout << "                                      ";
-					gotoxy(46,6+i);
+					gotoxy(68,6+i);
 					cout << "                                      ";
-					gotoxy(86,6+i);
-					cout << "                                      ";
+//					gotoxy(86,6+i);
+//					cout << "                                      ";
 				}
 				gotoxy(wherex()-1,wherey());
 				cout << " ";
@@ -5057,10 +5141,10 @@ void FunctionSV(dslop &dsl)
 				{
 					gotoxy(6,6+i);
 					cout << "                                      ";
-					gotoxy(46,6+i);
+					gotoxy(68,6+i);
 					cout << "                                      ";
-					gotoxy(86,6+i);
-					cout << "                                      ";
+//					gotoxy(86,6+i);
+//					cout << "                                      ";
 				}
 			InDSLop(dsl,page);	
 			gotoxy(hd-1,td);
@@ -5073,13 +5157,18 @@ void FunctionSV(dslop &dsl)
 			selectFunctionSV(dsl.l[state + page*10],page);
 			system("cls"); 
 			gotoxy(5,2);
-			vekhungDS(34,120,3);
-			gotoxy(22,3);
+//			vekhungDS(34,120,3);
+//			gotoxy(22,3);
+//			cout << "TEN LOP";
+//			gotoxy(63,3);
+//			cout << "MA LOP";
+//			gotoxy(101,3);
+//			cout << "NIEN KHOA";
+			vekhungDS(34,120,2);
+			gotoxy(35,3);
 			cout << "TEN LOP";
-			gotoxy(63,3);
+			gotoxy(90,3);
 			cout << "MA LOP";
-			gotoxy(101,3);
-			cout << "NIEN KHOA";
 			InDSLop(dsl,page);
 			state = 0;
 			AnConTro();
@@ -5224,6 +5313,23 @@ void In1CH(NODECH ch, int k)
 		cout << temp << "...";
 	}
 }
+//void In1MH_CoCauHoi(NODE ch, int k)
+//{
+//	gotoxy(16,4+k);
+//	cout << ch->id;
+//	gotoxy(40,4+k);
+//	cout << ch->info.maMH;
+//	gotoxy(55,4+k);
+//	if(ch->info.noiDung.length() < 63)
+//	{
+//		cout << ch->info.noiDung;
+//	}
+//	else
+//	{
+//		string temp = ch->info.noiDung.substr(0,63);
+//		cout << temp << "...";
+//	}
+//}
 // ==================== IN DANH SACH CAU HOI ==========================
 void InDSCH(NODECH root, int page, int *arr[])
 {
@@ -9012,6 +9118,7 @@ void FunctionThi(NODECH dsch,int tg, int sct, string monthi,string &diem, CTdeth
 			clock.join();
 			string tb = "Het thoi gian lam bai, bam phim bat ky de ket thuc!";
 			InTB(tb,132,30);
+//			system("cls");
 			ketThucBaiThi(ctdt,dsch);
 //			for(int i = 0; i < sct; i++)
 //			{
@@ -10407,13 +10514,17 @@ void NhapLopXemDiem(dslop dsl , DSMH dsm, NODECH dsch)
 	gotoxy(50,46);
 	cout << "ENTER: Chon	ESC: Thoat	PGUP: Qua trang	PGDOWN: Lui trang";
 	gotoxy(5,2);
-	vekhungDS(34,120,3);
-	gotoxy(22,3);
+	vekhungDS(34,120,2);
+//	gotoxy(22,3);
+//	cout << "TEN LOP";
+//	gotoxy(63,3);
+//	cout << "MA LOP";
+//	gotoxy(101,3);
+//	cout << "NIEN KHOA";
+	gotoxy(35,3);
 	cout << "TEN LOP";
-	gotoxy(63,3);
+	gotoxy(90,3);
 	cout << "MA LOP";
-	gotoxy(101,3);
-	cout << "NIEN KHOA";
 	int page = 0;
 	int maxpage;
 	InDSLop(dsl,page);
@@ -10461,11 +10572,16 @@ void NhapLopXemDiem(dslop dsl , DSMH dsm, NODECH dsch)
 				{
 					for(int i = 0; i < 29;i++)
 					{
+//						gotoxy(6,6+i);
+//						cout << "                                      ";
+//						gotoxy(46,6+i);
+//						cout << "                                      ";
+//						gotoxy(86,6+i);
+//						cout << "                                      ";
 						gotoxy(6,6+i);
 						cout << "                                      ";
-						gotoxy(46,6+i);
-						cout << "                                      ";
-						gotoxy(86,6+i);
+						gotoxy(68,6+i);
+						HienConTro();
 						cout << "                                      ";
 					}
 					gotoxy(wherex()-1,wherey());
@@ -10492,11 +10608,16 @@ void NhapLopXemDiem(dslop dsl , DSMH dsm, NODECH dsch)
 					
 						for(int i = 0; i < 29;i++)
 						{
+//							gotoxy(6,6+i);
+//							cout << "                                      ";
+//							gotoxy(46,6+i);
+//							cout << "                                      ";
+//							gotoxy(86,6+i);
+//							cout << "                                      ";
 							gotoxy(6,6+i);
-							cout << "                                      ";
-							gotoxy(46,6+i);
-							cout << "                                      ";
-							gotoxy(86,6+i);
+							cout << "                                      ";	
+							gotoxy(68,6+i);
+							HienConTro();
 							cout << "                                      ";
 						}
 					}
@@ -10533,12 +10654,17 @@ void NhapLopXemDiem(dslop dsl , DSMH dsm, NODECH dsch)
 			{
 				for(int i = 0; i < 28;i++)
 				{
+//					gotoxy(6,6+i);
+//					cout << "                                      ";
+//					gotoxy(46,6+i);
+//					cout << "                                      ";
+//					gotoxy(86,6+i);
+//					cout << "                                      ";
 					gotoxy(6,6+i);
-					cout << "                                      ";
-					gotoxy(46,6+i);
-					cout << "                                      ";
-					gotoxy(86,6+i);
-					cout << "                                      ";
+						cout << "                                      ";
+						gotoxy(68,6+i);
+						HienConTro();
+						cout << "                                      ";
 				}
 				gotoxy(wherex()-1,wherey());
 				cout << " ";
@@ -10559,12 +10685,17 @@ void NhapLopXemDiem(dslop dsl , DSMH dsm, NODECH dsch)
 			{
 				for(int i = 0; i < 28;i++)
 				{
+//					gotoxy(6,6+i);
+//					cout << "                                      ";
+//					gotoxy(46,6+i);
+//					cout << "                                      ";
+//					gotoxy(86,6+i);
+//					cout << "                                      ";
 					gotoxy(6,6+i);
-					cout << "                                      ";
-					gotoxy(46,6+i);
-					cout << "                                      ";
-					gotoxy(86,6+i);
-					cout << "                                      ";
+						cout << "                                      ";
+						gotoxy(68,6+i);
+						HienConTro();
+						cout << "                                      ";
 				}
 				gotoxy(wherex()-1,wherey());
 				cout << " ";
@@ -10600,13 +10731,17 @@ void NhapLopXemDiem(dslop dsl , DSMH dsm, NODECH dsch)
 				gotoxy(130,26);
 				vekhungTB(10,36);
 				gotoxy(5,2);
-				vekhungDS(34,120,3);
-				gotoxy(22,3);
+				vekhungDS(34,120,2);
+//				gotoxy(22,3);
+//				cout << "TEN LOP";
+//				gotoxy(63,3);
+//				cout << "MA LOP";
+//				gotoxy(101,3);
+//				cout << "NIEN KHOA";
+				gotoxy(35,3);
 				cout << "TEN LOP";
-				gotoxy(63,3);
+				gotoxy(90,3);
 				cout << "MA LOP";
-				gotoxy(101,3);
-				cout << "NIEN KHOA";
 				InDSLop(dsl,page);
 				state = 0;
 				gotoxy(7,6);
@@ -10659,7 +10794,7 @@ void DocFileCauHoi (NODECH &tree, int arr1[], int arr2[])
 		getline(fileIn,ch.dapAn,'\n');
 		if (id < 5000)
 		{
-			swap(arr1[id],arr1[4999-countNode(tree->pLeft)]);
+			swap(arr1[id], arr1[4999-countNode(tree->pLeft)]);
 			Insert_node(tree,id,ch);
 		}
 		else if (id > 5000)
@@ -11042,12 +11177,16 @@ int mainMenu()
 	cout << "|   |_| ||   | |   _   || | |   ||   |_| |   |     | |   | |   |___ | | |   |";
 	gotoxy(60,26);
 	cout << "|_______||___| |__| |__||_|  |__||_______|    |___|  |___| |_______||_|  |__|";
+//	veNutMenu(3,10,11,"In lop theo nien khoa",31);
+//	veNutMenu(3,10,16,"Sinh vien",31);
+//	veNutMenu(3,10,21,"Mon hoc",31);
+//	veNutMenu(3,10,26,"Cau hoi",31);
+//	veNutMenu(3,10,31,"Diem",31);
+	
 	veNutMenu(3,10,6,"Lop",240);
-	veNutMenu(3,10,11,"In lop theo nien khoa",31);
-	veNutMenu(3,10,16,"Sinh vien",31);
-	veNutMenu(3,10,21,"Mon hoc",31);
-	veNutMenu(3,10,26,"Cau hoi",31);
-	veNutMenu(3,10,31,"Diem",31);
+	veNutMenu(3,10,11,"Sinh vien",31);
+	veNutMenu(3,10,16,"Mon hoc",31);
+	veNutMenu(3,10,21,"Diem",31);
 	//veNutMenu(3,10,36,"In chi tiet de thi cua 1 mon hoc",31);
 	gotoxy(50,5);
 	AnConTro();
@@ -11096,17 +11235,27 @@ int mainMenu()
 				cout << "|   |_| ||   | |   _   || | |   ||   |_| |   |     | |   | |   |___ | | |   |";
 				gotoxy(60,26);
 				cout << "|_______||___| |__| |__||_|  |__||_______|    |___|  |___| |_______||_|  |__|";
+//				veNutMenu(3,10,6,"Lop",240);
+////				veNutMenu(3,10,11,"In lop theo nien khoa",31);
+////				veNutMenu(3,10,16,"Sinh vien",31);
+////				veNutMenu(3,10,21,"Mon hoc",31);
+////				veNutMenu(3,10,26,"Cau hoi",31);
+////				veNutMenu(3,10,31,"Diem",31);
+//
+//				veNutMenu(3,10,11,"Sinh vien",31);
+//				veNutMenu(3,10,16,"Mon hoc",31);
+//				veNutMenu(3,10,21,"Cau hoi",31);
+//				veNutMenu(3,10,26,"Diem",31);
+
 				veNutMenu(3,10,6,"Lop",240);
-				veNutMenu(3,10,11,"In lop theo nien khoa",31);
-				veNutMenu(3,10,16,"Sinh vien",31);
-				veNutMenu(3,10,21,"Mon hoc",31);
-				veNutMenu(3,10,26,"Cau hoi",31);
-				veNutMenu(3,10,31,"Diem",31);
+				veNutMenu(3,10,11,"Sinh vien",31);
+				veNutMenu(3,10,16,"Mon hoc",31);
+				veNutMenu(3,10,21,"Diem",31);
 				choose = 0;
 			}
 		}
 		if (s == UP && sCheck == false )
-		{
+		{	
 			if(choose > 0 )
 			{
 				switch(choose)
@@ -11114,73 +11263,73 @@ int mainMenu()
 					case 1:
 						{
 							veNutMenu(3,10,6,"Lop",240);
-							veNutMenu(3,10,11,"In lop theo nien khoa",31);
+							veNutMenu(3,10,11,"Sinh vien",31);
 							break;
 						}
+//					case 2:
+//						{
+//							veNutMenu(3,10,11,"In lop theo nien khoa",240);
+//							veNutMenu(3,10,16,"Sinh vien",31);
+//							break;
+//						}
 					case 2:
 						{
-							veNutMenu(3,10,11,"In lop theo nien khoa",240);
-							veNutMenu(3,10,16,"Sinh vien",31);
+							veNutMenu(3,10,11,"Sinh vien",240);
+							veNutMenu(3,10,16,"Mon hoc",31);
 							break;
 						}
 					case 3:
 						{
-							veNutMenu(3,10,16,"Sinh vien",240);
-							veNutMenu(3,10,21,"Mon hoc",31);
+							veNutMenu(3,10,16,"Mon hoc",240);
+							veNutMenu(3,10,21,"Diem",31);
 							break;
 						}
-					case 4:
-						{
-							veNutMenu(3,10,21,"Mon hoc",240);
-							veNutMenu(3,10,26,"Cau hoi",31);
-							break;
-						}
-					case 5:
-						{
-							veNutMenu(3,10,26,"Cau hoi",240);
-							veNutMenu(3,10,31,"Diem",31);
-							break;
-						}			
+//					case 4:
+//						{
+//							veNutMenu(3,10,21,"Cau hoi",240);
+//							veNutMenu(3,10,26,"Diem",31);
+//							break;
+//						}			
 				}
 				choose --;
 			}
 		}
 		if (s == DOWN && sCheck == false )
 		{
-			if(choose < 5 )
+			if(choose < 3 )
 			{
 				switch(choose)
 				{
 					case 0:
 						{
 							veNutMenu(3,10,6,"Lop",31);
-							veNutMenu(3,10,11,"In lop theo nien khoa",240);
+							veNutMenu(3,10,11,"Sinh vien",240);
 							break;
 						}
+//					case 1:
+//						{
+//							veNutMenu(3,10,11,"In lop theo nien khoa",31);
+//							veNutMenu(3,10,16,"Sinh vien",240);
+//							break;
+//						}
 					case 1:
 						{
-							veNutMenu(3,10,11,"In lop theo nien khoa",31);
-							veNutMenu(3,10,16,"Sinh vien",240);
+							veNutMenu(3,10,11,"Sinh vien",31);
+							veNutMenu(3,10,16,"Mon hoc",240);
 							break;
 						}
 					case 2:
 						{
-							veNutMenu(3,10,16,"Sinh vien",31);
-							veNutMenu(3,10,21,"Mon hoc",240);
+							veNutMenu(3,10,16,"Mon hoc",31);
+							veNutMenu(3,10,21,"Diem",240);
 							break;
 						}
-					case 3:
-						{
-							veNutMenu(3,10,21,"Mon hoc",31);
-							veNutMenu(3,10,26,"Cau hoi",240);
-							break;
-						}
-					case 4:
-						{
-							veNutMenu(3,10,26,"Cau hoi",31);
-							veNutMenu(3,10,31,"Diem",240);
-							break;
-						}		
+//					case 3:
+//						{
+//							veNutMenu(3,10,21,"Cau hoi",31);
+//							veNutMenu(3,10,26,"Diem",240);
+//							break;
+//						}		
 				}
 				choose ++;
 			}
@@ -11243,7 +11392,6 @@ void mainProcess(dslop &dsl, dssv &ds, DSMH &dsm, NODECH &dsch, int arr1[], int 
 				stop = 1;
 				if(ctdt.bode != NULL)
 				{
-					
 					float diemthi = StringToFloat(diem);
 					cout << diem << " " << stop;
 					nodeSV *sv;
@@ -11300,42 +11448,35 @@ void mainProcess(dslop &dsl, dssv &ds, DSMH &dsm, NODECH &dsch, int arr1[], int 
 							FunctionLop(dsl);
 							break;
 						}
-						case 1:	//IN DANH SACH LOP
-						{
-							ChangeColor(15);
-							system("cls");
-							NhapNK(dsl);
-							break;
-						}
-						case 2: //SINH VIEN
+//						case 1:	//IN DANH SACH LOP
+//						{
+//							ChangeColor(15);
+//							system("cls");
+//							NhapNK(dsl);
+//							break;
+//						}
+						case 1: //SINH VIEN
 						{
 							ChangeColor(15);
 							system("cls");
 							FunctionSV(dsl);
 							break;
 						}
-						case 3://MON HOC
+						case 2://MON HOC
 						{
 							ChangeColor(15);
 							system("cls");
 							FunctionMon(dsm,dsl,dsch);
 							break;
-						}
-						case 4://CAU HOI
-						{
-							ChangeColor(15);
-							system("cls");
-							FunctionCH(dsch,dsm,dsl,idlonnhat,arr1,arr2);
-							break;
 						}	
-						case 5://DIEM
+						case 3://DIEM
 						{
 							ChangeColor(15);
 							system("cls");
 							FunctionDiem(dsl,ds,dsm,dsch);
 							break;	
 						}
-						case 6:
+						case 4:
 						{
 							ChangeColor(15);
 							system("cls");

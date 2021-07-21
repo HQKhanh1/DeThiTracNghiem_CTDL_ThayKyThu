@@ -19,7 +19,8 @@
 #define PAGEUP 73
 #define PAGEDOWN 81
 #define F1 59
-
+#define F2 60
+#define F3 61
 
 #define xInTen 80
 #define yInTen 40
@@ -863,6 +864,71 @@ void vekhungDSCH(int dai, int rong, int socot)
 				else if(j == 48 + 28)
 				{
 					cout << "NOI DUNG CAU HOI";
+					j += 15;
+				}
+				else cout << " ";
+			}
+			else if(i == 2)
+			{
+				if(j == 0) cout << docphai;
+				else if (j == rong -1) cout << doctrai;
+				else if (j == (rong/socot)*dem) cout << giua;
+				else cout << ngang;
+			}
+			else if (i == dai-1)
+			{
+				if (j == 0) cout << traiduoi;
+				else if (j == rong-1) cout << phaiduoi;
+				else if (j == (rong/socot)*dem) cout << nganglen;
+				else cout << ngang;
+			}
+			else if(j == (rong/socot)*dem)
+			{
+				cout << doc;
+			}
+			else
+			{
+				if (j == 0 || j == rong-1) cout << doc;
+				else cout << " ";
+			}
+			if(j == dem*(rong/socot)) dem++;
+			if(dem == 3) dem = 1;
+		}
+		gotoxy(wherex()-rong,wherey()+1);
+	}
+}
+//=============================================VE KHUNG DANH SACHMH CO CAU HOI======================================
+void vekhungDSMH_CoCauHoi(int dai, int rong, int socot)
+{
+	int x = rong/socot;
+	int dem = 1;
+	for (int i = 0; i < dai; i++)
+	{
+		for (int j = 0; j < rong; j++)
+		{
+			if (i == 0)
+			{
+				if (j == 0) cout << traitren;
+				else if (j == rong-1) cout << phaitren;
+				else if (j == (rong/socot)*dem) cout << ngangxuong;
+				else cout << ngang;
+			}
+			else if(i == 1)
+			{
+				if (j == 0|| j == 24 || j== 43 || j == rong-1) cout << doc;
+				else if(j == 11)
+				{
+					cout << "ID";
+					j += 1;
+				}
+				else if(j == 24+ 10)
+				{
+					cout << "MA MON HOC";
+					j += 4;
+				}
+				else if(j == 48 + 28)
+				{
+					cout << "TEN MON HOC";
 					j += 15;
 				}
 				else cout << " ";

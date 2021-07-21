@@ -7,7 +7,7 @@
 #define STACKSIZE 1000
 
 using namespace std;
-// ===============================DANH SACH MON HOC=============================
+//// ===============================DANH SACH MON HOC=============================
 struct monHoc
 {
 	string maMH;
@@ -113,9 +113,10 @@ struct TG
 //	DSCH cauHoiMH;
 //};
 //struct dsMonHoc{
-// monHoc mh;
-// struct node *left;
-// struct node *right;
+//	//int id;
+//	monHoc mh;
+//	struct node *left;
+//	struct node *right;
 //};
 //typedef struct dsMonHoc *DSMH;
 //DSMH dsmh = NULL;
@@ -130,8 +131,8 @@ struct TG
 //	string dapAn;
 //};
 //typedef struct dsCauHoi {
-//	int n;
-//  	cauHoi *listCauHoi[MAXCAUHOI]; // danh sach mang 1 chieu
+//	int n = 0;
+//  	cauHoi *listCauHoi[MAXCAUHOI] = {NULL}; // danh sach mang 1 chieu
 //} DSCH;
 //// ===============================DANH SACH LOP=============================
 //struct lop
