@@ -80,7 +80,7 @@ void gotoxy(int x, int y) // Di chuyen toa do con tro trong he toa do De-cat
 	static HANDLE h = NULL;
 	if (!h)
 		h = GetStdHandle(STD_OUTPUT_HANDLE);
-	COORD c = { x, y };
+	COORD c = { x, y};
 	SetConsoleCursorPosition(h, c);
 }
 //=============================HAM TEXTCOLOR==========================
@@ -897,6 +897,64 @@ void vekhungDSCH(int dai, int rong, int socot)
 		gotoxy(wherex()-rong,wherey()+1);
 	}
 }
+void vekhungDSCH_Test(int dai, int rong, int socot)
+{
+	int x = rong/socot;
+	int dem = 1;
+	for (int i = 0; i < dai; i++)
+	{
+		for (int j = 0; j < rong; j++)
+		{
+			if (i == 0)
+			{
+				if (j == 0) cout << traitren;
+				else if (j == rong-1) cout << phaitren;
+				else if (j == 11 ) cout << ngangxuong;
+				else cout << ngang;
+			}
+			else if(i == 1)
+			{
+				if (j == 0|| j == 11 ||j == rong-1) cout << doc;
+				else if(j == 5){
+					cout << "STT";
+					j += 2;
+				}
+				else if(j == rong/2 - 8)
+				{
+					cout << "Noi dung cau hoi";
+					j += 15;
+				}
+				else cout << " ";
+			}
+			else if(i == 2)
+			{
+				if(j == 0) cout << docphai;
+				else if (j == rong -1) cout << doctrai;
+				else if (j == 11) cout << giua;
+				else cout << ngang;
+			}
+			else if (i == dai-1)
+			{
+				if (j == 0) cout << traiduoi;
+				else if (j == rong-1) cout << phaiduoi;
+				else if (j == 11) cout << nganglen;
+				else cout << ngang;
+			}
+			else if(j == (rong/socot)*dem)
+			{
+				cout << doc;
+			}
+			else
+			{
+				if (j == 0 || j == 11 || j == rong-1) cout << doc;
+				else cout << " ";
+			}
+			if(j == dem*(rong/socot)) dem++;
+			if(dem == 3) dem = 1;
+		}
+		gotoxy(wherex()-rong,wherey()+1);
+	}
+}
 //=============================================VE KHUNG DANH SACHMH CO CAU HOI======================================
 void vekhungDSMH_CoCauHoi(int dai, int rong, int socot)
 {
@@ -978,7 +1036,7 @@ string DaoChuoi(string text)
 void vekhungThemCH()
 {
 	gotoxy(5,2);
-	veKhung(36,125);
+	veKhung(36,120);
 	gotoxy(6,7-2);
 	cout << "NOI DUNG CH: ";
 	gotoxy(18,6-2);
@@ -1000,6 +1058,15 @@ void vekhungThemCH()
 	gotoxy(18,33-2);
 	veKhung(5,101);
 	veNut(3,11,59,38,"LUU",30);
+}
+void xoaKhungThemCH(){
+	gotoxy(5,2);
+	for(int i = 0; i < 40; i++){
+		for(int j = 0; j < 120; j++){
+			cout<<" ";
+		}
+		gotoxy(5, 2 + i);
+	}
 }
 void vekhungNhapTG()
 {

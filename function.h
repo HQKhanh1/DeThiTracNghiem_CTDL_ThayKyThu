@@ -1033,7 +1033,6 @@ void InDSMon (DSMH dsm, int &page)
 	}
 	gotoxy(125/2,36);
 	cout << "Trang " << page + 1 << "/" << maxpage;
-	
 }
 // ==================== IN DS LOP ==========================
 void InDSLop (dslop dsl, int &page)
