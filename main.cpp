@@ -17,13 +17,11 @@ int main()
 	dssv ds;
 	dslop dsl;
 	DSMH dsm;
-	NODECH dsch;
-	Initialize(dsch);
+	khoiTaoCay(dsm);
 //	SetConsoleDisplayMode(GetStdHandle(STD_OUTPUT_HANDLE),CONSOLE_FULLSCREEN_MODE,0);
 //	system("mode 1080");
 //	fullscreen();
 //	SetWindowSize(1080,720);
-	mainProcess(dsl,ds,dsm,dsch,arr1,arr2);
-	
+	mainProcess(dsl,ds,dsm,arr1,arr2);
 	return 0;
 }

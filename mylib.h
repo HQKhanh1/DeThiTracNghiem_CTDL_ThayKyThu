@@ -123,6 +123,13 @@ float StringToFloat (string s)
 	p = p + p1;
 	return p;
 }
+bool checkChuoiLaIntHayFlaot(string s){
+	for(int i = 0; i < s.length(); i++){
+		if(s[i] == '.')
+			return true;
+	}
+	return false;
+}
 //=====================TRA VE VI TRI X CUA CON TRO==============================
 int wherex()
 {
@@ -954,6 +961,49 @@ void vekhungDSCH_Test(int dai, int rong, int socot)
 		}
 		gotoxy(wherex()-rong,wherey()+1);
 	}
+}
+void XoaKhungXemCH(){
+	for(int i = 0; i < 40; i++)
+	{
+		gotoxy(5, 2+ i);
+		cout<<"                                                                                                                        ";
+	}
+}
+void XoaCauHoiDaXoa(){
+	int k = 2;
+	for(int i = 0; i < 10; i++)
+	{
+		gotoxy(10,4+k);
+		cout << "   ";
+		gotoxy(25 ,4+k);
+		cout<<"                                                                      ";
+		k += 3;
+	}
+}
+void vekhungXemCH()
+{
+	gotoxy(5,2);
+	veKhung(36,120);
+	gotoxy(6,7-2);
+	cout << "NOI DUNG CH: ";
+	gotoxy(18,6-2);
+	veKhung(7,101);
+	gotoxy(6,16-2);
+	cout << "DAP AN A: ";
+	gotoxy(18,15-2);
+	veKhung(5,101);
+	gotoxy(6,22-2);
+	cout << "DAP AN B: ";
+	gotoxy(18,21-2);
+	veKhung(5,101);
+	gotoxy(6,28-2);
+	cout << "DAP AN C: ";
+	gotoxy(18,27-2);
+	veKhung(5,101);
+	gotoxy(6,34-2);
+	cout << "DAP AN D: ";
+	gotoxy(18,33-2);
+	veKhung(5,101);
 }
 //=============================================VE KHUNG DANH SACHMH CO CAU HOI======================================
 void vekhungDSMH_CoCauHoi(int dai, int rong, int socot)
