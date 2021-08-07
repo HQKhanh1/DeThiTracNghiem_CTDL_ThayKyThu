@@ -47,7 +47,7 @@ void DeleteInfo_SV(dssv &ds , string maSV);
 
 // ==================== Function MH ==========================
 //void FunctionMon(DSMH &dsm, dslop dsl, NODECH &dsch);
-void FunctionMH(DSMH &dsm, int &idlonnhat, int arr1[], int arr2[]);
+void FunctionMH(DSMH &dsm, dslop dsl, int &idlonnhat, int arr1[], int arr2[]);
 int countNode(DSMH p);
 void themCHVaoMonHoc(DSMH &p,int id, cauHoi ch1);
 bool CheckMonNhap_Test(DSMH dsm, int* arr[],int sl, string mamon, string tenmon);
@@ -57,7 +57,7 @@ int rdMang (int arr[], int sch);
 void suaMonHoc_Test(DSMH &dsm, int &state, int &page,int sl, int idlonnhat, int *arr[]);
 bool ExitXoa (string tb, char &s, bool &sCheck);
 void xoaMMH_Test(DSMH &dsm, int &sl,int &state ,int &page, int &maxpage, int &idlonnhat, int *arr[]);
-void FunctionCauHoi(DSMH & dsm,int id, int idlonnhat);
+void FunctionCauHoi(DSMH & dsm, dslop dsl, int id, int idlonnhat);
 void xoaKhungTTMH(int dai, int rong);
 void NhapCauHoiThem(DSMH &dsm, int id);
 void SuaCauHoiTrongMH(DSCH &cauhoi, cauHoi ch, int id, int vitri);
@@ -99,6 +99,7 @@ bool Exit (char &s, bool &sCheck)
 		}
 		batPhim(s,sCheck);
 	}
+		XoaTB(130,26);
 }
 // ==================== CHIA STRING  ==========================
 int doiso( char n)
@@ -818,6 +819,8 @@ void DocFileDiem1Lop ( lop *l)
 					diem->info.diem = StringToInt(temp);
 				getline(fileIn,temp,':');
 				diem->info.ctdt.sct = StringToInt(temp);
+				getline(fileIn,temp,':');
+				diem->info.ctdt.tg = StringToInt(temp);
 				diem->info.ctdt.bode = new int [diem->info.ctdt.sct];
 				diem->info.ctdt.dapan = new int [diem->info.ctdt.sct];
 				for(int i = 0 ; i < diem->info.ctdt.sct; i++)
@@ -1204,7 +1207,29 @@ bool CheckFormMaSv (string masv)
 	
 	return true;
 }
-
+// ==================== CHECK CH DA THI ==========================
+bool CheckCHDaThi (dslop dsl, int idMH, int idCH)
+{
+	for(int i = 0; i < dsl.solop; i++)
+	{
+		for(nodeSV *k = dsl.l[i]->danhsach.First;k != NULL ;k=k->pNext)
+		{
+			for(nodediemThi *p = k->info.diem.First; p != NULL; p=p->pNext)
+			{
+				if(p->info.idMonHoc == idMH){
+					for(int j = 0; j < p->info.ctdt.sct; j++)
+					{
+						if(p->info.ctdt.bode[j] == idCH)
+						{
+							return true;
+						}
+					}
+				}
+			}
+		}
+	}
+	return false;
+}
 // ==================== KIEM TRA NHAP DU HO TEN  ==========================
 bool CheckFormTen (string text)
 {
@@ -1587,7 +1612,7 @@ void NhapSinhVien(lop *&l )
 {
 	AnConTro();
 	int maxpage;
-	gotoxy(130,26);
+	gotoxy(127,26);
 	vekhungTB(10,36);
 	gotoxy(15,3);
 	cout << "MA SV";
@@ -1754,7 +1779,7 @@ void NhapSinhVien(lop *&l )
 					{
 						if(mk.length() < 26)
 						{
-							cout << s;
+							cout << "*";
 							mk += s;	
 						}
 						break;
@@ -2290,7 +2315,7 @@ void NhapMonHoc_Test(DSMH &dsm, int &sl, int &page, int &maxpage, int &idlonnhat
 			HienConTro();
 			if (state == false )
 			{
-				if (tenmon.length() < 30)
+				if (tenmon.length() < 70)
 				{
 					cout << InHoa(s);
 					tenmon += InHoa(s);
@@ -2594,28 +2619,8 @@ bool CheckDaThi (int idMon,dslop dsl)
 	}
 	return false;
 }
-// ==================== CHECK CH DA THI ==========================
-bool CheckCHDaThi (dslop dsl, int id)
-{
-	for(int i = 0; i < dsl.solop; i++)
-	{
-		for(nodeSV *k = dsl.l[i]->danhsach.First;k != NULL ;k=k->pNext)
-		{
-			for(nodediemThi *p = k->info.diem.First; p != NULL; p=p->pNext)
-			{
-				for(int j = 0; j < p->info.ctdt.sct; j++)
-				{
-					if(p->info.ctdt.bode[j] == id)
-					{
-						return true;
-					}
-				}
-			}
-		}
-	}
-	return false;
-}// ==================== FUNCTION MON HOC ==========================
-void FunctionMH(DSMH &dsm, int &idlonnhat, int arr1[], int arr2[])
+// ==================== FUNCTION MON HOC ==========================
+void FunctionMH(DSMH &dsm, dslop dsl, int &idlonnhat, int arr1[], int arr2[])
 {
 	gotoxy(0,0);
 	veKhungThuCong();
@@ -2881,7 +2886,7 @@ void FunctionMH(DSMH &dsm, int &idlonnhat, int arr1[], int arr2[])
 				int iEntner = page*10 +state;
 				int idEntner = *arr[iEntner];
 				system("cls");
-				FunctionCauHoi(dsm, idEntner, idlonnhat);
+				FunctionCauHoi(dsm, dsl, idEntner, idlonnhat);
 				gotoxy(127,2);
 				xoaKhungTTMH(10,36);
 				XoaTB(130, 26);
@@ -2905,7 +2910,7 @@ void xoaKhungTTMH(int dai, int rong)
 		{
 			cout<<" ";
 		}
-		gotoxy(wherex()-rong,wherey()+1);
+		gotoxy(wherex() - rong,wherey()+1);
 	}
 }
 
@@ -3009,7 +3014,7 @@ void vekhungTTMH(monHoc mh, int dai, int rong)
 		gotoxy(wherex()-rong,wherey()+1);
 	}
 }
-void FunctionCauHoi(DSMH & dsm,int id, int idlonnhat)
+void FunctionCauHoi(DSMH & dsm, dslop dsl, int id, int idlonnhat)
 {
 	DSMH pTam = Search_MH(dsm,id);
 	gotoxy(0,0);
@@ -3019,7 +3024,7 @@ void FunctionCauHoi(DSMH & dsm,int id, int idlonnhat)
 	gotoxy(20,43);
 	cout << "ENTER: Chon    ESC: Thoat    PGUP: Qua trang    PGDOWN: Lui trang    F1: Them cau hoi    F2: Sua cau hoi    F3: Xoa cau hoi";
 	gotoxy(127, 2);
-	vekhungTTMH(pTam->mh, 10, 36);
+	vekhungTTMH(pTam->mh, 10, 56);
 	gotoxy(127,26);
 	vekhungTB(10,36);
 	AnConTro();
@@ -3053,8 +3058,8 @@ void FunctionCauHoi(DSMH & dsm,int id, int idlonnhat)
 			if(Exit(s,sCheck) == true)
 			{	
 				LuuFileMH(dsm,"DSMONHOCVACH.txt",idlonnhat);
-				gotoxy(127,6);
-				xoaKhungTTMH(10,36);
+				gotoxy(127,2);
+				xoaKhungTTMH(10,56);
 				gotoxy(20,43);
 				cout << "                                                                                                                           ";
 				break;
@@ -3204,23 +3209,58 @@ void FunctionCauHoi(DSMH & dsm,int id, int idlonnhat)
 			cout<<muiten;
 		}
 		if(s == F2){
-			SuaCauHoiTrongMH(pTam->mh.cauHoiMH, *pTam->mh.cauHoiMH.listCauHoi[page*10 + state],id, state);
-			XoaKhungXemCH();
-			gotoxy(5,2);
-			vekhungDSCH_Test(34,120,2);
-			gotoxy(127, 2);
-			vekhungTTMH(pTam->mh, 10, 36);
-			pTam = Search_MH(dsm,id);
-			InDSCHMon(pTam->mh.cauHoiMH, page, maxpage);
-			state = 0;
-			gotoxy(20,43);
-			cout << "ENTER: Chon    ESC: Thoat    PGUP: Qua trang    PGDOWN: Lui trang    F1: Them cau hoi    F2: Sua cau hoi    F3: Xoa cau hoi";
-			gotoxy(7, 6 + 3*state);
-			AnConTro();
-			cout<<muiten;
+			if(CheckCHDaThi(dsl, id, (page*10 +state)) == true){
+							XoaTB(130, 26);
+							string tb = "Cau hoi da thi, Khong the sua!";
+							InTB(tb,129,30);
+							AnConTro();
+							Sleep(750);
+							XoaTB(130,26);
+							AnConTro();
+							Sleep(750);
+							XoaTB(130,26);
+							InDSCHMon(pTam->mh.cauHoiMH,page, maxpage);
+							gotoxy(7, 6 + 3*state);
+							cout<<" ";
+							gotoxy(7, 6 + 3*state);
+							cout<<muiten;
+			}
+			else
+			{
+				SuaCauHoiTrongMH(pTam->mh.cauHoiMH, *pTam->mh.cauHoiMH.listCauHoi[page*10 + state],id, state);
+				XoaKhungXemCH();
+				gotoxy(5,2);
+				vekhungDSCH_Test(34,120,2);
+				gotoxy(127, 2);
+				vekhungTTMH(pTam->mh, 10, 36);
+				pTam = Search_MH(dsm,id);
+				InDSCHMon(pTam->mh.cauHoiMH, page, maxpage);
+				gotoxy(20,43);
+				cout << "ENTER: Chon    ESC: Thoat    PGUP: Qua trang    PGDOWN: Lui trang    F1: Them cau hoi    F2: Sua cau hoi    F3: Xoa cau hoi";
+				gotoxy(7, 6 + 3*state);
+				AnConTro();
+				cout<<muiten;	
+			}
 		}
 		if(s == F3){
-			if(ExitXoa("Ban co chac chan xoa cau hoi?   (Y/N)", s, sCheck) == true){
+			if(CheckCHDaThi(dsl, id, (page*10 +state)) == true){
+							XoaTB(130, 26);
+							string tb = "Cau hoi da thi, Khong the xoa!";
+							InTB(tb,129,30);
+							AnConTro();
+							Sleep(750);
+							XoaTB(130,26);
+							AnConTro();
+							Sleep(750);
+							XoaTB(130,26);
+							InDSCHMon(pTam->mh.cauHoiMH,page, maxpage);
+							gotoxy(7, 6 + 3*state);
+							cout<<" ";
+							gotoxy(7, 6 + 3*state);
+							cout<<muiten;
+			}
+			else if(ExitXoa("Ban co chac chan xoa cau hoi?   (Y/N)", s, sCheck) == true)
+			{
 				xoaCauHoi(dsm, id, state, page);
 				pTam = Search_MH(dsm,id);
 				if(state > 0 && pTam->mh.cauHoiMH.n == (page * 10 + state)){
@@ -3274,7 +3314,6 @@ void FunctionCauHoi(DSMH & dsm,int id, int idlonnhat)
 			vekhungTTMH(pTam->mh, 10, 36);
 			pTam = Search_MH(dsm,id);
 			InDSCHMon(pTam->mh.cauHoiMH, page, maxpage);
-			state = 0;
 			gotoxy(20,43);
 			cout << "ENTER: Chon    ESC: Thoat    PGUP: Qua trang    PGDOWN: Lui trang    F1: Them cau hoi    F2: Sua cau hoi    F3: Xoa cau hoi";
 			gotoxy(7, 6 + 3*state);
@@ -3632,7 +3671,6 @@ void inSuaCH(cauHoi ch, int &dem, int &xND, int &yND, int &xA, int &yA, int &xB,
 				if(temp[m] =' '){
 					gotoxy(hdnd, tdnd + 2);
 					for(int i = 0; i < 95; i++){ 
-						dem++;
 						cout<<temp[i];
 					}
 					gotoxy(hdnd, tdnd + 2 + 2);
@@ -3650,7 +3688,6 @@ void inSuaCH(cauHoi ch, int &dem, int &xND, int &yND, int &xA, int &yA, int &xB,
 					}
 					gotoxy(hdnd, tdnd + 2);
 					for(int i = 0; i < m; i++){
-						dem++;
 						cout<<temp[i];
 					}
 					gotoxy(hdnd, tdnd + 2 + 2);
@@ -3934,6 +3971,7 @@ void SuaCauHoiTrongMH(DSCH &cauhoi, cauHoi ch, int id, int vitri)
 	int hdnd,tdnd,hda,tda,hdb,tdb,hdc,tdc,hdd,tdd;
 	int xND, yND, xA,yA, xB, yB, xC, yC, xD, yD;
 	inSuaCH(ch,dem, xND,yND, xA, yA, xB, yB, xC,yC, xD, yD);
+	dem = 93;
 	hdnd = xND;
 	tdnd = yND;
 	hda = xA;
@@ -4938,6 +4976,7 @@ void NhapCauHoiThem(DSMH &dsm, int id)
 					{
 						if(ch.noiDung.length() < 280)
 						{
+							
 							if(wherex() == 115 && wherey() == 5 )
 							{
 								n = ch.noiDung.length()-1;
@@ -5431,8 +5470,13 @@ void NhapCauHoiThem(DSMH &dsm, int id)
 		}
 		if ( s == ENTER)
 		{
+			if(state == 0){
+				gotoxy(0,0);
+				cout<<"Dem: "<<dem;
+			}
 			if(state == 5)
 			{
+				
 				if(ch.noiDung.length() == 0 || ch.A.length() == 0 || ch.B.length() == 0 || ch.C.length() == 0 || ch.D.length() == 0)
 				{
 					string tb = "Vui long nhap day du thong tin";
@@ -5629,6 +5673,7 @@ bool ExitXoa (string tb, char &s, bool &sCheck)
 		}
 		batPhim(s,sCheck);
 	}
+	XoaTB(130,26);
 }
 //Xoa Mon
 
@@ -5751,7 +5796,7 @@ void suaMonHoc_Test(DSMH &dsm, int &state, int &page,int sl, int idlonnhat, int 
 				HienConTro();
 				if (stateCheck == false )
 				{
-					if (tenmon.length() < 30)
+					if (tenmon.length() < 70)
 					{
 						cout << InHoa(s);
 						tenmon += InHoa(s);
@@ -6696,16 +6741,9 @@ void FunctionLop(dslop &dsl)
 						XoaLop(dsl,page);
 						for(int i = 0; i < 28;i++)
 						{
-//							gotoxy(6,6+i);
-//							cout << "                                      ";
-//							gotoxy(46,6+i);
-//							cout << "                                      ";
-//							gotoxy(86,6+i);
-//							cout << "                                      ";
 							gotoxy(6,6+i);
 							cout << "                                      ";
 							gotoxy(68,6+i);
-							HienConTro();
 							cout << "                                      ";
 						}
 						InDSLop(dsl,page);
@@ -6717,17 +6755,10 @@ void FunctionLop(dslop &dsl)
 						ChinhLop(dsl,page);
 						for(int i = 0; i < 28;i++)
 						{
-//							gotoxy(6,6+i);
-//							cout << "                                      ";
-//							gotoxy(46,6+i);
-//							cout << "                                      ";
-//							gotoxy(86,6+i);
-//							cout << "                                      ";
 							gotoxy(6,6+i);
-						cout << "                                      ";
-						gotoxy(68,6+i);
-						HienConTro();
-						cout << "                                      ";
+							cout << "                                      ";
+							gotoxy(68,6+i);
+							cout << "                                      ";
 						}
 						InDSLop(dsl,page);
 						AnConTro();
@@ -6865,9 +6896,11 @@ void NhapMaLop(dslop &dsl , int page)
 void selectFunctionSV(lop *&l ,int page)
 {
 	system("cls");
+	gotoxy(0,0);
+	veKhungThuCong();
 	gotoxy(50,46);
 	cout << "ENTER: Chon	ESC: Thoat	PGUP: Qua trang	PGDOWN: Lui trang	LEFT,RIGHT: Chon gioi tinh";
-	gotoxy(130,26);
+	gotoxy(127,26);
 	vekhungTB(10,36);
 	char s;
 	bool sCheck;
@@ -7061,9 +7094,11 @@ int countDemThiTrongSV(dsdiemThi dsDiem ){
 // ==================== FUNCTION SINH VIEN ==========================
 void FunctionSV(dslop &dsl)
 {
-	gotoxy(50,46);
+	gotoxy(0,0);
+	veKhungThuCong();
+	gotoxy(50,43);
 	cout << "ENTER: Chon	ESC: Thoat	F1: Tim Lop	PGUP: Qua trang	PGDOWN: Lui trang";
-	gotoxy(130,26);
+	gotoxy(127,26);
 	vekhungTB(10,36);
 	int page = 0;
 	int maxpage;
@@ -7136,7 +7171,6 @@ void FunctionSV(dslop &dsl)
 					cout << muiten;
 					state = 9;	
 				}
-				
 			}
 			
 		}
@@ -7157,8 +7191,6 @@ void FunctionSV(dslop &dsl)
 							cout << "                                      ";
 							gotoxy(68,6+i);
 							cout << "                                      ";
-//							gotoxy(86,6+i);
-//							cout << "                                      ";
 						}
 					}
 					page++;
@@ -7199,8 +7231,6 @@ void FunctionSV(dslop &dsl)
 					cout << "                                      ";
 					gotoxy(68,6+i);
 					cout << "                                      ";
-//					gotoxy(86,6+i);
-//					cout << "                                      ";
 				}
 				gotoxy(wherex()-1,wherey());
 				cout << " ";
@@ -7225,8 +7255,6 @@ void FunctionSV(dslop &dsl)
 					cout << "                                      ";
 					gotoxy(68,6+i);
 					cout << "                                      ";
-//					gotoxy(86,6+i);
-//					cout << "                                      ";
 				}
 				gotoxy(wherex()-1,wherey());
 				cout << " ";
@@ -7251,8 +7279,6 @@ void FunctionSV(dslop &dsl)
 					cout << "                                      ";
 					gotoxy(68,6+i);
 					cout << "                                      ";
-//					gotoxy(86,6+i);
-//					cout << "                                      ";
 				}
 			InDSLop(dsl,page);	
 			gotoxy(hd-1,td);
@@ -7264,14 +7290,11 @@ void FunctionSV(dslop &dsl)
 			//qua phai ve 2 nut them sinh vien, xoa sinh vien, enter chon chuc nang (giong funclop)
 			selectFunctionSV(dsl.l[state + page*10],page);
 			system("cls"); 
+			gotoxy(0,0);
+			veKhungThuCong();
+			gotoxy(127,26);
+			vekhungTB(10,36);
 			gotoxy(5,2);
-//			vekhungDS(34,120,3);
-//			gotoxy(22,3);
-//			cout << "TEN LOP";
-//			gotoxy(63,3);
-//			cout << "MA LOP";
-//			gotoxy(101,3);
-//			cout << "NIEN KHOA";
 			vekhungDS(34,120,2);
 			gotoxy(35,3);
 			cout << "TEN LOP";
@@ -7327,23 +7350,6 @@ int rdMang (int arr[], int sch)
 	swap(arr[x],arr[4998-sch]);
 	return arr[4998-sch];
 }
-//void In1MH_CoCauHoi(NODE ch, int k)
-//{
-//	gotoxy(16,4+k);
-//	cout << ch->id;
-//	gotoxy(40,4+k);
-//	cout << ch->info.maMH;
-//	gotoxy(55,4+k);
-//	if(ch->info.noiDung.length() < 63)
-//	{
-//		cout << ch->info.noiDung;
-//	}
-//	else
-//	{
-//		string temp = ch->info.noiDung.substr(0,63);
-//		cout << temp << "...";
-//	}
-//}
 // ==================== CAP NHAP MANG TGIAN DE IN ==========================
 void insertarray(char *h, TG *j) 
 {
@@ -7423,11 +7429,13 @@ void printClock(int tg)
 	return;
 }
 // ==================== NHAP TG THI ==========================
-void NhapTG (int &tg, int &sct)
+void NhapTG (int &tg, int &sct, DSMH pMonThi)
 {
 	system("cls");
 	gotoxy(0,0);
 	veKhungThuCong();
+	gotoxy(40,45);
+	cout << "ENTER: Lam bai thi      Left/Right: Di chuyen chon thoi gian va cau hoi thi     ";
 	gotoxy(127,26);
 	vekhungTB(10,36);
 	string ntg;
@@ -7505,9 +7513,26 @@ void NhapTG (int &tg, int &sct)
 			{
 				if(StringToInt(ntg) > 0 && StringToInt(nsct) > 0)
 					{
+						
 						tg = StringToInt(ntg);
 						sct = StringToInt(nsct);
-						return;	
+						int sch = pMonThi->mh.cauHoiMH.n;
+						if (sct > sch)
+						{
+							string tb = "Khong the thi, so cau thi vuot qua so cau hoi trong ngan hang de thi";
+							InTB(tb,129,30);
+							AnConTro();
+							Sleep(1500);
+							XoaTB(130,26);
+							gotoxy(112+nsct.length(),20);
+							HienConTro();		
+						}
+						else
+						{
+							gotoxy(40,45);
+							cout << "                                                                                ";
+							return;	
+						}
 					}
 				else
 				{
@@ -7515,27 +7540,30 @@ void NhapTG (int &tg, int &sct)
 					InTB(tb,129,30);
 					AnConTro();
 					Sleep(750);
-					XoaTB(130,26);
+					XoaTB(130,26);	
+					gotoxy(68,20);
+					cout << "   ";
+					gotoxy(112,20);
+					cout << "   ";
+					ntg = "";
+					nsct = "";
+					state = 0;
+					gotoxy(68+ntg.length(),20);
+					HienConTro();
 				}
-			}
-			gotoxy(68,20);
-			cout << "   ";
-			gotoxy(112,20);
-			cout << "   ";
-			ntg = "";
-			nsct = "";
-			state = 0;
-			gotoxy(68+ntg.length(),20);
-			HienConTro();
+			}		
 		}
 		batPhim(s,sCheck);
 	}
-//	return;
 }
 // ==================== NHAP MON THI ==========================
 void NhapMonThi(DSMH dsm, DSMH &pTam, int &idlonnhat, int &tg, int &sct, bool &check)
 {
 	AnConTro();
+	gotoxy(0,0);
+	veKhungThuCong();
+	gotoxy(40,45);
+	cout << "ENTER: Chon mon thi      ESC: Thoat";
 	gotoxy(127,26);
 	vekhungTB(10,36);
 	string tb;
@@ -7736,7 +7764,7 @@ void NhapMonThi(DSMH dsm, DSMH &pTam, int &idlonnhat, int &tg, int &sct, bool &c
 				//nhap tg
 				pTam = FindNode(dsm,*arr[page*10 + state]);
 				if(pTam->mh.cauHoiMH.n > 0){
-					NhapTG(tg,sct);
+					NhapTG(tg,sct, pTam);
 					if(tg > 0 && sct > 0)
 					{
 						check = true;
@@ -8041,6 +8069,8 @@ int TinhDiem(CTdethi ctdt, DSCH dsch)
 void ketThucBaiThi (CTdethi ctdt, DSCH dsch, string &diem)
 {
 	system("cls");
+	gotoxy(0,0);
+	veKhungThuCong();
 	gotoxy(15,7);
 	cout << "	 _______  _______  __    _  _______  ______    _______  _______  __   __  ___      _______  _______  ___   _______  __    _  __  ";
 	gotoxy(15,8);
@@ -8089,7 +8119,7 @@ void FunctionThi(lop *l, string mssv, DSMH dsm, DSMH monThi, int tg, int sct, st
 	}
 	thread clock;
 	clock = thread(printClock,tg);
-	gotoxy(40,46);
+	gotoxy(40,45);
 	cout << "ENTER: Chon       F1: Nop bai       Left/Right: Di chuyen cau hoi     ";
 	gotoxy(50,1);
 	cout << "BAI THI MON: " << monThi->mh.MAMH;
@@ -8109,11 +8139,6 @@ void FunctionThi(lop *l, string mssv, DSMH dsm, DSMH monThi, int tg, int sct, st
 		maxpage = (sct/10) - 1;
 	}
 	else maxpage = sct/10;
-//	for(int i = 0; i < sct; i++)
-//	{
-//		cout << ctdt.bode[i] << " ";
-//	}
-//	system("pause");
 	gotoxy(5,2);
 	veKhung(36,120);
 	gotoxy(6,7-2);
@@ -8164,7 +8189,6 @@ void FunctionThi(lop *l, string mssv, DSMH dsm, DSMH monThi, int tg, int sct, st
 	gotoxy(4,14);
 	while ((cauthi < sct ) && s != ESC )
 	{
-		
 		if(s == PAGEUP)
 		{
 			if(page > 0 )
@@ -8679,9 +8703,10 @@ void FunctionThi(lop *l, string mssv, DSMH dsm, DSMH monThi, int tg, int sct, st
 		}
 		if(stop == 0)
 		{
-			clock.join();
 			string tb = "Het thoi gian lam bai, bam phim bat ky de ket thuc!";
 			InTB(tb,129,30);
+			Sleep(1000);
+			clock.join();
 //			system("cls");
 			ketThucBaiThi(ctdt,monThi->mh.cauHoiMH, diem);
 			LuuFileDiem(l, "DIEM_"+l->maLop+".txt", dsm);
@@ -8824,6 +8849,8 @@ void InCH_DASV(cauHoi ch, string da)
 void InChiTiet1LanThi(nodediemThi *p, DSCH dsch, nodeSV *k)
 {
 	system("cls");
+	gotoxy(0,0);
+	veKhungThuCong();
 	int socaudung = TinhDiem(p->info.ctdt,dsch)*10;
 	string scd = IntToString(socaudung);
 	string sct = IntToString(p->info.ctdt.sct);
@@ -9253,6 +9280,8 @@ void InBangDiemSV (nodeSV *sv, int page, DSCH dsch)
 void XemBangDiemSV(nodeSV *k, DSCH dsch)
 {
 	system("cls");
+	gotoxy(0,0);
+	veKhungThuCong();
 	gotoxy(126,2);
 	veKhung(11,40);
 	gotoxy(128,4);
@@ -9478,6 +9507,8 @@ void XemBangDiemSV(nodeSV *k, DSCH dsch)
 			}
 			InChiTiet1LanThi(p,dsch,k);
 			system("cls");
+			gotoxy(0,0);
+			veKhungThuCong();
 			gotoxy(126,2);
 			veKhung(11,40);
 			gotoxy(128,4);
@@ -9658,6 +9689,8 @@ void XemDiem1Lop(lop *l, DSMH monhoc)
 {
 	AnConTro();
 	system("cls");
+	gotoxy(0,0);
+	veKhungThuCong();
 	gotoxy(10,1);
 	cout << "Diem mon : " << monhoc->mh.MAMH;
 	gotoxy(105,1);
@@ -9899,13 +9932,15 @@ void XemDiem1Lop(lop *l, DSMH monhoc)
 				{
 					XemBangDiemSV(k,monhoc->mh.cauHoiMH);
 					system("cls");
+					gotoxy(0,0);
+					veKhungThuCong();
 					gotoxy(10,1);
 					cout << "Diem mon : " << monhoc->mh.MAMH;
 					gotoxy(105,1);
 					cout << "Lop : " << l->maLop;
 					gotoxy(5,2);
 					VeKhungDSLop1(34,120,10);
-					gotoxy(130,26);
+					gotoxy(127,26);
 					vekhungTB(10,36);
 					int page = 0;
 					gotoxy(15,3);
@@ -9971,6 +10006,8 @@ void NhapMonXemDiem(lop *l, DSMH dsm, int idlonnhat)
 		XoaTB(130,26);
 		return;
 	}
+	gotoxy(0,0);
+	veKhungThuCong();
 	gotoxy(5,2);
 	vekhungDSMH_CoCauHoi(34,120,5);
 	int page = 0;
@@ -10189,6 +10226,8 @@ void NhapMonXemDiem(lop *l, DSMH dsm, int idlonnhat)
 void NhapLopXemDiem(dslop dsl , DSMH dsm, int idlonnhat)
 {
 	system("cls");
+	gotoxy(0,0);
+	veKhungThuCong();
 	gotoxy(127,26);
 	vekhungTB(10,36);
 	gotoxy(50,46);
@@ -10402,6 +10441,8 @@ void NhapLopXemDiem(dslop dsl , DSMH dsm, int idlonnhat)
 			{
 				NhapMonXemDiem(dsl.l[state + page*10], dsm, idlonnhat);
 				system("cls");
+				gotoxy(0,0);
+				veKhungThuCong();
 				gotoxy(127,26);
 				vekhungTB(10,36);
 				gotoxy(5,2);
@@ -10514,29 +10555,20 @@ void LuuFileDiem(lop *l, string filename, DSMH dsm)
 			fileOut <<slt<< endl;
 			if(slt == 0){
 				fileOut << endl;
+				p = p->pNext;
 			}
 			else
 			{
-				
 				cout<<"\nBat Dau chay Node Diem";
 					system("pause");
-				for (nodediemThi *pd = p->info.diem.First; pd != NULL; pd = pd->pNext)
+				nodediemThi *pd = p->info.diem.First;
+				while(pd != NULL)
 				{
 					string diemthi;
 					cout<<"\nDiem Thi: "<<pd->info.diem;
 					system("pause");
 					DSMH pTam = FindNode(dsm, pd->info.idMonHoc);
-					cout<<"\naaaaa";
-					system("pause");
-					for(int i = 0; i < pTam->mh.cauHoiMH.n; i++){
-						cout<<"\nNoi dung cau hoi: "<<pTam->mh.cauHoiMH.listCauHoi[i]->noiDung;
-					}
-					system("pause");
 					cout<<"\nSo cau thi:"<<pd->info.ctdt.sct;
-					system("pause");
-					for(int j = 0; j < pd->info.ctdt.sct; j++){
-						cout<<"\nNoi dung de thi: "<<pd->info.ctdt.bode[j];
-					}
 					system("pause");
 					int scd = TinhDiem(pd->info.ctdt,pTam->mh.cauHoiMH)*10;
 					cout<<"\123";
@@ -10551,7 +10583,7 @@ void LuuFileDiem(lop *l, string filename, DSMH dsm)
 						float a = StringToFloat(diemthi);
 					else
 						int b = StringToInt(diemthi);
-					fileOut << pd->info.idMonHoc << ":" << diemthi << ":" << pd->info.ctdt.sct << ":";
+					fileOut << pd->info.idMonHoc << ":" << diemthi << ":" << pd->info.ctdt.sct << ":"<<pd->info.ctdt.tg<<":";
 					for(int i = 0; i < pd->info.ctdt.sct; i++)
 					{
 						fileOut << pd->info.ctdt.bode[i] << "@";
@@ -10565,17 +10597,18 @@ void LuuFileDiem(lop *l, string filename, DSMH dsm)
 						break;
 					}
 					else fileOut << endl;
+					pd = pd->pNext;
 				}
 				if(p->pNext == NULL){
 					break;
 				}
-				if( DemLanThi(p->info.diem) != 0)
-				{
-					continue;
-				}
+//				if( DemLanThi(p->info.diem) != 0)
+//				{
+//					continue;
+//				}
 				else fileOut << endl;
+				p = p->pNext;
 			}
-			p = p->pNext;
 		}
 	}
 	fileOut.close();
@@ -10583,7 +10616,6 @@ void LuuFileDiem(lop *l, string filename, DSMH dsm)
 // ==================== LUU FILE DS LOP ==========================
 void LuuFileDSlop(DSMH dsm, dslop dsl, string filename)
 {
-		system("cls");
 	ofstream fileOut;
 	fileOut.open(filename.c_str(), ios_base::out);
 	if (!fileOut.is_open()) 
@@ -10597,11 +10629,6 @@ void LuuFileDSlop(DSMH dsm, dslop dsl, string filename)
 	{
 		fileOut << dsl.l[i]->tenLop << '\n'<< dsl.l[i]->maLop << '\n';
 		LuuFileLop(dsl.l[i],dsl.l[i]->maLop+".txt");
-		system("cls");
-		gotoxy(0,0);
-		cout<<dsl.l[i]->maLop;
-		
-		system("pause");
 		LuuFileDiem(dsl.l[i],"DIEM_"+dsl.l[i]->maLop+".txt",dsm);
 	}
 }
@@ -10723,7 +10750,7 @@ int DangNhap(dslop &dsl ,string &masv)
 	char s;
 	bool state = false;
 	bool sCheck;
-	gotoxy(xDangNhap+18,yDangNhap+3);
+	gotoxy(xDangNhap+18 + user.length(),yDangNhap+3);
 	batPhim(s,sCheck);
 	while (s != ESC)
 	{
@@ -10792,12 +10819,48 @@ int DangNhap(dslop &dsl ,string &masv)
 		}
 		if (s == ENTER)
 		{
+			// Duyet trong dssv kiem tra masv voi mat khau. neu dung thi return 0 la quyen sv
+			if(user.length() == 0 && pass.length() == 0)
+			{
+				AnConTro();
+				gotoxy(35,43);
+				cout<<"Ten dang nhap va mat khau khong duoc de trong";
+				Sleep(2000);
+				gotoxy(35,43);
+				cout<<"                                             ";
+				gotoxy(xDangNhap+18+user.length(),yDangNhap+3);
+				state = false;
+				HienConTro();
+				
+			}
+			else if(user.length() == 0 )
+			{
+				AnConTro();
+				InTB("Ten dang nhap khong duoc de trong",35,43);
+				Sleep(2000);
+				gotoxy(35,43);
+				cout<<"                                             ";
+				gotoxy(xDangNhap+18+user.length(),yDangNhap+3);
+				state = false;
+				HienConTro();
+			}
+			else if(pass.length() == 0)
+			{
+				AnConTro();
+				InTB("Mat khau khong duoc de trong",35,43);
+				Sleep(2000);
+				gotoxy(35,43);
+				cout<<"                                             ";
+				gotoxy(xDangNhap+18+pass.length(),yDangNhap+7);
+				state = true;
+				HienConTro();
+			}
+			else
 			// neu user = "GV" va mat khau = "GV" thi return 1 la quyen giang vien
 			if((user == "GV" && pass == "GV") || (user == "GV") && (pass == "gv"))
 			{
 				return 1;
 			}
-			// Duyet trong dssv kiem tra masv voi mat khau. neu dung thi return 0 la quyen sv
 			else
 			{	
 				for(int i = 0; i < dsl.solop; i++)
@@ -10817,7 +10880,15 @@ int DangNhap(dslop &dsl ,string &masv)
 						}
 					}
 				}
-				return 2;
+				AnConTro();
+				gotoxy(35,43);
+				cout<<"Dang nhap khong thanh cong! Vui long thu lai";
+				Sleep(2000);
+				gotoxy(35,43);
+				cout<<"                                                ";
+				gotoxy(xDangNhap+18+user.length(),yDangNhap+3);
+				HienConTro();
+				
 			}
 		}
 	batPhim(s,sCheck);
@@ -11054,16 +11125,6 @@ void mainProcess(dslop &dsl, dssv &ds, DSMH &dsm, int arr1[], int arr2[])
 					break;
 				}
 				//THI
-				int sch = pMonThi->mh.cauHoiMH.n;
-				if (sct > sch)
-				{
-					string tb = "Khong the thi, so cau thi vuot qua so cau hoi trong ngan hang de thi";
-					InTB(tb,129,30);
-					AnConTro();
-					Sleep(1500);
-					XoaTB(130,26);
-					break;
-				}
 				string diem;
 				CTdethi ctdt;
 				ctdt.bode = new int [sct];
@@ -11142,13 +11203,6 @@ void mainProcess(dslop &dsl, dssv &ds, DSMH &dsm, int arr1[], int arr2[])
 							FunctionLop(dsl);
 							break;
 						}
-//						case 1:	//IN DANH SACH LOP
-//						{
-//							ChangeColor(15);
-//							system("cls");
-//							NhapNK(dsl);
-//							break;
-//						}
 						case 1: //SINH VIEN
 						{
 							ChangeColor(15);
@@ -11161,7 +11215,7 @@ void mainProcess(dslop &dsl, dssv &ds, DSMH &dsm, int arr1[], int arr2[])
 							ChangeColor(15);
 							system("cls");
 //							FunctionMon(dsm,dsl,dsch);
-							FunctionMH(dsm, idlonnhat, arr1, arr2);
+							FunctionMH(dsm, dsl, idlonnhat, arr1, arr2);
 							break;
 						}	
 						case 3://DIEM
@@ -11169,26 +11223,6 @@ void mainProcess(dslop &dsl, dssv &ds, DSMH &dsm, int arr1[], int arr2[])
 							ChangeColor(15);
 							system("cls");
 							FunctionDiem(dsl,ds,dsm,idlonnhat);
-//							for(int i = 0; i < dsl.solop; i++){
-//								cout<<"\nMa lop: "<<dsl.l[i]->maLop<<endl;
-//								cout<<"======================================================";
-//								nodeSV *sv = dsl.l[i]->danhsach.First;
-//								while(sv!=NULL){
-//									cout<<"\n\tMA SO SINH VIEN: "<<sv->info.maSV<<endl;
-//									nodediemThi *d = sv->info.diem.First;
-//									while(d != NULL){
-//										cout<<"\n\t\tMon thi: "<<d->info.idMonHoc<<endl;
-//										cout<<"\n\t\tDiem Thi: "<<d->info.diem<<endl;
-//										for(int j = 0; j < d->info.ctdt.sct; j++){
-//											cout<<"\n\t\t\tCau "<<j<<" :" << d->info.ctdt.bode[j]<<endl;
-//											cout<<"\n\t\t\tDap an "<<j<<" :" << d->info.ctdt.dapan[j]<<endl;
-//										}
-//										d = d->pNext;
-//									}
-//									sv = sv->pNext;
-//								}
-//							}
-//							system("pause");
 							break;	
 						}
 						case -1://THOAT
@@ -11199,14 +11233,6 @@ void mainProcess(dslop &dsl, dssv &ds, DSMH &dsm, int arr1[], int arr2[])
 					}
 				}
 				break;
-			}
-		case 2:
-			{
-				AnConTro();
-				InTB("Sai ten dang nhap hoac mat khau",35,43);
-				Sleep(500);
-				HienConTro();
-				break;
 			}	
 		case -1:
 			{
@@ -11214,25 +11240,7 @@ void mainProcess(dslop &dsl, dssv &ds, DSMH &dsm, int arr1[], int arr2[])
 				bool sCheck;
 				if(Exit(s,sCheck)== true)
 				{	
-					
-					for(int i = 0; i < dsl.solop; i++){
-						nodeSV *p = dsl.l[i]->danhsach.First;
-						while(p != NULL){
-							cout<<"\nMaSV: "<<p->info.maSV<<endl;
-							nodediemThi *dt = p->info.diem.First;
-							while(dt!=NULL){
-								cout<<"\nID Mon thi: "<<dt->info.idMonHoc<<endl;
-								cout<<"\nDiem: "<<dt->info.diem<<endl;
-								for(int j = 0; j < dt->info.ctdt.sct; j++){
-									cout<<"\nCau "<<j<<" :"<<dt->info.ctdt.bode[j]<<endl;
-									cout<<"\nDap an: "<<j<<" :"<<dt->info.ctdt.dapan[j]<<endl;
-								}
-								dt = dt->pNext;
-							}
-							p = p->pNext;
-						}
-					}
-					system("pause");	
+				
 					LuuFileDSlop(dsm, dsl,"DSLOP.txt");
 					LuuFileMH(dsm,"DSMONHOCVACH.txt", idlonnhat);
 					gotoxy(30,20);
@@ -11249,7 +11257,7 @@ void mainProcess(dslop &dsl, dssv &ds, DSMH &dsm, int arr1[], int arr2[])
 					cout << "  |_____|  |____||____||____| |____||_____|\\____||____||____|   |______|  `.___.'    `.__.'    (_) ";
 					getch();
 					return;
-				}
+			 	}
 				else
 				{
 					break;
