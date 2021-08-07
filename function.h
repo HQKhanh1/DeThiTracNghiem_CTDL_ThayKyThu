@@ -6591,6 +6591,7 @@ void NhapLopChinh(dslop &dsl , int &page)
 			{
 				// ham nhap thong tin de sua
 				SuaLop(dsl.l[state + page * 10]);
+				AnConTro();
 			}
 			for(int i = 0; i < 28;i++)
 			{
@@ -6801,136 +6802,13 @@ void FunctionLop(dslop &dsl)
 	batPhim(s,sCheck);	
 	}
 }
-// ==================== NHAP MA LOP ==========================
-void NhapMaLop(dslop &dsl , int page)
-{
-	string malop;
-	int hd;
-	int td;
-	gotoxy(5,37);
-	veKhung(8,40);
-	gotoxy(5+3,40);
-	cout << "Nhap ma lop :";
-	gotoxy(5+17,39);
-	veKhung(3,20);
-	gotoxy(5+18,40);
-	HienConTro();
-	char s;
-	bool sCheck;
-	batPhim(s,sCheck);
-	while(s != ESC)
-	{
-		if (((s >= 'a' && s <= 'z') || (s >= 'A' && s <= 'Z') || (s >= '0' && s <= '9')) && sCheck == true)
-		{
-			HienConTro();
-			if (malop.length() < 10)
-			{
-				cout << InHoa(s);
-				malop += InHoa(s);
-			}
-		}
-		if (s == BACKSPACE)
-		{
-			if (malop.length() > 0)
-			{
-				AnConTro();
-				gotoxy(wherex()-1,wherey());
-				cout << " ";
-				gotoxy(wherex()-1,wherey());
-				HienConTro();
-				malop.erase(malop.length()-1);
-			}	
-		}
-		if(s == ENTER)
-		{
-			//sau khi enter, nhay den trang chua lop do, hien dau >> ra va hien bang chon Them, Xoa
-			if(CheckFormMaLop(malop) == true)
-			{
-				if(CheckMaLop(dsl,malop) == true)
-				{
-					string tb = "Ma lop khong ton tai";
-					InTB(tb,129,30);
-					AnConTro();
-					Sleep(750);
-					XoaTB(130,26);
-				}
-				else
-				{
-					for(int i = 0; i < dsl.solop; i++)
-					{
-						if(dsl.l[i]->maLop.compare(malop) == 0)
-						{
-							hd = wherex();
-							td = wherey();
-							system("cls");
-							gotoxy(5,2);
-							VeKhungDSLop(34,100,4);
-							gotoxy(15,3);
-							cout << "MA SV";
-							gotoxy(50,3);
-							cout << "HO VA TEN";
-							gotoxy(88,3);
-							cout << "GIOI TINH";
-							InDSSV(dsl.l[i],0);
-							NhapSinhVien(dsl.l[i]);
-							gotoxy(hd,td);
-						}
-					}
-					system("cls");
-					gotoxy(5,37);
-					veKhung(8,40);
-					gotoxy(5+3,40);
-					cout << "Nhap ma lop :";
-					gotoxy(5+17,39);
-					veKhung(3,20);
-					gotoxy(35,3);
-					cout << "TEN LOP";
-					gotoxy(90,3);
-					cout << "MA LOP";
-					gotoxy(5,2);
-					vekhungDS(34,120,2);
-				}
-			}
-			else
-			{
-				string tb = "Ban nhap sai dinh dang ma lop, vui long nhap lai";
-				InTB(tb,129,30);
-				AnConTro();
-				Sleep(750);
-				XoaTB(130,26);
-			}
-			for(int i = 0; i < 28;i++)
-					{
-						gotoxy(6,6+i);
-						cout << "                                      ";
-						gotoxy(86,6+i);
-						cout << "                                      ";
-					}
-			malop = "";
-			gotoxy(5+18,40);
-			cout << "          ";
-			gotoxy(5+18,40);
-		}
-		hd = wherex();
-		td = wherey();
-		InDSLop(dsl,page);
-		gotoxy(hd,td);
-		HienConTro();
-		batPhim(s,sCheck);
-	}
-	for(int i = 0; i < 8; i++)
-	{
-		gotoxy(5,37+i);
-		cout << "                                        ";
-	}
-}
 // ====================SELECT FUNCTION SV ==========================
 void selectFunctionSV(lop *&l ,int page)
 {
 	system("cls");
 	gotoxy(0,0);
 	veKhungThuCong();
-	gotoxy(50,46);
+	gotoxy(50,43);
 	cout << "ENTER: Chon	ESC: Thoat	PGUP: Qua trang	PGDOWN: Lui trang	LEFT,RIGHT: Chon gioi tinh";
 	gotoxy(127,26);
 	vekhungTB(10,36);
@@ -7129,7 +7007,7 @@ void FunctionSV(dslop &dsl)
 	gotoxy(0,0);
 	veKhungThuCong();
 	gotoxy(50,43);
-	cout << "ENTER: Chon	ESC: Thoat	F1: Tim Lop	PGUP: Qua trang	PGDOWN: Lui trang";
+	cout << "ENTER: Chon	ESC: Thoat	PGUP: Qua trang	PGDOWN: Lui trang";
 	gotoxy(127,26);
 	vekhungTB(10,36);
 	int page = 0;
@@ -7300,23 +7178,6 @@ void FunctionSV(dslop &dsl)
 				gotoxy(hd,td);
 			}
 		}
-		if (s == F1 && sCheck == false)
-		{
-			hd = wherex();
-			td = wherey();
-			NhapMaLop(dsl,page);
-			for(int i = 0; i < 28;i++)
-				{
-					gotoxy(6,6+i);
-					cout << "                                      ";
-					gotoxy(68,6+i);
-					cout << "                                      ";
-				}
-			InDSLop(dsl,page);	
-			gotoxy(hd-1,td);
-			cout << muiten;
-			AnConTro();	
-		}
 		if ( s == ENTER)
 		{
 			//qua phai ve 2 nut them sinh vien, xoa sinh vien, enter chon chuc nang (giong funclop)
@@ -7324,6 +7185,8 @@ void FunctionSV(dslop &dsl)
 			system("cls"); 
 			gotoxy(0,0);
 			veKhungThuCong();
+			gotoxy(50,43);
+			cout << "ENTER: Chon	ESC: Thoat	PGUP: Qua trang	PGDOWN: Lui trang";
 			gotoxy(127,26);
 			vekhungTB(10,36);
 			gotoxy(5,2);
@@ -10252,7 +10115,7 @@ void NhapLopXemDiem(dslop dsl , DSMH dsm, int idlonnhat)
 	veKhungThuCong();
 	gotoxy(127,26);
 	vekhungTB(10,36);
-	gotoxy(50,46);
+	gotoxy(50,43);
 	cout << "ENTER: Chon	ESC: Thoat	PGUP: Qua trang	PGDOWN: Lui trang";
 	gotoxy(5,2);
 	vekhungDS(34,120,2);
@@ -11170,23 +11033,6 @@ void mainProcess(dslop &dsl, dssv &ds, DSMH &dsm, int arr1[], int arr2[])
 						}
 						Insert_Diem_after(p,diemsv);
 					}
-					for(int i = 0; i < dsl.solop; i++){
-						nodeSV *p = dsl.l[i]->danhsach.First;
-						while(p != NULL){
-							cout<<"\nMaSV: "<<p->info.maSV<<endl;
-							nodediemThi *dt = p->info.diem.First;
-							while(dt!=NULL){
-								cout<<"\nID Mon thi: "<<dt->info.idMonHoc<<endl;
-								cout<<"\nDiem: "<<dt->info.diem<<endl;
-								for(int j = 0; j < dt->info.ctdt.sct; j++){
-									cout<<"\nCau "<<j<<" :"<<dt->info.ctdt.bode[j]<<endl;
-									cout<<"\nDap an: "<<j<<" :"<<dt->info.ctdt.dapan[j]<<endl;
-								}
-								dt = dt->pNext;
-							}
-							p = p->pNext;
-						}
-					}
 				}
 				else break;
 				break;
@@ -11242,7 +11088,9 @@ void mainProcess(dslop &dsl, dssv &ds, DSMH &dsm, int arr1[], int arr2[])
 				bool sCheck;
 				if(Exit(s,sCheck)== true)
 				{	
-				
+					system("cls");
+					gotoxy(0,0);
+					veKhungThuCong();
 					LuuFileDSlop(dsm, dsl,"DSLOP.txt");
 					LuuFileMH(dsm,"DSMONHOCVACH.txt", idlonnhat);
 					gotoxy(30,20);
