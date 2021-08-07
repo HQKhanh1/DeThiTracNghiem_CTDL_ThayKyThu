@@ -6342,15 +6342,55 @@ void SuaLop(lop *&l)
 		}
 		if(s == ENTER)
 		{
-			if(malop.length() == 0 || tenlop.length() == 0)
+			if(malop.length() == 0 && tenlop.length() == 0)
 			{
-				cout << "Khong duoc de thieu thong tin";
+				string tb = "Khong duoc de thieu thong tin!";
+				gotoxy(129,30);
+				InTB(tb,129,30);
+				AnConTro();
+				Sleep(750);
+				XoaTB(130,26);
+				gotoxy(17+malop.length(),40);
+				HienConTro();
+				state = true;
+			}
+			else if(malop.length() == 0)
+			{
+				string tb = "Khong de trong ma lop!";
+				gotoxy(129,30);
+				InTB(tb,129,30);
+				AnConTro();
+				Sleep(750);
+				XoaTB(130,26);
+				gotoxy(17+malop.length(),40);
+				HienConTro();
+				state = true;
+			}
+			else if(tenlop.length() == 0)
+			{
+				string tb = "Khong de trong ma lop!";
+				gotoxy(129,30);
+				InTB(tb,129,30);
+				AnConTro();
+				Sleep(750);
+				XoaTB(130,26);
+				gotoxy(90+tenlop.length(),40);
+				HienConTro();
+				state = false;
 			}
 			else
 			{
 				if(CheckFormMaLop(malop) == false)
 				{
-					cout << "Sai dinh dang ma lop!";
+					string tb = "Sai dinh dang ma lop!";
+					gotoxy(129,30);
+					InTB(tb,129,30);
+					AnConTro();
+					Sleep(750);
+					XoaTB(130,26);
+					state = true;
+					gotoxy(17+malop.length(),40);
+					HienConTro();
 				}
 				else
 				{
@@ -6359,14 +6399,6 @@ void SuaLop(lop *&l)
 					break;
 				}
 			}
-			malop = "";
-			tenlop = "";
-			gotoxy(17,40);
-			cout << "                           ";
-			gotoxy(90,40);
-			cout << "                           ";
-			gotoxy(17,40);
-			state = true;
 		}
 		batPhim(s,sCheck);
 	}
@@ -8697,8 +8729,6 @@ void FunctionThi(lop *l, string mssv, DSMH dsm, DSMH monThi, int tg, int sct, st
 			string s2 = IntToString(sct);
 			string s = chia(s1,s2);
 			diem = s;
-			cout << " " << diem;
-//			system("pause");
 			return ;
 		}
 		if(stop == 0)
@@ -8707,16 +8737,8 @@ void FunctionThi(lop *l, string mssv, DSMH dsm, DSMH monThi, int tg, int sct, st
 			InTB(tb,129,30);
 			Sleep(1000);
 			clock.join();
-//			system("cls");
 			ketThucBaiThi(ctdt,monThi->mh.cauHoiMH, diem);
 			LuuFileDiem(l, "DIEM_"+l->maLop+".txt", dsm);
-//			for(int i = 0; i < sct; i++)
-//			{
-//				if (ctdt.dapan[i] != 1 || ctdt.dapan[i] != 2 || ctdt.dapan[i] != 3 || ctdt.dapan[i] != 4 )
-//				{
-//					ctdt.dapan[i] = 0;
-//				}
-//			}
 			return;
 		}
 		batPhim(s,sCheck);
@@ -10549,7 +10571,6 @@ void LuuFileDiem(lop *l, string filename, DSMH dsm)
 		nodeSV *p = l->danhsach.First;
 		while ( p != NULL)
 		{
-			cout<<"\nMaSV: "<<p->info.maSV;
 			fileOut << p->info.maSV << endl;
 			int slt =  DemLanThi(p->info.diem);
 			fileOut <<slt<< endl;
@@ -10559,26 +10580,14 @@ void LuuFileDiem(lop *l, string filename, DSMH dsm)
 			}
 			else
 			{
-				cout<<"\nBat Dau chay Node Diem";
-					system("pause");
 				nodediemThi *pd = p->info.diem.First;
 				while(pd != NULL)
 				{
 					string diemthi;
-					cout<<"\nDiem Thi: "<<pd->info.diem;
-					system("pause");
 					DSMH pTam = FindNode(dsm, pd->info.idMonHoc);
-					cout<<"\nSo cau thi:"<<pd->info.ctdt.sct;
-					system("pause");
 					int scd = TinhDiem(pd->info.ctdt,pTam->mh.cauHoiMH)*10;
-					cout<<"\123";
-					system("pause");
 					int sct = pd->info.ctdt.sct;
-					cout<<"\n321";
-					system("pause");
 					diemthi = chia(IntToString(scd),IntToString(sct));
-					cout<<"\na123";
-					system("pause");
 					if(checkChuoiLaIntHayFlaot(diemthi) == true)
 						float a = StringToFloat(diemthi);
 					else
@@ -10602,10 +10611,6 @@ void LuuFileDiem(lop *l, string filename, DSMH dsm)
 				if(p->pNext == NULL){
 					break;
 				}
-//				if( DemLanThi(p->info.diem) != 0)
-//				{
-//					continue;
-//				}
 				else fileOut << endl;
 				p = p->pNext;
 			}
@@ -11182,8 +11187,6 @@ void mainProcess(dslop &dsl, dssv &ds, DSMH &dsm, int arr1[], int arr2[])
 							p = p->pNext;
 						}
 					}
-					system("pause");
-					
 				}
 				else break;
 				break;
@@ -11214,7 +11217,6 @@ void mainProcess(dslop &dsl, dssv &ds, DSMH &dsm, int arr1[], int arr2[])
 						{
 							ChangeColor(15);
 							system("cls");
-//							FunctionMon(dsm,dsl,dsch);
 							FunctionMH(dsm, dsl, idlonnhat, arr1, arr2);
 							break;
 						}	
