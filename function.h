@@ -7066,6 +7066,7 @@ void SuaLop(dslop dsl, lop *&l)
 				}
 				else
 				{
+					ChuanHoaTen(tenlop);
 					l->tenLop = tenlop;
 					l->maLop = malop;
 					break;
