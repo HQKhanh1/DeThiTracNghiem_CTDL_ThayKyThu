@@ -3725,8 +3725,8 @@ void FunctionCauHoi(DSMH & dsm, dslop dsl, int id, int idlonnhat)
 				gotoxy(127,2);
 				xoaKhungTTMH(10,56);
 				gotoxy(20,43);
-	TextColor(9);
-				cout << "                                                                                                                           ";
+				TextColor(9);
+				cout << "                                                                                                                                     ";
 				break;
 			}
 			else
@@ -3768,7 +3768,7 @@ void FunctionCauHoi(DSMH & dsm, dslop dsl, int id, int idlonnhat)
 						gotoxy(8,6+i);
 						cout << "      ";
 						gotoxy(17,6+i);
-						cout << "                                                                                              ";
+						cout << "                                                                                                        ";
 					}
 					gotoxy(7,6);
 					cout << " ";
@@ -3796,7 +3796,7 @@ void FunctionCauHoi(DSMH & dsm, dslop dsl, int id, int idlonnhat)
 							gotoxy(8,6+i);
 							cout << "      ";
 							gotoxy(17,6+i);
-							cout << "                                                                                              ";
+							cout << "                                                                                                        ";
 						}
 					}
 					page++;
@@ -3831,7 +3831,7 @@ void FunctionCauHoi(DSMH & dsm, dslop dsl, int id, int idlonnhat)
 						gotoxy(8,6+i);
 						cout << "      ";
 						gotoxy(17,6+i);
-						cout << "                                                                                              ";
+						cout << "                                                                                                        ";
 				}
 				gotoxy(7,6);
 				cout << muiten;
@@ -3854,7 +3854,7 @@ void FunctionCauHoi(DSMH & dsm, dslop dsl, int id, int idlonnhat)
 						gotoxy(8,6+i);
 						cout << "      ";
 						gotoxy(17,6+i);
-						cout << "                                                                                              ";
+						cout << "                                                                                                        ";
 				}
 				gotoxy(7,6);
 				cout << muiten;
@@ -3873,7 +3873,7 @@ void FunctionCauHoi(DSMH & dsm, dslop dsl, int id, int idlonnhat)
 			InDSCHMon(pTam->mh.cauHoiMH, page, maxpage);
 			state = 0;
 			gotoxy(20,43);
-	TextColor(9);
+			TextColor(9);
 			cout << "ENTER: Chon    ESC: Thoat    PGUP: Qua trang    PGDOWN: Lui trang    F1: Them cau hoi    F2: Sua cau hoi    F3: Xoa cau hoi";
 			gotoxy(7, 6 + 3*state);
 			AnConTro();
@@ -3881,20 +3881,19 @@ void FunctionCauHoi(DSMH & dsm, dslop dsl, int id, int idlonnhat)
 		}
 		if(s == F2){
 			if(CheckCHDaThi(dsl, id, (page*10 +state)) == true){
-							XoaTB(130, 26);
-							string tb = "Cau hoi da thi, Khong the sua!";
-							InTB(tb,129,30);
-							AnConTro();
-							Sleep(1000);
-							XoaTB(130,26);
-							AnConTro();
-							Sleep(1000);
-							XoaTB(130,26);
-							InDSCHMon(pTam->mh.cauHoiMH,page, maxpage);
-							gotoxy(7, 6 + 3*state);
-							cout<<" ";
-							gotoxy(7, 6 + 3*state);
-							cout<<muiten;
+				XoaTB(130, 26);
+				string tb = "Cau hoi da thi, Khong the sua!";
+				InTB(tb,129,30);
+				AnConTro();
+				Sleep(1000);
+				XoaTB(130,26);
+				AnConTro();
+				Sleep(1000);
+				XoaTB(130,26);
+				gotoxy(7, 6 + 3*state);
+				cout<<" ";
+				gotoxy(7, 6 + 3*state);
+				cout<<muiten;
 			}
 			else
 			{
@@ -3903,11 +3902,11 @@ void FunctionCauHoi(DSMH & dsm, dslop dsl, int id, int idlonnhat)
 				gotoxy(5,2);
 				vekhungDSCH_Test(34,120,2);
 				gotoxy(127, 2);
-				vekhungTTMH(pTam->mh, 10, 36);
+				vekhungTTMH(pTam->mh, 10, 56);
 				pTam = Search_MH(dsm,id);
 				InDSCHMon(pTam->mh.cauHoiMH, page, maxpage);
 				gotoxy(20,43);
-	TextColor(9);
+				TextColor(9);
 				cout << "ENTER: Chon    ESC: Thoat    PGUP: Qua trang    PGDOWN: Lui trang    F1: Them cau hoi    F2: Sua cau hoi    F3: Xoa cau hoi";
 				gotoxy(7, 6 + 3*state);
 				AnConTro();
@@ -3916,20 +3915,20 @@ void FunctionCauHoi(DSMH & dsm, dslop dsl, int id, int idlonnhat)
 		}
 		if(s == F3){
 			if(CheckCHDaThi(dsl, id, (page*10 +state)) == true){
-							XoaTB(130, 26);
-							string tb = "Cau hoi da thi, Khong the xoa!";
-							InTB(tb,129,30);
-							AnConTro();
-							Sleep(1000);
-							XoaTB(130,26);
-							AnConTro();
-							Sleep(1000);
-							XoaTB(130,26);
-							InDSCHMon(pTam->mh.cauHoiMH,page, maxpage);
-							gotoxy(7, 6 + 3*state);
-							cout<<" ";
-							gotoxy(7, 6 + 3*state);
-							cout<<muiten;
+				XoaTB(130, 26);
+				string tb = "Cau hoi da thi, Khong the xoa!";
+				InTB(tb,129,30);
+				AnConTro();
+				Sleep(1000);
+				XoaTB(130,26);
+				AnConTro();
+				Sleep(1000);
+				XoaTB(130,26);
+				InDSCHMon(pTam->mh.cauHoiMH,page, maxpage);
+				gotoxy(7, 6 + 3*state);
+				cout<<" ";
+				gotoxy(7, 6 + 3*state);
+				cout<<muiten;
 			}
 			else if(ExitXoa("Ban co chac chan xoa cau hoi?   (Y/N)", s, sCheck) == true)
 			{
@@ -3983,11 +3982,11 @@ void FunctionCauHoi(DSMH & dsm, dslop dsl, int id, int idlonnhat)
 			gotoxy(5,2);
 			vekhungDSCH_Test(34,120,2);
 			gotoxy(127, 2);
-			vekhungTTMH(pTam->mh, 10, 36);
+			vekhungTTMH(pTam->mh, 10, 56);
 			pTam = Search_MH(dsm,id);
 			InDSCHMon(pTam->mh.cauHoiMH, page, maxpage);
 			gotoxy(20,43);
-	TextColor(9);
+			TextColor(9);
 			cout << "ENTER: Chon    ESC: Thoat    PGUP: Qua trang    PGDOWN: Lui trang    F1: Them cau hoi    F2: Sua cau hoi    F3: Xoa cau hoi";
 			gotoxy(7, 6 + 3*state);
 			AnConTro();
@@ -5363,7 +5362,7 @@ void SuaCauHoiTrongMH(DSCH &cauhoi, cauHoi ch, int id, int vitri)
 								case 1:
 									{
 										gotoxy(wherex()-1,wherey());
-						TextColor(9);
+										TextColor(9);
 										cout << " ";
 										state1--;
 										da = "A";
@@ -5378,7 +5377,7 @@ void SuaCauHoiTrongMH(DSCH &cauhoi, cauHoi ch, int id, int vitri)
 								case 2:
 									{
 										gotoxy(wherex()-1,wherey());
-						TextColor(9);
+										TextColor(9);
 										cout << " ";
 										state1--;
 										XoaTB(130,26);
@@ -5393,7 +5392,7 @@ void SuaCauHoiTrongMH(DSCH &cauhoi, cauHoi ch, int id, int vitri)
 								case 3:
 									{
 										gotoxy(wherex()-1,wherey());
-						TextColor(9);
+										TextColor(9);
 										cout << " ";
 										state1--;
 										da = "C";
@@ -5414,7 +5413,7 @@ void SuaCauHoiTrongMH(DSCH &cauhoi, cauHoi ch, int id, int vitri)
 								case 0:
 									{
 										gotoxy(wherex()-1,wherey());
-						TextColor(9);
+										TextColor(9);
 										cout << " ";
 										state1++;
 										da = "B";
@@ -5429,7 +5428,7 @@ void SuaCauHoiTrongMH(DSCH &cauhoi, cauHoi ch, int id, int vitri)
 								case 1:
 									{
 										gotoxy(wherex()-1,wherey());
-						TextColor(9);
+										TextColor(9);
 										cout << " ";
 										state1++;
 										da = "C";
@@ -5444,7 +5443,7 @@ void SuaCauHoiTrongMH(DSCH &cauhoi, cauHoi ch, int id, int vitri)
 								case 2:
 									{
 										gotoxy(wherex()-1,wherey());
-						TextColor(9);
+										TextColor(9);
 										cout << " ";
 										state1++;
 										da = "D";
@@ -5461,7 +5460,6 @@ void SuaCauHoiTrongMH(DSCH &cauhoi, cauHoi ch, int id, int vitri)
 						if(s == ENTER)
 						{
 							ch.dapAn = da;
-//							themCHVaoMonHoc(dsm, id, ch);
 							suaCH(cauhoi, ch, vitri);
 							XoaTB(130, 26);
 							string tb = "Sua cau hoi thanh cong!";
@@ -5469,7 +5467,12 @@ void SuaCauHoiTrongMH(DSCH &cauhoi, cauHoi ch, int id, int vitri)
 							AnConTro();
 							Sleep(1000);
 							XoaTB(130,26);
-							break;
+							for(int i = 0; i < 33; i += 6)
+							{
+								gotoxy(4,14+i);
+								cout << " ";
+							}
+							return;
 						}
 						batPhim(s,sCheck);
 					}
@@ -5483,6 +5486,7 @@ void SuaCauHoiTrongMH(DSCH &cauhoi, cauHoi ch, int id, int vitri)
 		}
 		batPhim(s,sCheck);
 	}
+	
 }
 
 void suaCH(DSCH &ch, cauHoi ch1, int state)

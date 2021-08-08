@@ -1092,6 +1092,12 @@ void InTen()
 {
 	gotoxy(xInTen,yInTen);
 	TextColor(9);
+	cout<<"          NHOM 34";
+	gotoxy(xInTen,yInTen + 2);
 	cout << "N18DCCN098 - HUYNH QUOC KHANH";
+	gotoxy(xInTen,yInTen + 4);
+	cout << "N18DCCN116 - VO NGUYEN DUY LONG";
+	gotoxy(xInTen,yInTen + 6);
+	cout << "N17DCAT034 - NGUYEN QUOC HUY";
 }
 #endif
