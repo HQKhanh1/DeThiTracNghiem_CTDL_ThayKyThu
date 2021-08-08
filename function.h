@@ -123,6 +123,27 @@ string IntToString(int s)
 	p.insert(0,1,doichar(s));
 	return p;
 }
+string FloatToString(float s)
+{
+	int x;
+	int nguyen = (int)s;
+	float du = (s - (int)s) * 10;
+	string p;
+	while(nguyen >= 10)
+	{
+		x = nguyen%10;
+		p.insert(0,1,doichar(x));
+		nguyen = nguyen/10;
+	}
+	p.insert(0,1,doichar(nguyen));
+	p.insert(p.length(),1,'.');
+	for(int i = 0; i < 2; i++){
+		int duNguyen = (int)du;
+		p.insert(p.length(),1,doichar(duNguyen));
+		du = (du - duNguyen) * 10;
+	}
+	return p;
+}
 void xoakhongdau (string &s1)
 {
 	while (s1[0]==48)
@@ -813,10 +834,7 @@ void DocFileDiem1Lop ( lop *l)
 				getline(fileIn,temp,':');
 				diem->info.idMonHoc = StringToInt(temp);
 				getline(fileIn,temp,':');
-				if(checkChuoiLaIntHayFlaot(temp) == true)
-					diem->info.diem = StringToFloat(temp);
-				else
-					diem->info.diem = StringToInt(temp);
+				diem->info.diem = StringToFloat(temp);
 				getline(fileIn,temp,':');
 				diem->info.ctdt.sct = StringToInt(temp);
 				getline(fileIn,temp,':');
@@ -855,46 +873,7 @@ void DocFileDiem1Lop ( lop *l)
 			}	
 		}
 	}
-//	while(!fileIn.eof())
-//	{
-//		dsdiemThi dsd;
-//		string x;
-//		int y=0;
-//		string z;
-//		getline(fileIn,x,'\n');
-//		fileIn >> y;
-//		string *p = new string [y];
-//		if (y == 0)
-//		{
-//			continue;
-//		}
-//		
-//		else
-//		{
-//			for(int i = 0 ; i < y; i++)
-//			{
-//				if (i = y-1)
-//				{
-//					getline(fileIn,p[i],'\n');
-//					checkdiemThi(dsd,p[i]);
-//					break;
-//				}
-//				getline(fileIn,p[i],',');
-//				checkdiemThi(dsd,p[i]);
-//			}	
-//		}
-//		for(int j = 0; j < dsl.solop ; j++)
-//		{
-//			nodeSV *k;
-//			k = search_SV(dsl.l[j]->danhsach,x);
-//			k->info.diem = dsd;
-//		}
-//	}
 }
-//bool is_empty(std::ifstream& pFile)
-//{
-//    return pFile.peek() == std::ifstream::traits_type::eof();
-//}
 // ==================== DOC FILE 1 LOP ==========================
 void DocFileLop (lop *&l, string filename )
 {
@@ -3101,7 +3080,7 @@ void FunctionCauHoi(DSMH & dsm, dslop dsl, int id, int idlonnhat)
 						gotoxy(8,6+i);
 						cout << "      ";
 						gotoxy(17,6+i);
-						cout << "                                                                          ";
+						cout << "                                                                                              ";
 					}
 					gotoxy(7,6);
 					cout << " ";
@@ -3128,7 +3107,7 @@ void FunctionCauHoi(DSMH & dsm, dslop dsl, int id, int idlonnhat)
 							gotoxy(8,6+i);
 							cout << "      ";
 							gotoxy(17,6+i);
-							cout << "                                                                          ";
+							cout << "                                                                                              ";
 						}
 					}
 					page++;
@@ -3162,7 +3141,7 @@ void FunctionCauHoi(DSMH & dsm, dslop dsl, int id, int idlonnhat)
 						gotoxy(8,6+i);
 						cout << "      ";
 						gotoxy(17,6+i);
-						cout << "                                                                          ";
+						cout << "                                                                                              ";
 				}
 				gotoxy(7,6);
 				cout << muiten;
@@ -3184,7 +3163,7 @@ void FunctionCauHoi(DSMH & dsm, dslop dsl, int id, int idlonnhat)
 						gotoxy(8,6+i);
 						cout << "      ";
 						gotoxy(17,6+i);
-						cout << "                                                                          ";
+						cout << "                                                                                              ";
 				}
 				gotoxy(7,6);
 				cout << muiten;
@@ -4967,7 +4946,10 @@ void NhapCauHoiThem(DSMH &dsm, int id)
 				}
 			}
 		}
-		if (((s >= 'a' && s <= 'z') || (s >= 'A' && s <= 'Z') || (s >= '0' && s <= '9') || (s == '?') || (s == ','))  && sCheck == true)
+		if (((s >= 'a' && s <= 'z') || (s >= 'A' && s <= 'Z') || (s >= '0' && s <= '9') || (s == '?') || (s == ',')
+		|| (s == ',')|| (s == '*')|| (s == '+')|| (s == '-')|| (s == '=')|| (s == '^')|| (s == '%')|| (s == '!')
+		|| (s == '(')|| (s == ')')|| (s == '.')|| (s == '>')|| (s == '<')|| (s == '/')|| (s == '|')|| (s == '[')
+		|| (s == ']')|| (s == '{')|| (s == '}')|| (s == ';')|| (s == ':')|| (s == '"')|| (s == '\''))  && sCheck == true)
 		{
 			HienConTro();
 			switch(state)
@@ -7980,10 +7962,13 @@ void ketThucBaiThi (CTdethi ctdt, DSCH dsch, string &diem)
 	cout << "	|     |_ |       || | |   ||   |_| ||   |  | ||   _   |  |   |  |       ||       ||   _   |  |   |  |   | |       || | |   | __  ";
 	gotoxy(15,13);
 	cout << "	|_______||_______||_|  |__||_______||___|  |_||__| |__|  |___|  |_______||_______||__| |__|  |___|  |___| |_______||_|  |__||__| ";
-
-	string scd = IntToString(TinhDiem(ctdt,dsch)*10);
-	string sct = IntToString(ctdt.sct);
-	diem = chia(scd,sct);
+	float a = (float)TinhDiem(ctdt,dsch);
+	int b = (float)ctdt.sct;
+	float diemtam = (a / b)*10;
+	gotoxy(0,0);
+	cout<<diemtam;
+	system("pause");
+	diem = FloatToString(diemtam);
 	gotoxy(50,25);
 	cout << "CHUC MUNG BAN DA HOAN THANH BAI THI!";
 	gotoxy(50,30);
@@ -8736,10 +8721,7 @@ void InChiTiet1LanThi(nodediemThi *p, DSCH dsch, nodeSV *k)
 	system("cls");
 	gotoxy(0,0);
 	veKhungThuCong();
-	int socaudung = TinhDiem(p->info.ctdt,dsch)*10;
-	string scd = IntToString(socaudung);
-	string sct = IntToString(p->info.ctdt.sct);
-	string diem = chia(scd,sct);
+	string diem = FloatToString(p->info.diem);
 	gotoxy(130,2);
 	veKhung(21,35);
 	gotoxy(133,4);
@@ -9090,6 +9072,7 @@ void InChiTiet1LanThi(nodediemThi *p, DSCH dsch, nodeSV *k)
 void InBangDiemSV (nodeSV *sv, int page, DSCH dsch)
 {
 	int maxpage;
+	string diem;
 	int slt = DemLanThi(sv->info.diem);
 	if(slt <= 10)
 	{
@@ -9126,13 +9109,10 @@ void InBangDiemSV (nodeSV *sv, int page, DSCH dsch)
 			cout << dem;
 			gotoxy(50,6+k);
 			cout << p->info.ctdt.sct;
-			gotoxy(80,6+k);
-			cout << p->info.ctdt.tg;
+			gotoxy(78,6+k);
+			cout << p->info.ctdt.tg << " phut";
 			gotoxy(109,6+k);
-//			int socaudung = TinhDiem(p->info.ctdt,dsch)*10;
-//			string scd = IntToString(socaudung);
-//			string sct = IntToString(p->info.ctdt.sct);
-			float diem = p->info.diem;
+			diem = FloatToString(p->info.diem);
 			cout << diem;
 			dem ++;
 			k += 3;
@@ -9144,14 +9124,10 @@ void InBangDiemSV (nodeSV *sv, int page, DSCH dsch)
 			cout << dem;
 			gotoxy(50,6+k);
 			cout << p->info.ctdt.sct;
-			gotoxy(80,6+k);
-			cout << p->info.ctdt.tg;
+			gotoxy(78,6+k);
+			cout << p->info.ctdt.tg << " phut";
 			gotoxy(109,6+k);
-//			int socaudung = TinhDiem(p->info.ctdt,dsch)*10;
-//			string scd = IntToString(socaudung);
-//			string sct = IntToString(p->info.ctdt.sct);
-//			string diem = chia(scd,sct);
-			float diem = p->info.diem;
+			diem = FloatToString(p->info.diem);
 			cout << diem;
 			dem ++;
 			k += 3;
@@ -10448,13 +10424,7 @@ void LuuFileDiem(lop *l, string filename, DSMH dsm)
 				{
 					string diemthi;
 					DSMH pTam = FindNode(dsm, pd->info.idMonHoc);
-					int scd = TinhDiem(pd->info.ctdt,pTam->mh.cauHoiMH)*10;
-					int sct = pd->info.ctdt.sct;
-					diemthi = chia(IntToString(scd),IntToString(sct));
-					if(checkChuoiLaIntHayFlaot(diemthi) == true)
-						float a = StringToFloat(diemthi);
-					else
-						int b = StringToInt(diemthi);
+					diemthi = FloatToString(pd->info.diem);
 					fileOut << pd->info.idMonHoc << ":" << diemthi << ":" << pd->info.ctdt.sct << ":"<<pd->info.ctdt.tg<<":";
 					for(int i = 0; i < pd->info.ctdt.sct; i++)
 					{
@@ -10755,6 +10725,7 @@ int DangNhap(dslop &dsl ,string &masv)
 				gotoxy(35,43);
 				cout<<"                                                ";
 				gotoxy(xDangNhap+18+user.length(),yDangNhap+3);
+				state = false;
 				HienConTro();
 				
 			}
