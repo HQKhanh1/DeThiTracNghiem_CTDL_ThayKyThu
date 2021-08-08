@@ -10112,70 +10112,43 @@ void XemBangDiemSV(nodeSV *k,int idMon, DSCH dsch)
 		{
 			if(state == 9)
 			{
-				nodediemThi *p = k->info.diem.First;
-				for(int i=0; i< state + page*10; i++)
-				{
-					if (p->pNext != NULL)
+				sl = countDemThiMotMonTrongSV(k->info.diem, idMon);
+					if(arr[state + page*10 + 1] != NULL && (page*10 +state + 1) < sl)
 					{
-						p = p->pNext;
-					}
-				}
-				if(p->pNext != NULL)
-				{
-					gotoxy(wherex()-1,wherey());
+						gotoxy(wherex()-1,wherey());
 						TextColor(9);
-					cout << " ";
-					if(page < maxpage)
-					{
-						for(int i = 0; i < 28;i++)
+						cout << " ";
+						//cap nhat maxpage
+						if(page < maxpage)
 						{
-							gotoxy(6,6+i);
-							cout << "                             ";
-							gotoxy(36,6+i);
-							cout << "                             ";
-							gotoxy(66,6+i);
-							cout << "                             ";
-							gotoxy(96,6+i);
-							cout << "                            ";
+							for(int i = 0; i < 28;i++)
+							{
+								gotoxy(15,6+i);
+								cout << "      ";
+								gotoxy(37,6+i);
+								cout << "              ";
+								gotoxy(57,6+i);
+								cout << "                                                             ";
+							}
 						}
+						page++;
+						InBangDiemSV(k,page,idMon,dsch);
+						state = 0;
+						gotoxy(7,6);
+						cout << muiten;
 					}
-					page++;
-					InBangDiemSV(k,page,idMon,dsch);
-					state = 0;
-					gotoxy(7,6);
-					TextColor(9);
-					cout << muiten;
-				}
 			}
 			else
 			{
-				nodediemThi *p = k->info.diem.First;
-				for(int i=0; i< state + page*10; i++)
-				{
-					if (p->pNext != NULL)
+					sl = countDemThiMotMonTrongSV(k->info.diem, idMon);
+					if(arr[state + page*10 + 1] != NULL &&(page*10 +state + 1) < sl)
 					{
-						p = p->pNext;
+						gotoxy(7,wherey());
+						cout << " ";
+						state ++;
+						gotoxy(7,wherey() + 3);
+						cout << muiten;	
 					}
-				}
-				if(p->pNext != NULL)
-				{
-					gotoxy(wherex()-1,wherey());
-						TextColor(9);
-					cout << " ";
-					state ++;
-					gotoxy(7,wherey() + 3);
-					TextColor(9);
-					cout << muiten;	
-				}
-				if(p->pNext == NULL) 
-				{
-					gotoxy(wherex()-1,wherey());
-						TextColor(9);
-					cout << " ";
-					gotoxy(7,wherey());
-					TextColor(9);
-					cout << muiten;
-				}
 			}
 		}	
 		if (s == PAGEDOWN && sCheck == false)
@@ -10815,7 +10788,7 @@ void NhapMonXemDiem(lop *l, DSMH dsm, int idlonnhat)
 						state --;
 						gotoxy(7,wherey() - 3);
 						TextColor(9);
-	cout << muiten;
+						cout << muiten;
 					}
 				}
 				if(page > 0)
@@ -10828,7 +10801,7 @@ void NhapMonXemDiem(lop *l, DSMH dsm, int idlonnhat)
 						state --;
 						gotoxy(7,wherey()-3);
 						TextColor(9);
-	cout << muiten;
+						cout << muiten;
 					}
 					else if(state == 0)
 					{
@@ -10847,7 +10820,7 @@ void NhapMonXemDiem(lop *l, DSMH dsm, int idlonnhat)
 						InDSMH_CoCauHoi(dsm,page, maxpage, arr);
 						gotoxy(7,33);
 						TextColor(9);
-	cout << muiten;
+						cout << muiten;
 						state = 9;
 					}
 				}
@@ -10880,7 +10853,7 @@ void NhapMonXemDiem(lop *l, DSMH dsm, int idlonnhat)
 						state = 0;
 						gotoxy(7,6);
 						TextColor(9);
-	cout << muiten;
+						cout << muiten;
 					}
 				}
 				else
@@ -10893,7 +10866,7 @@ void NhapMonXemDiem(lop *l, DSMH dsm, int idlonnhat)
 						state ++;
 						gotoxy(7,wherey() + 3);
 						TextColor(9);
-	cout << muiten;	
+						cout << muiten;	
 					}
 				}
 			}
@@ -10916,7 +10889,7 @@ void NhapMonXemDiem(lop *l, DSMH dsm, int idlonnhat)
 					}
 					gotoxy(7,6);
 					TextColor(9);
-	cout << muiten;
+					cout << muiten;
 					state = 0;
 					page ++;
 					InDSMH_CoCauHoi(dsm,page, maxpage, arr);
@@ -10942,7 +10915,7 @@ void NhapMonXemDiem(lop *l, DSMH dsm, int idlonnhat)
 					}
 					gotoxy(7,6);
 					TextColor(9);
-	cout << muiten;
+					cout << muiten;
 					state = 0;
 					page--;
 					InDSMH_CoCauHoi(dsm,page, maxpage, arr);
