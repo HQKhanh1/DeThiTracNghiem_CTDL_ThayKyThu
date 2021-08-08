@@ -18,10 +18,7 @@ int main()
 	dslop dsl;
 	DSMH dsm;
 	khoiTaoCay(dsm);
-//	SetConsoleDisplayMode(GetStdHandle(STD_OUTPUT_HANDLE),CONSOLE_FULLSCREEN_MODE,0);
-//	system("mode 1080");
-//	fullscreen();
-//	SetWindowSize(1080,720);
+	TextColor(241);
 	mainProcess(dsl,ds,dsm,arr1,arr2);
 	return 0;
 }

@@ -123,13 +123,6 @@ float StringToFloat (string s)
 	p = p + p1;
 	return p;
 }
-bool checkChuoiLaIntHayFlaot(string s){
-	for(int i = 0; i < s.length(); i++){
-		if(s[i] == '.')
-			return true;
-	}
-	return false;
-}
 //=====================TRA VE VI TRI X CUA CON TRO==============================
 int wherex()
 {
@@ -174,6 +167,7 @@ void veKhung(int rong, int dai)
 			}
 		}
 		gotoxy(wherex()-dai,wherey()+1);
+		TextColor(241);
 	}
 }
 void veKhungThuCong(){
@@ -286,6 +280,7 @@ void VeKhungTenSV(int dai, int rong, int socot)
 			if(dem == socot) dem = 1;
 		}
 		gotoxy(wherex()-rong,wherey()+1);
+		TextColor(241);
 	}
 }
 // ====================== VE KHUNG XEM DIEM =======================
@@ -344,6 +339,7 @@ void VeKhungXemDiem(int dai, int rong, int socot)
 			if(dem == socot) dem = 1;
 		}
 		gotoxy(wherex()-rong,wherey()+1);
+		TextColor(241);
 	}
 }
 //==============================AN CO TRO MAN HINH CONSOLE=======================
@@ -444,22 +440,6 @@ void InHoaChuoi(string &s)
     	s[i]=toupper(s[i]);
 	}
 }
-// ====================== SO SANH CHUOI SO =======================
-int SoSanhChuoiSo(string &a, string &b)
-{
-	for (int i = 0; i < a.length(); i++)
-	{
-		if (a[i] > b[i])
-		{
-			return 1;
-		}
-		if (a[i] < b[i])
-		{
-			return -1;
-		}
-	}
-	return 0;
-}
 // ==================== VE NUT ==========================
 void veNut(int dai, int rong, int x, int y, string text, int mau )
 {
@@ -475,7 +455,7 @@ void veNut(int dai, int rong, int x, int y, string text, int mau )
 	ChangeColor(mau);
 	gotoxy(x+(rong-text.length())/2,y+(dai/2));
 	cout << text;
-	ChangeColor(15);
+	TextColor(241);
 }
 // ==================== VE NUT MAIN MENU ==========================
 void veNutMenu(int dai, int x, int y, string text, int mau )
@@ -490,7 +470,7 @@ void veNutMenu(int dai, int x, int y, string text, int mau )
 	ChangeColor(mau);
 	gotoxy(x+(40-text.length())/2,y+(dai/2));
 	cout << text;
-	ChangeColor(15);
+	TextColor(241);
 }
 // ====================== VE KHUNG THEO SO COT =======================
 void vekhungDS(int dai, int rong, int socot)
@@ -535,6 +515,7 @@ void vekhungDS(int dai, int rong, int socot)
 			if(dem == socot) dem = 1;
 		}
 		gotoxy(wherex()-rong,wherey()+1);
+		TextColor(241);
 	}
 }
 // ====================== VE KHUNG LOP THEO SO COT =======================
@@ -585,6 +566,7 @@ void VeKhungDSLop(int dai, int rong, int socot)
 			if(dem == socot) dem = 1;
 		}
 		gotoxy(wherex()-rong,wherey()+1);
+		TextColor(241);
 	}
 }
 // ====================== VE KHUNG LOP THEO SO COT =======================
@@ -643,11 +625,13 @@ void VeKhungDSLop1(int dai, int rong, int socot)
 			if(dem == socot) dem = 1;
 		}
 		gotoxy(wherex()-rong,wherey()+1);
+		TextColor(241);
 	}
 }
 // ====================== VE KHUNG THONG BAO =======================
 void vekhungTB(int dai, int rong)
 {
+	TextColor(241);
 	for (int i = 0; i < dai; i++)
 	{
 		for (int j = 0; j < rong; j++)
@@ -688,6 +672,7 @@ void vekhungTB(int dai, int rong)
 			//sleep(1);
 		}
 		gotoxy(wherex()-rong,wherey()+1);
+		TextColor(241);
 	}
 }
 // ====================== IN THONG BAO =======================
@@ -729,6 +714,7 @@ void InTB(string text, int x, int y)
 			dem++;
 		}
 		gotoxy(x,y+dem);
+		TextColor(241);
 		cout << text;
 	}
 }
@@ -738,6 +724,7 @@ void XoaTB(int x, int y)
 	for (int i = 0; i < 6;i++)
 	{
 		gotoxy(x - 1,y+3+i);
+		TextColor(241);
 		cout << "                                 ";
 	}
 }
@@ -750,9 +737,11 @@ void InNDCH (string text)
 	int k = 0;
 	string temp1;
 	gotoxy(20,5);
+	TextColor(241);
 	if (text.length() < 95)
 	{
 		gotoxy(20,5);
+		TextColor(241);
 		cout << text;
 	}
 	else
@@ -771,6 +760,7 @@ void InNDCH (string text)
 				temp1 = text.substr(0,j);
 				text.erase(0,j+1);
 				gotoxy(20,5+k);
+				TextColor(241);
 				cout << temp1;
 			}
 			else
@@ -778,6 +768,7 @@ void InNDCH (string text)
 				temp1 = text.substr(0,i);
 				text.erase(0,i);
 				gotoxy(20,5+k);
+				TextColor(241);
 				cout << temp1;
 			}
 			k += 2;
@@ -789,6 +780,7 @@ void InNDCH (string text)
 		if(k < 5)
 		{
 			gotoxy(20,5+k);
+			TextColor(241);
 			cout << text;
 		}
 	}
@@ -802,6 +794,7 @@ void InDA_XemCH (string text)
 	string temp1;
 	if (text.length() < 95)
 	{
+		TextColor(241);
 		cout << text;
 	}
 	else
@@ -820,6 +813,7 @@ void InDA_XemCH (string text)
 				temp1 = text.substr(0,j);
 				text.erase(0,j+1);
 				gotoxy(20,wherey()+k);
+				TextColor(241);
 				cout << temp1;
 			}
 			else
@@ -827,6 +821,7 @@ void InDA_XemCH (string text)
 				temp1 = text.substr(0,i);
 				text.erase(0,i);
 				gotoxy(20,wherey()+k);
+				TextColor(241);
 				cout << temp1;
 			}
 			k += 2;
@@ -838,79 +833,16 @@ void InDA_XemCH (string text)
 		if(k < 3)
 		{
 			gotoxy(20,wherey()+k);
+			TextColor(241);
 			cout << text;
 		}
-	}
-}
-// ====================== VE KHUNG CH THEO SO COT =======================
-void vekhungDSCH(int dai, int rong, int socot)
-{
-	int x = rong/socot;
-	int dem = 1;
-	for (int i = 0; i < dai; i++)
-	{
-		for (int j = 0; j < rong; j++)
-		{
-			if (i == 0)
-			{
-				if (j == 0) cout << traitren;
-				else if (j == rong-1) cout << phaitren;
-				else if (j == (rong/socot)*dem) cout << ngangxuong;
-				else cout << ngang;
-			}
-			else if(i == 1)
-			{
-				if (j == 0|| j == 24 || j== 48 || j == rong-1) cout << doc;
-				else if(j == 11)
-				{
-					cout << "ID";
-					j += 1;
-				}
-				else if(j == 24+ 10)
-				{
-					cout << "MA MH";
-					j += 4;
-				}
-				else if(j == 48 + 28)
-				{
-					cout << "NOI DUNG CAU HOI";
-					j += 15;
-				}
-				else cout << " ";
-			}
-			else if(i == 2)
-			{
-				if(j == 0) cout << docphai;
-				else if (j == rong -1) cout << doctrai;
-				else if (j == (rong/socot)*dem) cout << giua;
-				else cout << ngang;
-			}
-			else if (i == dai-1)
-			{
-				if (j == 0) cout << traiduoi;
-				else if (j == rong-1) cout << phaiduoi;
-				else if (j == (rong/socot)*dem) cout << nganglen;
-				else cout << ngang;
-			}
-			else if(j == (rong/socot)*dem)
-			{
-				cout << doc;
-			}
-			else
-			{
-				if (j == 0 || j == rong-1) cout << doc;
-				else cout << " ";
-			}
-			if(j == dem*(rong/socot)) dem++;
-			if(dem == 3) dem = 1;
-		}
-		gotoxy(wherex()-rong,wherey()+1);
 	}
 }
 void vekhungDSCH_Test(int dai, int rong, int socot)
 {
 	int x = rong/socot;
 	int dem = 1;
+	TextColor(241);
 	for (int i = 0; i < dai; i++)
 	{
 		for (int j = 0; j < rong; j++)
@@ -926,11 +858,13 @@ void vekhungDSCH_Test(int dai, int rong, int socot)
 			{
 				if (j == 0|| j == 11 ||j == rong-1) cout << doc;
 				else if(j == 5){
+					TextColor(241);
 					cout << "STT";
 					j += 2;
 				}
 				else if(j == rong/2 - 8)
 				{
+					TextColor(241);
 					cout << "Noi dung cau hoi";
 					j += 15;
 				}
@@ -963,12 +897,14 @@ void vekhungDSCH_Test(int dai, int rong, int socot)
 			if(dem == 3) dem = 1;
 		}
 		gotoxy(wherex()-rong,wherey()+1);
+		TextColor(241);
 	}
 }
 void XoaKhungXemCH(){
 	for(int i = 0; i < 40; i++)
 	{
 		gotoxy(5, 2+ i);
+		TextColor(241);
 		cout<<"                                                                                                                        ";
 	}
 }
@@ -977,8 +913,10 @@ void XoaCauHoiDaXoa(){
 	for(int i = 0; i < 10; i++)
 	{
 		gotoxy(10,4+k);
+		TextColor(241);
 		cout << "   ";
 		gotoxy(25 ,4+k);
+		TextColor(241);
 		cout<<"                                                                      ";
 		k += 3;
 	}
@@ -1013,6 +951,7 @@ void vekhungDSMH_CoCauHoi(int dai, int rong, int socot)
 {
 	int x = rong/socot;
 	int dem = 1;
+	TextColor(241);
 	for (int i = 0; i < dai; i++)
 	{
 		for (int j = 0; j < rong; j++)
@@ -1029,16 +968,19 @@ void vekhungDSMH_CoCauHoi(int dai, int rong, int socot)
 				if (j == 0|| j == 24 || j== 43 || j == rong-1) cout << doc;
 				else if(j == 11)
 				{
+					TextColor(241);
 					cout << "ID";
 					j += 1;
 				}
 				else if(j == 24+ 7)
 				{
+					TextColor(241);
 					cout << "MA MON HOC";
 					j += 4;
 				}
 				else if(j == 48 + 28)
 				{
+					TextColor(241);
 					cout << "TEN MON HOC";
 					j += 15;
 				}
@@ -1071,6 +1013,7 @@ void vekhungDSMH_CoCauHoi(int dai, int rong, int socot)
 			if(dem == 3) dem = 1;
 		}
 		gotoxy(wherex()-rong,wherey()+1);
+		TextColor(241);
 	}
 }
 // ====================== DAO CHUOI =======================
@@ -1114,15 +1057,18 @@ void vekhungThemCH()
 }
 void xoaKhungThemCH(){
 	gotoxy(5,2);
+	TextColor(241);
 	for(int i = 0; i < 40; i++){
 		for(int j = 0; j < 120; j++){
 			cout<<" ";
 		}
 		gotoxy(5, 2 + i);
+		TextColor(241);
 	}
 }
 void vekhungNhapTG()
 {
+	TextColor(241);
 	gotoxy(45,16);
 	veKhung(9,80);
 	gotoxy(52,20);
@@ -1139,6 +1085,7 @@ void vekhungNhapTG()
 void InTen()
 {
 	gotoxy(xInTen,yInTen);
+	TextColor(241);
 	cout << "N18DCCN098 - HUYNH QUOC KHANH";
 }
 #endif

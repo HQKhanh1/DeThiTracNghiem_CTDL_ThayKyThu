@@ -34,7 +34,10 @@ string FloatToString(float s)
 int main()
 {
 	
-	float a = 9;
-	cout<<FloatToString(a);
+	for(int i = 1; i <= 110; i++){
+		if((i % 5 + 1) == 5){
+			cout<<"\n\n Nhom thi De tai 5: "<< i;
+		}
+	}
 	return 0;
 }

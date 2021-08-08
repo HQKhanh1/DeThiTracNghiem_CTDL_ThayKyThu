@@ -1234,6 +1234,7 @@ int DemLanThi(dsdiemThi diem)
 // ==================== NHAP LOP THEM ==========================
 void NhapLop(dslop &dsl, int page)
 {	
+	TextColor(241);
 	gotoxy(5,38);
 	veKhung(5,120);
 	gotoxy(7,40);
@@ -1347,8 +1348,10 @@ void NhapLop(dslop &dsl, int page)
 				{
 					AnConTro();
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					HienConTro();
 					tenlop.erase(tenlop.length()-1);
 				}
@@ -1359,8 +1362,10 @@ void NhapLop(dslop &dsl, int page)
 				{
 					AnConTro();
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					HienConTro();
 					malop.erase(malop.length()-1);
 				}
@@ -1507,7 +1512,7 @@ void NhapLop(dslop &dsl, int page)
 // ==================== THEM LOP ==========================
 void ThemLop(dslop &dsl, int page)
 {
-	ChangeColor(15);
+	TextColor(241);
 	int n = dsl.solop;
 	if(n  == MAXLOP)
 	{
@@ -1591,6 +1596,7 @@ void NhapSinhVien(lop *&l )
 {
 	AnConTro();
 	int maxpage;
+	TextColor(241);
 	gotoxy(127,26);
 	vekhungTB(10,36);
 	gotoxy(15,3);
@@ -1613,8 +1619,8 @@ void NhapSinhVien(lop *&l )
 	veKhung(3,30);
 	gotoxy(112,2+11);
 	cout << "Gioi Tinh:";
-	veNut(3,9,123,12,"NAM",240);
-	veNut(3,9,142,12,"NU",15);
+	veNut(3,9,123,12,"NAM",112);
+	veNut(3,9,142,12,"NU",30);
 	gotoxy(112,2+15);
 	cout << "Mat khau:";
 	gotoxy(122,2+14);
@@ -1678,8 +1684,8 @@ void NhapSinhVien(lop *&l )
 		{
 			hd = wherex();
 			td = wherey();
-			veNut(3,9,123,12,"NAM",240);
-			veNut(3,9,142,12,"NU",15);
+			veNut(3,9,123,12,"NAM",112);
+			veNut(3,9,142,12,"NU",30);
 			gotoxy(hd,td);
 			gt = "NAM";
 			
@@ -1688,8 +1694,8 @@ void NhapSinhVien(lop *&l )
 		{
 			hd = wherex();
 			td = wherey();
-			veNut(3,9,123,12,"NAM",15);
-			veNut(3,9,142,12,"NU",240);
+			veNut(3,9,123,12,"NAM",30);
+			veNut(3,9,142,12,"NU",112);
 			gotoxy(hd,td);
 			gt = "NU";
 		}
@@ -1790,8 +1796,10 @@ void NhapSinhVien(lop *&l )
 						{
 							AnConTro();
 							gotoxy(wherex()-1,wherey());
+						TextColor(241);
 							cout << " ";
 							gotoxy(wherex()-1,wherey());
+						TextColor(241);
 							HienConTro();
 							masv.erase(masv.length()-1);
 						}
@@ -1803,8 +1811,10 @@ void NhapSinhVien(lop *&l )
 						{
 							AnConTro();
 							gotoxy(wherex()-1,wherey());
+						TextColor(241);
 							cout << " ";
 							gotoxy(wherex()-1,wherey());
+						TextColor(241);
 							HienConTro();
 							hoten.erase(hoten.length()-1);
 						}
@@ -1816,8 +1826,10 @@ void NhapSinhVien(lop *&l )
 						{
 							AnConTro();
 							gotoxy(wherex()-1,wherey());
+						TextColor(241);
 							cout << " ";
 							gotoxy(wherex()-1,wherey());
+						TextColor(241);
 							HienConTro();
 							mk.erase(mk.length()-1);
 						}
@@ -2001,6 +2013,7 @@ void XoaSinhVien(lop *&l ,int page)
 				if(state > 0)
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					state --;
 					gotoxy(7,wherey() - 3);
@@ -2012,6 +2025,7 @@ void XoaSinhVien(lop *&l ,int page)
 				if((state > 0) )
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					state --;
 					gotoxy(7,wherey()-3);
@@ -2029,6 +2043,7 @@ void XoaSinhVien(lop *&l ,int page)
 						cout << "                      ";
 					}
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					page --;
 					InDSSV(l,page);
@@ -2054,6 +2069,7 @@ void XoaSinhVien(lop *&l ,int page)
 				if(k->pNext != NULL)
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					if(page < maxpage)
 					{
@@ -2088,6 +2104,7 @@ void XoaSinhVien(lop *&l ,int page)
 				if(k->pNext != NULL)
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					state ++;
 					gotoxy(7,wherey() + 3);
@@ -2096,6 +2113,7 @@ void XoaSinhVien(lop *&l ,int page)
 				if(k->pNext == NULL) 
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					gotoxy(7,wherey());
 					cout << muiten;
@@ -2117,6 +2135,7 @@ void XoaSinhVien(lop *&l ,int page)
 						cout << "                      ";
 					}
 				gotoxy(wherex()-1,wherey());
+						TextColor(241);
 				cout << " ";
 				gotoxy(7,6);
 				cout << muiten;
@@ -2143,6 +2162,7 @@ void XoaSinhVien(lop *&l ,int page)
 						cout << "                      ";
 					}
 				gotoxy(wherex()-1,wherey());
+						TextColor(241);
 				cout << " ";
 				gotoxy(7,6);
 				cout << muiten;
@@ -2332,8 +2352,10 @@ void NhapMonHoc_Test(DSMH &dsm, int &sl, int &page, int &maxpage, int &idlonnhat
 				{
 					AnConTro();
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					HienConTro();
 					tenmon.erase(tenmon.length()-1);
 				}
@@ -2344,8 +2366,10 @@ void NhapMonHoc_Test(DSMH &dsm, int &sl, int &page, int &maxpage, int &idlonnhat
 				{
 					AnConTro();
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					HienConTro();
 					mamon.erase(mamon.length()-1);
 				}
@@ -2602,8 +2626,11 @@ bool CheckDaThi (int idMon,dslop dsl)
 void FunctionMH(DSMH &dsm, dslop dsl, int &idlonnhat, int arr1[], int arr2[])
 {
 	gotoxy(0,0);
+	TextColor(241);
 	veKhungThuCong();
 	gotoxy(20,43);
+	TextColor(241);
+	TextColor(241);
 	cout << "ENTER: Chon    ESC: Thoat    PGUP: Qua trang    PGDOWN: Lui trang    F1: Them mon hoc    F2: Sua mon hoc    F3: Xoa mon";
 	gotoxy(127,26);
 	vekhungTB(10,36);
@@ -2683,9 +2710,11 @@ void FunctionMH(DSMH &dsm, dslop dsl, int &idlonnhat, int arr1[], int arr2[])
 					if(state > 0)
 					{
 						gotoxy(wherex()-1,wherey());
+						TextColor(241);
 						cout << " ";
 						state --;
 						gotoxy(7,wherey() - 3);
+						TextColor(241);
 						cout << muiten;
 					}
 				}
@@ -2694,9 +2723,12 @@ void FunctionMH(DSMH &dsm, dslop dsl, int &idlonnhat, int arr1[], int arr2[])
 					if((state > 0) )
 					{
 						gotoxy(wherex()-1,wherey());
+						TextColor(241);
+						TextColor(241);
 						cout << " ";
 						state --;
 						gotoxy(7,wherey()-3);
+						TextColor(241);
 						cout << muiten;
 					}
 					else if(state == 0)
@@ -2704,18 +2736,23 @@ void FunctionMH(DSMH &dsm, dslop dsl, int &idlonnhat, int arr1[], int arr2[])
 						for(int i = 0; i < 28;i++)
 						{
 							gotoxy(15,6+i);
+							TextColor(241);
 							cout << "      ";
 							gotoxy(37,6+i);
+							TextColor(241);
 							cout << "          ";
 							gotoxy(57,6+i);
+							TextColor(241);
 							cout << "                                                             ";
 						}
 						gotoxy(7,6);
+						TextColor(241);
 						cout << " ";
 						page --;
 						InDSMH_CoCauHoi(dsm,page, maxpage, arr);
 						gotoxy(7,33);
 						cout << muiten;
+						TextColor(241);
 						state = 9;
 					}
 				}
@@ -2728,6 +2765,8 @@ void FunctionMH(DSMH &dsm, dslop dsl, int &idlonnhat, int arr1[], int arr2[])
 					if(arr[state + page*10 + 1] != NULL && (page*10 +state + 1) < sl)
 					{
 						gotoxy(wherex()-1,wherey());
+						TextColor(241);
+						TextColor(241);
 						cout << " ";
 						//cap nhat maxpage
 						if(page < maxpage)
@@ -2768,6 +2807,7 @@ void FunctionMH(DSMH &dsm, dslop dsl, int &idlonnhat, int arr1[], int arr2[])
 				if(page < maxpage)
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					for(int i = 0; i < 28;i++)
 					{
@@ -2792,6 +2832,7 @@ void FunctionMH(DSMH &dsm, dslop dsl, int &idlonnhat, int arr1[], int arr2[])
 				if (page > 0 )
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					for(int i = 0; i < 28;i++)
 					{
@@ -2816,7 +2857,7 @@ void FunctionMH(DSMH &dsm, dslop dsl, int &idlonnhat, int arr1[], int arr2[])
 					cout<<muiten;
 			}
 			if(s == F3){
-				if(ExitXoa("Ban co chac chan xoa cau hoi?   (Y/N)", s, sCheck) == true){
+				if(ExitXoa("Ban co chac chan xoa mon hoc?   (Y/N)", s, sCheck) == true){
 					xoaMMH_Test(dsm,sl,state, page, maxpage, idlonnhat, arr);
 					if(state > 0 && sl == (page * 10 + state)){
 						InDSMH_CoCauHoi(dsm,page, maxpage, arr);
@@ -2855,8 +2896,6 @@ void FunctionMH(DSMH &dsm, dslop dsl, int &idlonnhat, int arr1[], int arr2[])
 			}
 			if(s == F1){
 				NhapMonHoc_Test(dsm,sl, page, maxpage, idlonnhat, arr,arr1,arr2);
-				gotoxy(0,0);
-				cout<<"ID lon nhat: "<<idlonnhat;
 				gotoxy(7,6 +3*state);
 				cout<<muiten;
 			}
@@ -2870,6 +2909,7 @@ void FunctionMH(DSMH &dsm, dslop dsl, int &idlonnhat, int arr1[], int arr2[])
 				xoaKhungTTMH(10,36);
 				XoaTB(130, 26);
 				gotoxy(20,43);
+	TextColor(241);
 				cout << "ENTER: Chon    ESC: Thoat    PGUP: Qua trang    PGDOWN: Lui trang    F1: Them mon hoc    F2: Sua mon hoc    F3: Xoa mon";
 				gotoxy(5,2);
 				vekhungDSMH_CoCauHoi(34,120,5);
@@ -3001,6 +3041,7 @@ void FunctionCauHoi(DSMH & dsm, dslop dsl, int id, int idlonnhat)
 	xoaKhungThemCH();
 	AnConTro();
 	gotoxy(20,43);
+	TextColor(241);
 	cout << "ENTER: Chon    ESC: Thoat    PGUP: Qua trang    PGDOWN: Lui trang    F1: Them cau hoi    F2: Sua cau hoi    F3: Xoa cau hoi";
 	gotoxy(127, 2);
 	vekhungTTMH(pTam->mh, 10, 56);
@@ -3040,6 +3081,7 @@ void FunctionCauHoi(DSMH & dsm, dslop dsl, int id, int idlonnhat)
 				gotoxy(127,2);
 				xoaKhungTTMH(10,56);
 				gotoxy(20,43);
+	TextColor(241);
 				cout << "                                                                                                                           ";
 				break;
 			}
@@ -3057,6 +3099,7 @@ void FunctionCauHoi(DSMH & dsm, dslop dsl, int id, int idlonnhat)
 			if(state > 0)
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					state --;
 					gotoxy(7,wherey() - 3);
@@ -3068,6 +3111,7 @@ void FunctionCauHoi(DSMH & dsm, dslop dsl, int id, int idlonnhat)
 				if((state > 0) )
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					state --;
 					gotoxy(7,wherey()-3);
@@ -3099,6 +3143,7 @@ void FunctionCauHoi(DSMH & dsm, dslop dsl, int id, int idlonnhat)
 				if(pTam->mh.cauHoiMH.listCauHoi[state + page*10 + 1] != NULL && (page*10 +state + 1) < pTam->mh.cauHoiMH.n)
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					if(page < maxpage)
 					{
@@ -3135,6 +3180,7 @@ void FunctionCauHoi(DSMH & dsm, dslop dsl, int id, int idlonnhat)
 			if(page < maxpage)
 			{
 				gotoxy(wherex()-1,wherey());
+						TextColor(241);
 				cout << " ";
 				for(int i = 0; i < 28;i++)
 				{
@@ -3157,6 +3203,7 @@ void FunctionCauHoi(DSMH & dsm, dslop dsl, int id, int idlonnhat)
 			if (page > 0 )
 			{
 				gotoxy(wherex()-1,wherey());
+						TextColor(241);
 				cout << " ";
 				for(int i = 0; i < 28;i++)
 				{
@@ -3182,6 +3229,7 @@ void FunctionCauHoi(DSMH & dsm, dslop dsl, int id, int idlonnhat)
 			InDSCHMon(pTam->mh.cauHoiMH, page, maxpage);
 			state = 0;
 			gotoxy(20,43);
+	TextColor(241);
 			cout << "ENTER: Chon    ESC: Thoat    PGUP: Qua trang    PGDOWN: Lui trang    F1: Them cau hoi    F2: Sua cau hoi    F3: Xoa cau hoi";
 			gotoxy(7, 6 + 3*state);
 			AnConTro();
@@ -3215,6 +3263,7 @@ void FunctionCauHoi(DSMH & dsm, dslop dsl, int id, int idlonnhat)
 				pTam = Search_MH(dsm,id);
 				InDSCHMon(pTam->mh.cauHoiMH, page, maxpage);
 				gotoxy(20,43);
+	TextColor(241);
 				cout << "ENTER: Chon    ESC: Thoat    PGUP: Qua trang    PGDOWN: Lui trang    F1: Them cau hoi    F2: Sua cau hoi    F3: Xoa cau hoi";
 				gotoxy(7, 6 + 3*state);
 				AnConTro();
@@ -3294,6 +3343,7 @@ void FunctionCauHoi(DSMH & dsm, dslop dsl, int id, int idlonnhat)
 			pTam = Search_MH(dsm,id);
 			InDSCHMon(pTam->mh.cauHoiMH, page, maxpage);
 			gotoxy(20,43);
+	TextColor(241);
 			cout << "ENTER: Chon    ESC: Thoat    PGUP: Qua trang    PGDOWN: Lui trang    F1: Them cau hoi    F2: Sua cau hoi    F3: Xoa cau hoi";
 			gotoxy(7, 6 + 3*state);
 			AnConTro();
@@ -3552,28 +3602,28 @@ void inCH(cauHoi ch){
 	
 		if(ch.dapAn == "A")
 		{
-			ChangeColor(240);
+			ChangeColor(175);
 			gotoxy(6,16-2);
 			cout << "DAP AN A: ";
 			ChangeColor(15);
 		}
 		else if(ch.dapAn == "B")
 		{
-			ChangeColor(240);
+			ChangeColor(175);
 			gotoxy(6,22-2);
 			cout << "DAP AN B: ";
 			ChangeColor(15);
 		}
 		else if(ch.dapAn == "C")
 		{
-			ChangeColor(240);
+			ChangeColor(175);
 			gotoxy(6,28-2);
 			cout << "DAP AN C: ";
 			ChangeColor(15);
 		}
 		else if(ch.dapAn == "D")
 		{
-			ChangeColor(240);
+			ChangeColor(175);
 			gotoxy(6,34-2);
 			cout << "DAP AN D: ";
 			ChangeColor(15);
@@ -3582,6 +3632,7 @@ void inCH(cauHoi ch){
 void xemCauHoi(cauHoi ch)
 {
 	gotoxy(20,43);
+	TextColor(241);
 	cout << "                                                                                                                           ";
 	gotoxy(5 + (120 - 2)/2,43);
 	cout << "ENTER: Chon    ESC: Thoat";
@@ -3597,6 +3648,7 @@ void xemCauHoi(cauHoi ch)
 			{	
 				XoaKhungXemCH();
 				gotoxy(20,43);
+	TextColor(241);
 				cout << "                                                                                                                           ";
 				break;
 			}
@@ -3938,6 +3990,7 @@ void SuaCauHoiTrongMH(DSCH &cauhoi, cauHoi ch, int id, int vitri)
 {
 	vekhungThemCH();
 	gotoxy(20,43);
+	TextColor(241);
 	cout << "                                                                                                                           ";
 	gotoxy(5 + (120 - 43)/2,43);
 	cout << "ENTER: Chon    ESC: Thoat    LEN/XUONG: CHON NOI DUNG";
@@ -4102,7 +4155,7 @@ void SuaCauHoiTrongMH(DSCH &cauhoi, cauHoi ch, int id, int vitri)
 					case 4:
 						{
 							AnConTro();
-							veNut(3,11,59,38,"LUU",240);
+							veNut(3,11,59,38,"LUU",112);
 							state ++;
 							break;
 						}	
@@ -4134,8 +4187,10 @@ void SuaCauHoiTrongMH(DSCH &cauhoi, cauHoi ch, int id, int vitri)
 									{
 										temp += ch.noiDung[n];
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										cout << " ";
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										n--;
 										dem = n;
 									}
@@ -4163,8 +4218,10 @@ void SuaCauHoiTrongMH(DSCH &cauhoi, cauHoi ch, int id, int vitri)
 									{
 										temp += ch.noiDung[n];
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										cout << " ";
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										n--;
 									}
 									temp = DaoChuoi(temp);
@@ -4205,8 +4262,10 @@ void SuaCauHoiTrongMH(DSCH &cauhoi, cauHoi ch, int id, int vitri)
 									{
 										temp += ch.A[n];
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										cout << " ";
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										n--;
 									}
 									temp = DaoChuoi(temp);
@@ -4247,8 +4306,10 @@ void SuaCauHoiTrongMH(DSCH &cauhoi, cauHoi ch, int id, int vitri)
 									{
 										temp += ch.B[n];
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										cout << " ";
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										n--;
 									}
 									temp = DaoChuoi(temp);
@@ -4289,8 +4350,10 @@ void SuaCauHoiTrongMH(DSCH &cauhoi, cauHoi ch, int id, int vitri)
 									{
 										temp += ch.C[n];
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										cout << " ";
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										n--;
 									}
 									temp = DaoChuoi(temp);
@@ -4331,8 +4394,10 @@ void SuaCauHoiTrongMH(DSCH &cauhoi, cauHoi ch, int id, int vitri)
 									{
 										temp += ch.D[n];
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										cout << " ";
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										n--;
 									}
 									temp = DaoChuoi(temp);
@@ -4500,8 +4565,10 @@ void SuaCauHoiTrongMH(DSCH &cauhoi, cauHoi ch, int id, int vitri)
 							{
 								AnConTro();
 								gotoxy(wherex()-1,wherey());
+						TextColor(241);
 								cout << " ";
 								gotoxy(wherex()-1,wherey());
+						TextColor(241);
 								HienConTro();
 								ch.noiDung.erase(ch.noiDung.length()-1);
 								hdnd = wherex();
@@ -4524,8 +4591,10 @@ void SuaCauHoiTrongMH(DSCH &cauhoi, cauHoi ch, int id, int vitri)
 							{
 								AnConTro();
 								gotoxy(wherex()-1,wherey());
+						TextColor(241);
 								cout << " ";
 								gotoxy(wherex()-1,wherey());
+						TextColor(241);
 								HienConTro();
 								ch.A.erase(ch.A.length()-1);
 								hda = wherex();
@@ -4548,8 +4617,10 @@ void SuaCauHoiTrongMH(DSCH &cauhoi, cauHoi ch, int id, int vitri)
 							{
 								AnConTro();
 								gotoxy(wherex()-1,wherey());
+						TextColor(241);
 								cout << " ";
 								gotoxy(wherex()-1,wherey());
+						TextColor(241);
 								HienConTro();
 								ch.B.erase(ch.B.length()-1);
 								hdb = wherex();
@@ -4572,8 +4643,10 @@ void SuaCauHoiTrongMH(DSCH &cauhoi, cauHoi ch, int id, int vitri)
 							{
 								AnConTro();
 								gotoxy(wherex()-1,wherey());
+						TextColor(241);
 								cout << " ";
 								gotoxy(wherex()-1,wherey());
+						TextColor(241);
 								HienConTro();
 								ch.C.erase(ch.C.length()-1);
 								hdc = wherex();
@@ -4597,8 +4670,10 @@ void SuaCauHoiTrongMH(DSCH &cauhoi, cauHoi ch, int id, int vitri)
 							{
 								AnConTro();
 								gotoxy(wherex()-1,wherey());
+						TextColor(241);
 								cout << " ";
 								gotoxy(wherex()-1,wherey());
+						TextColor(241);
 								HienConTro();
 								ch.D.erase(ch.D.length()-1);
 								hdd = wherex();
@@ -4644,6 +4719,7 @@ void SuaCauHoiTrongMH(DSCH &cauhoi, cauHoi ch, int id, int vitri)
 								case 1:
 									{
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										cout << " ";
 										state1--;
 										da = "A";
@@ -4658,6 +4734,7 @@ void SuaCauHoiTrongMH(DSCH &cauhoi, cauHoi ch, int id, int vitri)
 								case 2:
 									{
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										cout << " ";
 										state1--;
 										XoaTB(130,26);
@@ -4672,6 +4749,7 @@ void SuaCauHoiTrongMH(DSCH &cauhoi, cauHoi ch, int id, int vitri)
 								case 3:
 									{
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										cout << " ";
 										state1--;
 										da = "C";
@@ -4692,6 +4770,7 @@ void SuaCauHoiTrongMH(DSCH &cauhoi, cauHoi ch, int id, int vitri)
 								case 0:
 									{
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										cout << " ";
 										state1++;
 										da = "B";
@@ -4706,6 +4785,7 @@ void SuaCauHoiTrongMH(DSCH &cauhoi, cauHoi ch, int id, int vitri)
 								case 1:
 									{
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										cout << " ";
 										state1++;
 										da = "C";
@@ -4720,6 +4800,7 @@ void SuaCauHoiTrongMH(DSCH &cauhoi, cauHoi ch, int id, int vitri)
 								case 2:
 									{
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										cout << " ";
 										state1++;
 										da = "D";
@@ -4777,6 +4858,7 @@ void NhapCauHoiThem(DSMH &dsm, int id)
 {
 	vekhungThemCH();
 	gotoxy(20,43);
+	TextColor(241);
 	cout << "                                                                                                                           ";
 	gotoxy(5 + (120 - 43)/2,43);
 	cout << "ENTER: Chon    ESC: Thoat    LEN/XUONG: CHON NOI DUNG";
@@ -4939,7 +5021,7 @@ void NhapCauHoiThem(DSMH &dsm, int id)
 					case 4:
 						{
 							AnConTro();
-							veNut(3,11,59,38,"LUU",240);
+							veNut(3,11,59,38,"LUU",112);
 							state ++;
 							break;
 						}	
@@ -4975,8 +5057,10 @@ void NhapCauHoiThem(DSMH &dsm, int id)
 									{
 										temp += ch.noiDung[n];
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										cout << " ";
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										n--;
 										dem = n;
 									}
@@ -5004,8 +5088,10 @@ void NhapCauHoiThem(DSMH &dsm, int id)
 									{
 										temp += ch.noiDung[n];
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										cout << " ";
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										n--;
 									}
 									temp = DaoChuoi(temp);
@@ -5046,8 +5132,10 @@ void NhapCauHoiThem(DSMH &dsm, int id)
 									{
 										temp += ch.A[n];
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										cout << " ";
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										n--;
 									}
 									temp = DaoChuoi(temp);
@@ -5088,8 +5176,10 @@ void NhapCauHoiThem(DSMH &dsm, int id)
 									{
 										temp += ch.B[n];
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										cout << " ";
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										n--;
 									}
 									temp = DaoChuoi(temp);
@@ -5130,8 +5220,10 @@ void NhapCauHoiThem(DSMH &dsm, int id)
 									{
 										temp += ch.C[n];
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										cout << " ";
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										n--;
 									}
 									temp = DaoChuoi(temp);
@@ -5172,8 +5264,10 @@ void NhapCauHoiThem(DSMH &dsm, int id)
 									{
 										temp += ch.D[n];
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										cout << " ";
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										n--;
 									}
 									temp = DaoChuoi(temp);
@@ -5341,8 +5435,10 @@ void NhapCauHoiThem(DSMH &dsm, int id)
 							{
 								AnConTro();
 								gotoxy(wherex()-1,wherey());
+						TextColor(241);
 								cout << " ";
 								gotoxy(wherex()-1,wherey());
+						TextColor(241);
 								HienConTro();
 								ch.noiDung.erase(ch.noiDung.length()-1);
 								hdnd = wherex();
@@ -5365,8 +5461,10 @@ void NhapCauHoiThem(DSMH &dsm, int id)
 							{
 								AnConTro();
 								gotoxy(wherex()-1,wherey());
+						TextColor(241);
 								cout << " ";
 								gotoxy(wherex()-1,wherey());
+						TextColor(241);
 								HienConTro();
 								ch.A.erase(ch.A.length()-1);
 								hda = wherex();
@@ -5389,8 +5487,10 @@ void NhapCauHoiThem(DSMH &dsm, int id)
 							{
 								AnConTro();
 								gotoxy(wherex()-1,wherey());
+						TextColor(241);
 								cout << " ";
 								gotoxy(wherex()-1,wherey());
+						TextColor(241);
 								HienConTro();
 								ch.B.erase(ch.B.length()-1);
 								hdb = wherex();
@@ -5413,8 +5513,10 @@ void NhapCauHoiThem(DSMH &dsm, int id)
 							{
 								AnConTro();
 								gotoxy(wherex()-1,wherey());
+						TextColor(241);
 								cout << " ";
 								gotoxy(wherex()-1,wherey());
+						TextColor(241);
 								HienConTro();
 								ch.C.erase(ch.C.length()-1);
 								hdc = wherex();
@@ -5438,8 +5540,10 @@ void NhapCauHoiThem(DSMH &dsm, int id)
 							{
 								AnConTro();
 								gotoxy(wherex()-1,wherey());
+						TextColor(241);
 								cout << " ";
 								gotoxy(wherex()-1,wherey());
+						TextColor(241);
 								HienConTro();
 								ch.D.erase(ch.D.length()-1);
 								hdd = wherex();
@@ -5490,6 +5594,7 @@ void NhapCauHoiThem(DSMH &dsm, int id)
 								case 1:
 									{
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										cout << " ";
 										state1--;
 										da = "A";
@@ -5504,6 +5609,7 @@ void NhapCauHoiThem(DSMH &dsm, int id)
 								case 2:
 									{
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										cout << " ";
 										state1--;
 										XoaTB(130,26);
@@ -5518,6 +5624,7 @@ void NhapCauHoiThem(DSMH &dsm, int id)
 								case 3:
 									{
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										cout << " ";
 										state1--;
 										da = "C";
@@ -5538,6 +5645,7 @@ void NhapCauHoiThem(DSMH &dsm, int id)
 								case 0:
 									{
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										cout << " ";
 										state1++;
 										da = "B";
@@ -5552,6 +5660,7 @@ void NhapCauHoiThem(DSMH &dsm, int id)
 								case 1:
 									{
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										cout << " ";
 										state1++;
 										da = "C";
@@ -5566,6 +5675,7 @@ void NhapCauHoiThem(DSMH &dsm, int id)
 								case 2:
 									{
 										gotoxy(wherex()-1,wherey());
+						TextColor(241);
 										cout << " ";
 										state1++;
 										da = "D";
@@ -5816,8 +5926,10 @@ void suaMonHoc_Test(DSMH &dsm, int &state, int &page,int sl, int idlonnhat, int 
 					{
 						AnConTro();
 						gotoxy(wherex()-1,wherey());
+						TextColor(241);
 						cout << " ";
 						gotoxy(wherex()-1,wherey());
+						TextColor(241);
 						HienConTro();
 						tenmon.erase(tenmon.length()-1);
 					}
@@ -5828,8 +5940,10 @@ void suaMonHoc_Test(DSMH &dsm, int &state, int &page,int sl, int idlonnhat, int 
 					{
 						AnConTro();
 						gotoxy(wherex()-1,wherey());
+						TextColor(241);
 						cout << " ";
 						gotoxy(wherex()-1,wherey());
+						TextColor(241);
 						HienConTro();
 						mamon.erase(mamon.length()-1);
 					}
@@ -5978,6 +6092,7 @@ void NhapLopXoa(dslop &dsl,int &page)
 				if(state > 0)
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					state --;
 					gotoxy(7,wherey() - 3);
@@ -5989,6 +6104,7 @@ void NhapLopXoa(dslop &dsl,int &page)
 				if((state > 0) )
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					state --;
 					gotoxy(7,wherey()-3);
@@ -6005,6 +6121,7 @@ void NhapLopXoa(dslop &dsl,int &page)
 						cout << "                                      ";
 					}
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					page --;
 					InDSLop(dsl,page);
@@ -6023,6 +6140,7 @@ void NhapLopXoa(dslop &dsl,int &page)
 				if(dsl.l[state + page*10 + 1] != NULL)
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					if(page < dsl.solop/10)
 					{
@@ -6048,6 +6166,7 @@ void NhapLopXoa(dslop &dsl,int &page)
 				if(dsl.l[state + page*10 + 1] != NULL)
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					state ++;
 					gotoxy(7,wherey() + 3);
@@ -6056,6 +6175,7 @@ void NhapLopXoa(dslop &dsl,int &page)
 				if(dsl.l[state + page*10 + 1] == NULL) 
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					gotoxy(7,wherey());
 					cout << muiten;
@@ -6076,6 +6196,7 @@ void NhapLopXoa(dslop &dsl,int &page)
 					cout << "                                      ";
 				}
 				gotoxy(wherex()-1,wherey());
+						TextColor(241);
 				cout << " ";
 				gotoxy(7,6);
 				cout << muiten;
@@ -6101,6 +6222,7 @@ void NhapLopXoa(dslop &dsl,int &page)
 					cout << "                                      ";
 				}
 				gotoxy(wherex()-1,wherey());
+						TextColor(241);
 				cout << " ";
 				gotoxy(7,6);
 				cout << muiten;
@@ -6303,8 +6425,10 @@ void SuaLop(lop *&l)
 				{
 					AnConTro();
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					HienConTro();
 					tenlop.erase(tenlop.length()-1);
 				}
@@ -6315,8 +6439,10 @@ void SuaLop(lop *&l)
 				{
 					AnConTro();
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					HienConTro();
 					malop.erase(malop.length()-1);
 				}
@@ -6423,6 +6549,7 @@ void NhapLopChinh(dslop &dsl , int &page)
 				if(state > 0)
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					state --;
 					gotoxy(7,wherey() - 3);
@@ -6434,6 +6561,7 @@ void NhapLopChinh(dslop &dsl , int &page)
 				if((state > 0) )
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					state --;
 					gotoxy(7,wherey()-3);
@@ -6450,6 +6578,7 @@ void NhapLopChinh(dslop &dsl , int &page)
 						cout << "                                      ";
 					}
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					page --;
 					InDSLop(dsl,page);
@@ -6468,6 +6597,7 @@ void NhapLopChinh(dslop &dsl , int &page)
 				if(dsl.l[state + page*10 + 1] != NULL)
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					if(page < dsl.solop/10)
 					{
@@ -6493,6 +6623,7 @@ void NhapLopChinh(dslop &dsl , int &page)
 				if(dsl.l[state + page*10 + 1] != NULL)
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					state ++;
 					gotoxy(7,wherey() + 3);
@@ -6501,6 +6632,7 @@ void NhapLopChinh(dslop &dsl , int &page)
 				if(dsl.l[state + page*10 + 1] == NULL) 
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					gotoxy(7,wherey());
 					cout << muiten;
@@ -6521,6 +6653,7 @@ void NhapLopChinh(dslop &dsl , int &page)
 						cout << "                                      ";
 				}
 				gotoxy(wherex()-1,wherey());
+						TextColor(241);
 				cout << " ";
 				gotoxy(7,6);
 				cout << muiten;
@@ -6546,6 +6679,7 @@ void NhapLopChinh(dslop &dsl , int &page)
 						cout << "                                      ";
 				}
 				gotoxy(wherex()-1,wherey());
+						TextColor(241);
 				cout << " ";
 				gotoxy(7,6);
 				cout << muiten;
@@ -6635,9 +6769,9 @@ void FunctionLop(dslop &dsl)
 	gotoxy(5,2);
 	int state = 0;
 	vekhungDS(34,120,2);	
-	veNut(3,15,140,10,"Them lop",240);
-	veNut(3,15,140,15,"Xoa lop",20);
-	veNut(3,15,140,20,"Sua lop",20);
+	veNut(3,15,140,10,"Them lop",112);
+	veNut(3,15,140,15,"Xoa lop",30);
+	veNut(3,15,140,20,"Sua lop",30);
 	gotoxy(35,3);
 	cout << "TEN LOP";
 	gotoxy(90,3);
@@ -6670,15 +6804,15 @@ void FunctionLop(dslop &dsl)
 			case 1:
 				{
 					state--;
-					veNut(3,15,140,15,"Xoa lop",20);
-					veNut(3,15,140,10,"Them lop",240);
+					veNut(3,15,140,15,"Xoa lop",30);
+					veNut(3,15,140,10,"Them lop",112);
 					break;
 				}
 			case 2:
 				{
 					state--;
-					veNut(3,15,140,20,"Sua lop",20);
-					veNut(3,15,140,15,"Xoa lop",240);
+					veNut(3,15,140,20,"Sua lop",30);
+					veNut(3,15,140,15,"Xoa lop",112);
 					break;
 				}
 			}
@@ -6690,15 +6824,15 @@ void FunctionLop(dslop &dsl)
 			case 0:
 				{
 					state++;
-					veNut(3,15,140,10,"Them lop",20);
-					veNut(3,15,140,15,"Xoa lop",240);
+					veNut(3,15,140,10,"Them lop",30);
+					veNut(3,15,140,15,"Xoa lop",112);
 					break;
 				}
 			case 1:
 				{
 					state++;
-					veNut(3,15,140,15,"Xoa lop",20);
-					veNut(3,15,140,20,"Sua lop",240);
+					veNut(3,15,140,15,"Xoa lop",30);
+					veNut(3,15,140,20,"Sua lop",112);
 					break;
 				}
 			case 2:
@@ -6789,8 +6923,10 @@ void selectFunctionSV(lop *&l ,int page)
 {
 	system("cls");
 	gotoxy(0,0);
+	TextColor(241);
 	veKhungThuCong();
 	gotoxy(50,43);
+	TextColor(241);
 	cout << "ENTER: Chon	ESC: Thoat	PGUP: Qua trang	PGDOWN: Lui trang	LEFT,RIGHT: Chon gioi tinh";
 	gotoxy(127,26);
 	vekhungTB(10,36);
@@ -6807,8 +6943,8 @@ void selectFunctionSV(lop *&l ,int page)
 	gotoxy(88,3);
 	cout << "GIOI TINH";
 	InDSSV(l,page);	
-	veNut(3,15,120,10,"Them SV",240);
-	veNut(3,15,120,15,"Xoa SV",20);
+	veNut(3,15,120,10,"Them SV",112);
+	veNut(3,15,120,15,"Xoa SV",30);
 	int maxpage;
 	batPhim(s,sCheck);
 	while(s != ESC)
@@ -6834,8 +6970,8 @@ void selectFunctionSV(lop *&l ,int page)
 			case 1:
 				{
 					state--;
-					veNut(3,15,120,15,"Xoa SV",20);
-					veNut(3,15,120,10,"Them SV",240);
+					veNut(3,15,120,15,"Xoa SV",30);
+					veNut(3,15,120,10,"Them SV",112);
 					break;
 				}
 			}
@@ -6847,8 +6983,8 @@ void selectFunctionSV(lop *&l ,int page)
 			case 0:
 				{
 					state++;
-					veNut(3,15,120,10,"Them SV",20);
-					veNut(3,15,120,15,"Xoa SV",240);
+					veNut(3,15,120,10,"Them SV",30);
+					veNut(3,15,120,15,"Xoa SV",112);
 					break;
 				}
 			case 1:
@@ -6915,8 +7051,8 @@ void selectFunctionSV(lop *&l ,int page)
 						gotoxy(88,3);
 						cout << "GIOI TINH";
 						InDSSV(l,page);	
-						veNut(3,15,120,10,"Them SV",240);
-						veNut(3,15,120,15,"Xoa SV",20);	
+						veNut(3,15,120,10,"Them SV",112);
+						veNut(3,15,120,15,"Xoa SV",30);	
 						break;
 					}
 				case 1:
@@ -6956,8 +7092,8 @@ void selectFunctionSV(lop *&l ,int page)
 								XoaTB(130,26);
 								gotoxy(7,6);
 								cout << " ";
-								veNut(3,15,120,10,"Them SV",20);
-								veNut(3,15,120,15,"Xoa SV",240);
+								veNut(3,15,120,10,"Them SV",30);
+								veNut(3,15,120,15,"Xoa SV",112);
 								break;
 							}
 							else 
@@ -6965,8 +7101,8 @@ void selectFunctionSV(lop *&l ,int page)
 								InDSSV(l,page);	
 								gotoxy(7,6);
 								cout << " ";
-								veNut(3,15,120,10,"Them SV",20);
-								veNut(3,15,120,15,"Xoa SV",240);	
+								veNut(3,15,120,10,"Them SV",30);
+								veNut(3,15,120,15,"Xoa SV",112);	
 								break;	
 							}							
 						}
@@ -6987,8 +7123,10 @@ int countDemThiTrongSV(dsdiemThi dsDiem ){
 void FunctionSV(dslop &dsl)
 {
 	gotoxy(0,0);
+	TextColor(241);
 	veKhungThuCong();
 	gotoxy(50,43);
+	TextColor(241);
 	cout << "ENTER: Chon	ESC: Thoat	PGUP: Qua trang	PGDOWN: Lui trang";
 	gotoxy(127,26);
 	vekhungTB(10,36);
@@ -7029,6 +7167,7 @@ void FunctionSV(dslop &dsl)
 				if(state > 0)
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					state --;
 					gotoxy(7,wherey() - 3);
@@ -7040,6 +7179,7 @@ void FunctionSV(dslop &dsl)
 				if((state > 0) )
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					state --;
 					gotoxy(7,wherey()-3);
@@ -7056,6 +7196,7 @@ void FunctionSV(dslop &dsl)
 						cout << "                                      ";
 					}
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					page --;
 					InDSLop(dsl,page);
@@ -7073,6 +7214,7 @@ void FunctionSV(dslop &dsl)
 				if(dsl.l[state + page*10 + 1] != NULL)
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					if(page < dsl.solop/10)
 					{
@@ -7097,6 +7239,7 @@ void FunctionSV(dslop &dsl)
 				if(dsl.l[state + page*10 + 1] != NULL)
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					state ++;
 					gotoxy(7,wherey() + 3);
@@ -7105,6 +7248,7 @@ void FunctionSV(dslop &dsl)
 				if(dsl.l[state + page*10 + 1] == NULL) 
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					gotoxy(7,wherey());
 					cout << muiten;
@@ -7125,6 +7269,7 @@ void FunctionSV(dslop &dsl)
 					cout << "                                      ";
 				}
 				gotoxy(wherex()-1,wherey());
+						TextColor(241);
 				cout << " ";
 				gotoxy(7,6);
 				cout << muiten;
@@ -7149,6 +7294,7 @@ void FunctionSV(dslop &dsl)
 					cout << "                                      ";
 				}
 				gotoxy(wherex()-1,wherey());
+						TextColor(241);
 				cout << " ";
 				gotoxy(7,6);
 				cout << muiten;
@@ -7361,8 +7507,10 @@ void NhapTG (int &tg, int &sct, DSMH pMonThi)
 			{
 				AnConTro();
 				gotoxy(wherex()-1,wherey());
+						TextColor(241);
 				cout << " ";
 				gotoxy(wherex()-1,wherey());
+						TextColor(241);
 				HienConTro();
 				ntg.erase(ntg.length()-1);
 			}
@@ -7370,8 +7518,10 @@ void NhapTG (int &tg, int &sct, DSMH pMonThi)
 			{
 				AnConTro();
 				gotoxy(wherex()-1,wherey());
+						TextColor(241);
 				cout << " ";
 				gotoxy(wherex()-1,wherey());
+						TextColor(241);
 				HienConTro();
 				nsct.erase(nsct.length()-1);
 			}	
@@ -7509,6 +7659,7 @@ void NhapMonThi(DSMH dsm, DSMH &pTam, int &idlonnhat, int &tg, int &sct, bool &c
 					if(state > 0)
 					{
 						gotoxy(wherex()-1,wherey());
+						TextColor(241);
 						cout << " ";
 						state --;
 						gotoxy(7,wherey() - 3);
@@ -7520,6 +7671,7 @@ void NhapMonThi(DSMH dsm, DSMH &pTam, int &idlonnhat, int &tg, int &sct, bool &c
 					if((state > 0) )
 					{
 						gotoxy(wherex()-1,wherey());
+						TextColor(241);
 						cout << " ";
 						state --;
 						gotoxy(7,wherey()-3);
@@ -7554,6 +7706,7 @@ void NhapMonThi(DSMH dsm, DSMH &pTam, int &idlonnhat, int &tg, int &sct, bool &c
 					if(arr[state + page*10 + 1] != NULL && (page*10 +state + 1) < sl)
 					{
 						gotoxy(wherex()-1,wherey());
+						TextColor(241);
 						cout << " ";
 						//cap nhat maxpage
 						if(page < maxpage)
@@ -7594,6 +7747,7 @@ void NhapMonThi(DSMH dsm, DSMH &pTam, int &idlonnhat, int &tg, int &sct, bool &c
 				if(page < maxpage)
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					for(int i = 0; i < 28;i++)
 					{
@@ -7618,6 +7772,7 @@ void NhapMonThi(DSMH dsm, DSMH &pTam, int &idlonnhat, int &tg, int &sct, bool &c
 				if (page > 0 )
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					for(int i = 0; i < 28;i++)
 					{
@@ -7943,9 +8098,10 @@ int TinhDiem(CTdethi ctdt, DSCH dsch)
 	}
 	return socaudung;
 }
-void ketThucBaiThi (CTdethi ctdt, DSCH dsch, string &diem)
+int ketThucBaiThi (CTdethi ctdt, DSCH dsch, string &diem)
 {
 	system("cls");
+	TextColor(241);
 	gotoxy(0,0);
 	veKhungThuCong();
 	gotoxy(15,7);
@@ -7965,27 +8121,23 @@ void ketThucBaiThi (CTdethi ctdt, DSCH dsch, string &diem)
 	float a = (float)TinhDiem(ctdt,dsch);
 	int b = (float)ctdt.sct;
 	float diemtam = (a / b)*10;
-	gotoxy(0,0);
-	cout<<diemtam;
-	system("pause");
 	diem = FloatToString(diemtam);
 	gotoxy(50,25);
 	cout << "CHUC MUNG BAN DA HOAN THANH BAI THI!";
 	gotoxy(50,30);
-	ChangeColor(240);
+	ChangeColor(175);
 	cout << "DIEM CUA BAN LA: " << diem;
-	ChangeColor(15);
-	gotoxy(50,35);
-	cout << "Bam phim bat ki de thoat!";
-	getch();
+	ChangeColor(241);
+	char s;
+	bool sCheck;
+	string tbThoat = "Ban co muon tiep tuc thi mon khac khong?(Y/N)";
+	if(ExitXoa(tbThoat,s, sCheck) == true) return 1;
+	else return 0;
 }
 // ==================== FUNCTION THI ==========================
-void FunctionThi(lop *l, string mssv, DSMH dsm, DSMH monThi, int tg, int sct, string &diem, CTdethi &ctdt)
+int FunctionThi(lop *l, string mssv, DSMH dsm, DSMH monThi, int tg, int sct, string &diem, CTdethi &ctdt)
 {
-	if(sct == 0 && tg == 0)
-	{
-		return ;
-	}
+	TextColor(241);
 	ctdt.sct = sct;
 	ctdt.tg = tg;
 	for(int i = 0; i < sct; i++)
@@ -7993,20 +8145,12 @@ void FunctionThi(lop *l, string mssv, DSMH dsm, DSMH monThi, int tg, int sct, st
 		ctdt.dapan[i] = 0;
 	}
 	ctdt.bode = LayDeThi(monThi->mh.cauHoiMH,sct);
-	if(ctdt.bode == NULL)
-	{
-		return;
-	}
 	thread clock;
 	clock = thread(printClock,tg);
 	gotoxy(40,45);
 	cout << "ENTER: Chon       F1: Nop bai       Left/Right: Di chuyen cau hoi     ";
 	gotoxy(50,1);
 	cout << "BAI THI MON: " << monThi->mh.MAMH;
-	if(ctdt.bode == NULL)
-	{
-		return ;
-	}
 	int cauthi = 0;
 	int page = 0;
 	int maxpage;
@@ -8052,10 +8196,15 @@ void FunctionThi(lop *l, string mssv, DSMH dsm, DSMH monThi, int tg, int sct, st
 	InDA_XemCH(monThi->mh.cauHoiMH.listCauHoi[ctdt.bode[cauthi]]->D);
 	VeKhungDA(page,sct,ctdt);
 	gotoxy(7,1);
+	TextColor(241);
 	cout << "CAU " << cauthi + 1;
 	gotoxy(19 + (cauthi%10)*10,44);
+	TextColor(241);
+	TextColor(241);
 	cout << muitenlen;
 	gotoxy(4,14);
+	TextColor(241);
+	TextColor(241);
 	cout << muiten;
 	AnConTro();
 	int state1 = 0;
@@ -8065,9 +8214,10 @@ void FunctionThi(lop *l, string mssv, DSMH dsm, DSMH monThi, int tg, int sct, st
 	batPhim(s,sCheck);
 	string da = "A";
 	gotoxy(19,44);
+	TextColor(241);
 	cout << muitenlen;
 	gotoxy(4,14);
-	while ((cauthi < sct ) && s != ESC )
+	while (1)
 	{
 		if(s == PAGEUP)
 		{
@@ -8077,6 +8227,7 @@ void FunctionThi(lop *l, string mssv, DSMH dsm, DSMH monThi, int tg, int sct, st
 				cout << " ";
 				cauthi -= 10;
 				gotoxy(19 + (cauthi%10)*10,44);
+				TextColor(241);
 				cout << muitenlen;
 				page --;
 				XoaDA();
@@ -8117,21 +8268,25 @@ void FunctionThi(lop *l, string mssv, DSMH dsm, DSMH monThi, int tg, int sct, st
 				if(state1 == 0)
 				{
 					gotoxy(4,14);
+					TextColor(241);
 					cout << muiten;	
 				}
 				else if(state1 == 1)
 				{
 					gotoxy(4,20);
+					TextColor(241);
 					cout << muiten;
 				}
 				else if(state1 == 2)
 				{
 					gotoxy(4,26);
+					TextColor(241);
 					cout << muiten;
 				}
 				else
 				{
 					gotoxy(4,32);
+					TextColor(241);
 					cout << muiten;
 				}
 			}
@@ -8146,10 +8301,12 @@ void FunctionThi(lop *l, string mssv, DSMH dsm, DSMH monThi, int tg, int sct, st
 				{
 					cauthi += 10;
 					gotoxy(19 + (cauthi%10)*10,44);
+					TextColor(241);
 					cout << muitenlen;
 				}
 				else cauthi += sct - cauthi - 1;
 				gotoxy(19 + (cauthi%10)*10,44);
+				TextColor(241);
 				cout << muitenlen;
 				page ++;
 				XoaDA();
@@ -8190,21 +8347,25 @@ void FunctionThi(lop *l, string mssv, DSMH dsm, DSMH monThi, int tg, int sct, st
 				if(state1 == 0)
 				{
 					gotoxy(4,14);
+					TextColor(241);
 					cout << muiten;	
 				}
 				else if(state1 == 1)
 				{
 					gotoxy(4,20);
+					TextColor(241);
 					cout << muiten;
 				}
 				else if(state1 == 2)
 				{
 					gotoxy(4,26);
+					TextColor(241);
 					cout << muiten;
 				}
 				else
 				{
 					gotoxy(4,32);
+					TextColor(241);
 					cout << muiten;
 				}
 			}
@@ -8229,6 +8390,7 @@ void FunctionThi(lop *l, string mssv, DSMH dsm, DSMH monThi, int tg, int sct, st
 				cout << " ";
 				cauthi--;
 				gotoxy(19 + (cauthi%10)*10,44);
+				TextColor(241);
 				cout << muitenlen;
 				gotoxy(10,1);
 				cout << "    ";
@@ -8266,21 +8428,25 @@ void FunctionThi(lop *l, string mssv, DSMH dsm, DSMH monThi, int tg, int sct, st
 				if(state1 == 0)
 				{
 					gotoxy(4,14);
+					TextColor(241);
 					cout << muiten;	
 				}
 				else if(state1 == 1)
 				{
 					gotoxy(4,20);
+					TextColor(241);
 					cout << muiten;
 				}
 				else if(state1 == 2)
 				{
 					gotoxy(4,26);
+					TextColor(241);
 					cout << muiten;
 				}
 				else
 				{
 					gotoxy(4,32);
+					TextColor(241);
 					cout << muiten;
 				}
 			}
@@ -8305,6 +8471,7 @@ void FunctionThi(lop *l, string mssv, DSMH dsm, DSMH monThi, int tg, int sct, st
 				cout << " ";
 				cauthi++;
 				gotoxy(19 + (cauthi%10)*10,44);
+				TextColor(241);
 				cout << muitenlen;
 				gotoxy(10,1);
 				cout << "            ";
@@ -8342,21 +8509,25 @@ void FunctionThi(lop *l, string mssv, DSMH dsm, DSMH monThi, int tg, int sct, st
 				if(state1 == 0)
 				{
 					gotoxy(4,14);
+					TextColor(241);
 					cout << muiten;	
 				}
 				else if(state1 == 1)
 				{
 					gotoxy(4,20);
+					TextColor(241);
 					cout << muiten;
 				}
 				else if(state1 == 2)
 				{
 					gotoxy(4,26);
+					TextColor(241);
 					cout << muiten;
 				}
 				else
 				{
 					gotoxy(4,32);
+					TextColor(241);
 					cout << muiten;
 				}
 			}
@@ -8369,8 +8540,10 @@ void FunctionThi(lop *l, string mssv, DSMH dsm, DSMH monThi, int tg, int sct, st
 					{
 						AnConTro();
 						gotoxy(wherex()-1,wherey());
+						TextColor(241);
 						cout << " ";
 						gotoxy(4,14);
+						TextColor(241);
 						cout << muiten;
 						state1--;
 						da = "A";
@@ -8380,8 +8553,10 @@ void FunctionThi(lop *l, string mssv, DSMH dsm, DSMH monThi, int tg, int sct, st
 					{
 						AnConTro();
 						gotoxy(wherex()-1,wherey());
+						TextColor(241);
 						cout << " ";
 						gotoxy(4,20);
+						TextColor(241);
 						cout << muiten;
 						state1--;
 						da = "B";
@@ -8391,8 +8566,10 @@ void FunctionThi(lop *l, string mssv, DSMH dsm, DSMH monThi, int tg, int sct, st
 					{
 						AnConTro();
 						gotoxy(wherex()-1,wherey());
+						TextColor(241);
 						cout << " ";
 						gotoxy(4,26);
+						TextColor(241);
 						cout << muiten;
 						state1--;
 						da = "C";
@@ -8408,9 +8585,11 @@ void FunctionThi(lop *l, string mssv, DSMH dsm, DSMH monThi, int tg, int sct, st
 					{
 						AnConTro();
 						gotoxy(wherex()-1,wherey());
+						TextColor(241);
 						gotoxy(4,14);
 						cout << " ";
 						gotoxy(4,20);
+						TextColor(241);
 						cout << muiten;
 						state1++;
 						da = "B";
@@ -8420,8 +8599,10 @@ void FunctionThi(lop *l, string mssv, DSMH dsm, DSMH monThi, int tg, int sct, st
 					{
 						AnConTro();
 						gotoxy(wherex()-1,wherey());
+						TextColor(241);
 						cout << " ";
 						gotoxy(4,26);
+						TextColor(241);
 						cout << muiten;
 						state1++;
 						da = "C";
@@ -8431,8 +8612,10 @@ void FunctionThi(lop *l, string mssv, DSMH dsm, DSMH monThi, int tg, int sct, st
 					{
 						AnConTro();
 						gotoxy(wherex()-1,wherey());
+						TextColor(241);
 						cout << " ";
 						gotoxy(4,32);
+						TextColor(241);
 						cout << muiten;
 						state1++;
 						da = "D";
@@ -8476,6 +8659,7 @@ void FunctionThi(lop *l, string mssv, DSMH dsm, DSMH monThi, int tg, int sct, st
 				cout << " ";
 				cauthi++;
 				gotoxy(19 + (cauthi%10)*10,44);
+				TextColor(241);
 				cout << muitenlen;
 				gotoxy(10,1);
 				cout << "    ";
@@ -8490,6 +8674,7 @@ void FunctionThi(lop *l, string mssv, DSMH dsm, DSMH monThi, int tg, int sct, st
 						cout << " ";
 					}	
 				gotoxy(4,14);
+				TextColor(241);
 				cout << muiten;
 			}
 			else if(cauthi == sct -1)
@@ -8498,6 +8683,7 @@ void FunctionThi(lop *l, string mssv, DSMH dsm, DSMH monThi, int tg, int sct, st
 				gotoxy(19 + (cauthi%10)*10,44);
 				cout << " ";
 				gotoxy(19 + (cauthi%10)*10,44);
+				TextColor(241);
 				cout << muitenlen;
 				gotoxy(10,1);
 				switch(ctdt.dapan[cauthi])
@@ -8526,21 +8712,25 @@ void FunctionThi(lop *l, string mssv, DSMH dsm, DSMH monThi, int tg, int sct, st
 				if(state1 == 0)
 				{
 					gotoxy(4,14);
+					TextColor(241);
 					cout << muiten;	
 				}
 				else if(state1 == 1)
 				{
 					gotoxy(4,20);
-					cout << muiten;
+					TextColor(241);
+						cout << muiten;
 				}
 				else if(state1 == 2)
 				{
 					gotoxy(4,26);
+					TextColor(241);
 					cout << muiten;
 				}
 				else
 				{
 					gotoxy(4,32);
+					TextColor(241);
 					cout << muiten;
 				}
 			}
@@ -8556,8 +8746,8 @@ void FunctionThi(lop *l, string mssv, DSMH dsm, DSMH monThi, int tg, int sct, st
 				{
 					stop = 0;
 					clock.join();
-					ketThucBaiThi(ctdt,monThi->mh.cauHoiMH, diem);
-					return;
+					if(ketThucBaiThi(ctdt,monThi->mh.cauHoiMH, diem) == 1) return 1;
+					else return 0;
 				}
 				else if((s == 'n' || s == 'N') && sCheck == true)
 				{
@@ -8569,25 +8759,14 @@ void FunctionThi(lop *l, string mssv, DSMH dsm, DSMH monThi, int tg, int sct, st
 			}
 			InTB(tb,129,30);
 		}
-		if(s == ESC)
-		{
-			int socaudung = TinhDiem(ctdt,monThi->mh.cauHoiMH);
-			cout << socaudung;
-			string s1 = IntToString(socaudung);
-			string s2 = IntToString(sct);
-			string s = chia(s1,s2);
-			diem = s;
-			return ;
-		}
 		if(stop == 0)
 		{
 			string tb = "Het thoi gian lam bai, bam phim bat ky de ket thuc!";
 			InTB(tb,129,30);
 			Sleep(1000);
 			clock.join();
-			ketThucBaiThi(ctdt,monThi->mh.cauHoiMH, diem);
-			LuuFileDiem(l, "DIEM_"+l->maLop+".txt", dsm);
-			return;
+			if(ketThucBaiThi(ctdt,monThi->mh.cauHoiMH, diem) == 1) return 1;
+			else return 0;
 		}
 		batPhim(s,sCheck);
 	}
@@ -8810,6 +8989,7 @@ void InChiTiet1LanThi(nodediemThi *p, DSCH dsch, nodeSV *k)
 	gotoxy(5,1);
 	cout << "CAU " << stt + 1;
 	gotoxy(19,44);
+	TextColor(241);
 	cout << muitenlen;
 	char s;
 	bool sCheck;
@@ -8835,7 +9015,8 @@ void InChiTiet1LanThi(nodediemThi *p, DSCH dsch, nodeSV *k)
 				cout << " ";
 				stt--;
 				gotoxy(19 + (stt%10)*10,44);
-				cout << muitenlen;
+				TextColor(241);
+	cout << muitenlen;
 //				NODECH ch = Search_CH(dsch,p->info.ctdt.bode[stt]);
 				if(p->info.ctdt.dapan[stt] == 1)
 				{
@@ -8883,7 +9064,8 @@ void InChiTiet1LanThi(nodediemThi *p, DSCH dsch, nodeSV *k)
 				cout << " ";
 				stt++;
 				gotoxy(19 + (stt%10)*10,44);
-				cout << muitenlen;
+				TextColor(241);
+	cout << muitenlen;
 				if(p->info.ctdt.dapan[stt] == 1)
 				{
 					da = "A";
@@ -8922,7 +9104,8 @@ void InChiTiet1LanThi(nodediemThi *p, DSCH dsch, nodeSV *k)
 				cout << " ";
 				stt -= 10;
 				gotoxy(19 + (stt%10)*10,44);
-				cout << muitenlen;
+				TextColor(241);
+	cout << muitenlen;
 //				NODECH ch = Search_CH(dsch,p->info.ctdt.bode[stt]);
 				if(p->info.ctdt.dapan[stt] == 1)
 				{
@@ -8956,7 +9139,8 @@ void InChiTiet1LanThi(nodediemThi *p, DSCH dsch, nodeSV *k)
 				cout << " ";
 				stt = 0;
 				gotoxy(19 + (stt%10)*10,44);
-				cout << muitenlen;
+				TextColor(241);
+	cout << muitenlen;
 //				NODECH ch = Search_CH(dsch,p->info.ctdt.bode[stt]);
 				if(p->info.ctdt.dapan[stt] == 1)
 				{
@@ -8996,7 +9180,8 @@ void InChiTiet1LanThi(nodediemThi *p, DSCH dsch, nodeSV *k)
 				cout << " ";
 				stt += 10;
 				gotoxy(19 + (stt%10)*10,44);
-				cout << muitenlen;
+				TextColor(241);
+	cout << muitenlen;
 //				NODECH ch = Search_CH(dsch,p->info.ctdt.bode[stt]);
 				if(p->info.ctdt.dapan[stt] == 1)
 				{
@@ -9036,7 +9221,8 @@ void InChiTiet1LanThi(nodediemThi *p, DSCH dsch, nodeSV *k)
 				cout << " ";
 				stt = max - 1;
 				gotoxy(19 + (stt%10)*10,44);
-				cout << muitenlen;
+				TextColor(241);
+	cout << muitenlen;
 				cauHoi ch = *dsch.listCauHoi[p->info.ctdt.bode[stt]];
 				if(p->info.ctdt.dapan[stt] == 1)
 				{
@@ -9176,6 +9362,7 @@ void XemBangDiemSV(nodeSV *k, DSCH dsch)
 	char s;
 	bool sCheck;
 	gotoxy(7,6);
+	TextColor(241);
 	cout << muiten;
 	batPhim(s,sCheck);
 	while(s != ESC)
@@ -9196,10 +9383,12 @@ void XemBangDiemSV(nodeSV *k, DSCH dsch)
 				if(state > 0)
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					state --;
 					gotoxy(7,wherey() - 3);
-					cout << muiten;
+					TextColor(241);
+	cout << muiten;
 				}
 			}
 			if(page > 0)
@@ -9207,10 +9396,12 @@ void XemBangDiemSV(nodeSV *k, DSCH dsch)
 				if((state > 0) )
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					state --;
 					gotoxy(7,wherey()-3);
-					cout << muiten;
+					TextColor(241);
+	cout << muiten;
 				}
 				else if(state == 0)
 				{
@@ -9226,11 +9417,13 @@ void XemBangDiemSV(nodeSV *k, DSCH dsch)
 						cout << "                            ";
 					}
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					page --;
 					InBangDiemSV(k,page,dsch);
 					gotoxy(7,33);
-					cout << muiten;
+					TextColor(241);
+	cout << muiten;
 					state = 9;
 					
 				}
@@ -9251,6 +9444,7 @@ void XemBangDiemSV(nodeSV *k, DSCH dsch)
 				if(p->pNext != NULL)
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					if(page < maxpage)
 					{
@@ -9270,7 +9464,8 @@ void XemBangDiemSV(nodeSV *k, DSCH dsch)
 					InBangDiemSV(k,page,dsch);
 					state = 0;
 					gotoxy(7,6);
-					cout << muiten;
+					TextColor(241);
+	cout << muiten;
 				}
 			}
 			else
@@ -9286,17 +9481,21 @@ void XemBangDiemSV(nodeSV *k, DSCH dsch)
 				if(p->pNext != NULL)
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					state ++;
 					gotoxy(7,wherey() + 3);
-					cout << muiten;	
+					TextColor(241);
+	cout << muiten;	
 				}
 				if(p->pNext == NULL) 
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					gotoxy(7,wherey());
-					cout << muiten;
+					TextColor(241);
+	cout << muiten;
 				}
 			}
 		}	
@@ -9317,9 +9516,11 @@ void XemBangDiemSV(nodeSV *k, DSCH dsch)
 					cout << "                            ";
 				}
 				gotoxy(wherex()-1,wherey());
+						TextColor(241);
 				cout << " ";
 				gotoxy(7,6);
-				cout << muiten;
+				TextColor(241);
+	cout << muiten;
 				state = 0;
 				page ++;
 				int hd = wherex();
@@ -9345,9 +9546,11 @@ void XemBangDiemSV(nodeSV *k, DSCH dsch)
 					cout << "                            ";
 				}
 				gotoxy(wherex()-1,wherey());
+						TextColor(241);
 				cout << " ";
 				gotoxy(7,6);
-				cout << muiten;
+				TextColor(241);
+	cout << muiten;
 				state = 0;
 				page--;
 				int hd = wherex();
@@ -9573,6 +9776,7 @@ void XemDiem1Lop(lop *l, DSMH monhoc)
 	char s;
 	bool sCheck;
 	gotoxy(7,6);
+	TextColor(241);
 	cout << muiten;
 	batPhim(s,sCheck);
 	while(s != ESC)
@@ -9589,10 +9793,12 @@ void XemDiem1Lop(lop *l, DSMH monhoc)
 				if(state > 0)
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					state --;
 					gotoxy(7,wherey() - 3);
-					cout << muiten;
+					TextColor(241);
+	cout << muiten;
 				}
 			}
 			if(page > 0)
@@ -9600,10 +9806,12 @@ void XemDiem1Lop(lop *l, DSMH monhoc)
 				if((state > 0) )
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					state --;
 					gotoxy(7,wherey()-3);
-					cout << muiten;
+					TextColor(241);
+	cout << muiten;
 				}
 				else if(state == 0)
 				{
@@ -9619,11 +9827,13 @@ void XemDiem1Lop(lop *l, DSMH monhoc)
 						cout << "                     ";
 					}
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					page --;
 					InDSDiemMH(l,page,monhoc);
 					gotoxy(7,33);
-					cout << muiten;
+					TextColor(241);
+	cout << muiten;
 					state = 9;
 				}
 			}
@@ -9643,6 +9853,7 @@ void XemDiem1Lop(lop *l, DSMH monhoc)
 				if(k->pNext != NULL)
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					if(page < maxpage)
 					{
@@ -9663,7 +9874,8 @@ void XemDiem1Lop(lop *l, DSMH monhoc)
 					InDSDiemMH(l,page,monhoc);
 					state = 0;
 					gotoxy(7,6);
-					cout << muiten;
+					TextColor(241);
+	cout << muiten;
 				}
 			}
 			else
@@ -9679,17 +9891,21 @@ void XemDiem1Lop(lop *l, DSMH monhoc)
 				if(k->pNext != NULL)
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					state ++;
 					gotoxy(7,wherey() + 3);
-					cout << muiten;	
+					TextColor(241);
+	cout << muiten;	
 				}
 				if(k->pNext == NULL) 
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					gotoxy(7,wherey());
-					cout << muiten;
+					TextColor(241);
+	cout << muiten;
 				}
 			}
 		}	
@@ -9710,9 +9926,11 @@ void XemDiem1Lop(lop *l, DSMH monhoc)
 						cout << "                     ";
 					}
 				gotoxy(wherex()-1,wherey());
+						TextColor(241);
 				cout << " ";
 				gotoxy(7,6);
-				cout << muiten;
+				TextColor(241);
+	cout << muiten;
 				state = 0;
 				page ++;
 				int hd = wherex();
@@ -9738,9 +9956,11 @@ void XemDiem1Lop(lop *l, DSMH monhoc)
 						cout << "                     ";
 					}
 				gotoxy(wherex()-1,wherey());
+						TextColor(241);
 				cout << " ";
 				gotoxy(7,6);
-				cout << muiten;
+				TextColor(241);
+	cout << muiten;
 				state = 0;
 				page--;
 				int hd = wherex();
@@ -9763,6 +9983,7 @@ void XemDiem1Lop(lop *l, DSMH monhoc)
 			if(k->info.diem.First == NULL)
 			{
 				gotoxy(wherex()-1,wherey());
+						TextColor(241);
 				cout << " ";
 				string tb = "Sinh vien chua thi lan nao";
 				InTB(tb,129,30);
@@ -9770,7 +9991,8 @@ void XemDiem1Lop(lop *l, DSMH monhoc)
 				Sleep(750);
 				XoaTB(130,26);
 				gotoxy(7,6);
-				cout << muiten;
+				TextColor(241);
+	cout << muiten;
 				state = 0;
 			}
 			else
@@ -9779,6 +10001,7 @@ void XemDiem1Lop(lop *l, DSMH monhoc)
 				if(CheckSLThi(k->info.diem, monhoc->id) == false)
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					string tb = "Sinh vien chua thi lan nao";
 					InTB(tb,129,30);
@@ -9786,7 +10009,8 @@ void XemDiem1Lop(lop *l, DSMH monhoc)
 					Sleep(750);
 					XoaTB(130,26);
 					gotoxy(7,6);
-					cout << muiten;
+					TextColor(241);
+	cout << muiten;
 					state = 0;
 				}
 				else
@@ -9812,7 +10036,8 @@ void XemDiem1Lop(lop *l, DSMH monhoc)
 					cout << "SO LAN THI";
 					InDSDiemMH(l,page,monhoc);
 					gotoxy(7,6);
-					cout << muiten;
+					TextColor(241);
+	cout << muiten;
 					state = 0;
 				}
 			}
@@ -9883,6 +10108,7 @@ void NhapMonXemDiem(lop *l, DSMH dsm, int idlonnhat)
 	InTB(tb,129,30);
 	AnConTro();
 	gotoxy(7,6);
+	TextColor(241);
 	cout << muiten;
 	batPhim(s,sCheck);
 	while (s != ESC)
@@ -9905,10 +10131,12 @@ void NhapMonXemDiem(lop *l, DSMH dsm, int idlonnhat)
 					if(state > 0)
 					{
 						gotoxy(wherex()-1,wherey());
+						TextColor(241);
 						cout << " ";
 						state --;
 						gotoxy(7,wherey() - 3);
-						cout << muiten;
+						TextColor(241);
+	cout << muiten;
 					}
 				}
 				if(page > 0)
@@ -9916,10 +10144,12 @@ void NhapMonXemDiem(lop *l, DSMH dsm, int idlonnhat)
 					if((state > 0) )
 					{
 						gotoxy(wherex()-1,wherey());
+						TextColor(241);
 						cout << " ";
 						state --;
 						gotoxy(7,wherey()-3);
-						cout << muiten;
+						TextColor(241);
+	cout << muiten;
 					}
 					else if(state == 0)
 					{
@@ -9937,7 +10167,8 @@ void NhapMonXemDiem(lop *l, DSMH dsm, int idlonnhat)
 						page --;
 						InDSMH_CoCauHoi(dsm,page, maxpage, arr);
 						gotoxy(7,33);
-						cout << muiten;
+						TextColor(241);
+	cout << muiten;
 						state = 9;
 					}
 				}
@@ -9950,6 +10181,7 @@ void NhapMonXemDiem(lop *l, DSMH dsm, int idlonnhat)
 					if(arr[state + page*10 + 1] != NULL && (page*10 +state + 1) < sl)
 					{
 						gotoxy(wherex()-1,wherey());
+						TextColor(241);
 						cout << " ";
 						//cap nhat maxpage
 						if(page < maxpage)
@@ -9968,7 +10200,8 @@ void NhapMonXemDiem(lop *l, DSMH dsm, int idlonnhat)
 						InDSMH_CoCauHoi(dsm,page, maxpage, arr);
 						state = 0;
 						gotoxy(7,6);
-						cout << muiten;
+						TextColor(241);
+	cout << muiten;
 					}
 				}
 				else
@@ -9980,7 +10213,8 @@ void NhapMonXemDiem(lop *l, DSMH dsm, int idlonnhat)
 						cout << " ";
 						state ++;
 						gotoxy(7,wherey() + 3);
-						cout << muiten;	
+						TextColor(241);
+	cout << muiten;	
 					}
 				}
 			}
@@ -9990,6 +10224,7 @@ void NhapMonXemDiem(lop *l, DSMH dsm, int idlonnhat)
 				if(page < maxpage)
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					for(int i = 0; i < 28;i++)
 					{
@@ -10001,7 +10236,8 @@ void NhapMonXemDiem(lop *l, DSMH dsm, int idlonnhat)
 						cout << "                                                             ";
 					}
 					gotoxy(7,6);
-					cout << muiten;
+					TextColor(241);
+	cout << muiten;
 					state = 0;
 					page ++;
 					InDSMH_CoCauHoi(dsm,page, maxpage, arr);
@@ -10014,6 +10250,7 @@ void NhapMonXemDiem(lop *l, DSMH dsm, int idlonnhat)
 				if (page > 0 )
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					for(int i = 0; i < 28;i++)
 					{
@@ -10025,7 +10262,8 @@ void NhapMonXemDiem(lop *l, DSMH dsm, int idlonnhat)
 						cout << "                                                             ";
 					}
 					gotoxy(7,6);
-					cout << muiten;
+					TextColor(241);
+	cout << muiten;
 					state = 0;
 					page--;
 					InDSMH_CoCauHoi(dsm,page, maxpage, arr);
@@ -10127,6 +10365,7 @@ void NhapLopXemDiem(dslop dsl , DSMH dsm, int idlonnhat)
 				if(state > 0)
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					state --;
 					gotoxy(7,wherey() - 3);
@@ -10138,6 +10377,7 @@ void NhapLopXemDiem(dslop dsl , DSMH dsm, int idlonnhat)
 				if((state > 0) )
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					state --;
 					gotoxy(7,wherey()-3);
@@ -10154,6 +10394,7 @@ void NhapLopXemDiem(dslop dsl , DSMH dsm, int idlonnhat)
 						cout << "                                      ";
 					}
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					page --;
 					InDSLop(dsl,page);
@@ -10171,6 +10412,7 @@ void NhapLopXemDiem(dslop dsl , DSMH dsm, int idlonnhat)
 				if(dsl.l[state + page*10 + 1] != NULL)
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					if(page < dsl.solop/10)
 					{
@@ -10196,6 +10438,7 @@ void NhapLopXemDiem(dslop dsl , DSMH dsm, int idlonnhat)
 				if(dsl.l[state + page*10 + 1] != NULL)
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					state ++;
 					gotoxy(7,wherey() + 3);
@@ -10204,6 +10447,7 @@ void NhapLopXemDiem(dslop dsl , DSMH dsm, int idlonnhat)
 				if(dsl.l[state + page*10 + 1] == NULL) 
 				{
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					gotoxy(7,wherey());
 					cout << muiten;
@@ -10224,6 +10468,7 @@ void NhapLopXemDiem(dslop dsl , DSMH dsm, int idlonnhat)
 					cout << "                                      ";
 				}
 				gotoxy(wherex()-1,wherey());
+						TextColor(241);
 				cout << " ";
 				gotoxy(7,6);
 				cout << muiten;
@@ -10249,6 +10494,7 @@ void NhapLopXemDiem(dslop dsl , DSMH dsm, int idlonnhat)
 					cout << "                                      ";
 				}
 				gotoxy(wherex()-1,wherey());
+						TextColor(241);
 				cout << " ";
 				gotoxy(7,6);
 				cout << muiten;
@@ -10636,8 +10882,10 @@ int DangNhap(dslop &dsl ,string &masv)
 				{
 					AnConTro();
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					HienConTro();
 					pass.erase(pass.length()-1);
 				}
@@ -10648,8 +10896,10 @@ int DangNhap(dslop &dsl ,string &masv)
 				{
 					AnConTro();
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					cout << " ";
 					gotoxy(wherex()-1,wherey());
+						TextColor(241);
 					HienConTro();
 					user.erase(user.length()-1);
 				}
@@ -10738,8 +10988,8 @@ int DangNhap(dslop &dsl ,string &masv)
 //==================================MAIN MENU GIANG VIEN===============================
 int mainMenu()
 {
-	ChangeColor(15);
 	system("cls");
+	TextColor(241);
 	veKhungThuCong();
 	InTB("ENTER: Chon	ESC: Thoat",35,43);
 	gotoxy(80,10);
@@ -10770,17 +11020,10 @@ int mainMenu()
 	cout << "|   |_| ||   | |   _   || | |   ||   |_| |   |     | |   | |   |___ | | |   |";
 	gotoxy(60,26);
 	cout << "|_______||___| |__| |__||_|  |__||_______|    |___|  |___| |_______||_|  |__|";
-//	veNutMenu(3,10,11,"In lop theo nien khoa",31);
-//	veNutMenu(3,10,16,"Sinh vien",31);
-//	veNutMenu(3,10,21,"Mon hoc",31);
-//	veNutMenu(3,10,26,"Cau hoi",31);
-//	veNutMenu(3,10,31,"Diem",31);
-	
-	veNutMenu(3,10,6,"Lop",240);
-	veNutMenu(3,10,11,"Sinh vien",31);
-	veNutMenu(3,10,16,"Mon hoc",31);
-	veNutMenu(3,10,21,"Diem",31);
-	//veNutMenu(3,10,36,"In chi tiet de thi cua 1 mon hoc",31);
+	veNutMenu(3,10,6,"Lop",112);
+	veNutMenu(3,10,11,"Sinh vien",30);
+	veNutMenu(3,10,16,"Mon hoc",30);
+	veNutMenu(3,10,21,"Diem",30);
 	gotoxy(50,5);
 	AnConTro();
 	int choose = 0;
@@ -10798,6 +11041,7 @@ int mainMenu()
 			else 
 			{
 				system("cls");
+				TextColor(241);
 				veKhungThuCong();
 				InTB("ENTER: Chon	ESC: Thoat",35,43);
 				gotoxy(80,10);
@@ -10828,22 +11072,11 @@ int mainMenu()
 				cout << "|   |_| ||   | |   _   || | |   ||   |_| |   |     | |   | |   |___ | | |   |";
 				gotoxy(60,26);
 				cout << "|_______||___| |__| |__||_|  |__||_______|    |___|  |___| |_______||_|  |__|";
-//				veNutMenu(3,10,6,"Lop",240);
-////				veNutMenu(3,10,11,"In lop theo nien khoa",31);
-////				veNutMenu(3,10,16,"Sinh vien",31);
-////				veNutMenu(3,10,21,"Mon hoc",31);
-////				veNutMenu(3,10,26,"Cau hoi",31);
-////				veNutMenu(3,10,31,"Diem",31);
-//
-//				veNutMenu(3,10,11,"Sinh vien",31);
-//				veNutMenu(3,10,16,"Mon hoc",31);
-//				veNutMenu(3,10,21,"Cau hoi",31);
-//				veNutMenu(3,10,26,"Diem",31);
-
-				veNutMenu(3,10,6,"Lop",240);
-				veNutMenu(3,10,11,"Sinh vien",31);
-				veNutMenu(3,10,16,"Mon hoc",31);
-				veNutMenu(3,10,21,"Diem",31);
+				
+				veNutMenu(3,10,6,"Lop",112);
+				veNutMenu(3,10,11,"Sinh vien",30);
+				veNutMenu(3,10,16,"Mon hoc",30);
+				veNutMenu(3,10,21,"Diem",30);
 				choose = 0;
 			}
 		}
@@ -10855,34 +11088,22 @@ int mainMenu()
 				{
 					case 1:
 						{
-							veNutMenu(3,10,6,"Lop",240);
-							veNutMenu(3,10,11,"Sinh vien",31);
+							veNutMenu(3,10,6,"Lop",112);
+							veNutMenu(3,10,11,"Sinh vien",30);
 							break;
 						}
-//					case 2:
-//						{
-//							veNutMenu(3,10,11,"In lop theo nien khoa",240);
-//							veNutMenu(3,10,16,"Sinh vien",31);
-//							break;
-//						}
 					case 2:
 						{
-							veNutMenu(3,10,11,"Sinh vien",240);
-							veNutMenu(3,10,16,"Mon hoc",31);
+							veNutMenu(3,10,11,"Sinh vien",112);
+							veNutMenu(3,10,16,"Mon hoc",30);
 							break;
 						}
 					case 3:
 						{
-							veNutMenu(3,10,16,"Mon hoc",240);
-							veNutMenu(3,10,21,"Diem",31);
+							veNutMenu(3,10,16,"Mon hoc",112);
+							veNutMenu(3,10,21,"Diem",30);
 							break;
-						}
-//					case 4:
-//						{
-//							veNutMenu(3,10,21,"Cau hoi",240);
-//							veNutMenu(3,10,26,"Diem",31);
-//							break;
-//						}			
+						}	
 				}
 				choose --;
 			}
@@ -10895,34 +11116,22 @@ int mainMenu()
 				{
 					case 0:
 						{
-							veNutMenu(3,10,6,"Lop",31);
-							veNutMenu(3,10,11,"Sinh vien",240);
+							veNutMenu(3,10,6,"Lop",30);
+							veNutMenu(3,10,11,"Sinh vien",112);
 							break;
 						}
-//					case 1:
-//						{
-//							veNutMenu(3,10,11,"In lop theo nien khoa",31);
-//							veNutMenu(3,10,16,"Sinh vien",240);
-//							break;
-//						}
 					case 1:
 						{
-							veNutMenu(3,10,11,"Sinh vien",31);
-							veNutMenu(3,10,16,"Mon hoc",240);
+							veNutMenu(3,10,11,"Sinh vien",30);
+							veNutMenu(3,10,16,"Mon hoc",112);
 							break;
 						}
 					case 2:
 						{
-							veNutMenu(3,10,16,"Mon hoc",31);
-							veNutMenu(3,10,21,"Diem",240);
+							veNutMenu(3,10,16,"Mon hoc",30);
+							veNutMenu(3,10,21,"Diem",112);
 							break;
 						}
-//					case 3:
-//						{
-//							veNutMenu(3,10,21,"Cau hoi",31);
-//							veNutMenu(3,10,26,"Diem",240);
-//							break;
-//						}		
 				}
 				choose ++;
 			}
@@ -10954,58 +11163,63 @@ void mainProcess(dslop &dsl, dssv &ds, DSMH &dsm, int arr1[], int arr2[])
 		{
 		case 0:
 			{
-				system("cls");
-				int tg = 0;
-				int sct = 0;
-				bool check;
-				NhapMonThi(dsm, pMonThi, idlonnhat, tg,sct, check);
-				if(check == false)
+				while(1)
 				{
-					break;
+					system("cls");
+					TextColor(241);
+					int tg = 0;
+					int sct = 0;
+					bool check;
+					NhapMonThi(dsm, pMonThi, idlonnhat, tg,sct, check);
+					if(check == false)
+					{
+						break;
+					}
+					//THI
+					string diem;
+					CTdethi ctdt;
+					ctdt.bode = new int [sct];
+					ctdt.dapan = new int [sct];
+					lop *l = traVeLopTuMSSV(dsl, masv);
+					int checkThi = FunctionThi(l, masv, dsm, pMonThi,tg,sct,diem,ctdt);
+					stop = 1;
+					if(ctdt.bode != NULL)
+					{
+						float diemthi = StringToFloat(diem);
+						nodeSV *sv;
+						for(int i = 0; i < dsl.solop; i++)
+						{
+							sv = search_SV(dsl.l[i]->danhsach,masv);
+							if(sv == NULL)
+							{
+								continue;
+							}
+							else
+							{
+								break;
+							}
+						}
+						diemThi diemsv;
+						diemsv.ctdt = ctdt;
+						diemsv.diem = diemthi;
+						diemsv.idMonHoc = pMonThi->id;
+						if (sv->info.diem.First == NULL) 
+						{
+							Insert_Diem_First(sv->info.diem.First,diemsv);
+						}
+						else 
+						{
+							nodediemThi *p = sv->info.diem.First;
+							while (p->pNext != NULL)
+							{
+								p = p->pNext;
+							}
+							Insert_Diem_after(p,diemsv);
+						}
+					}
+					else break;
+					if(checkThi == 0) break;
 				}
-				//THI
-				string diem;
-				CTdethi ctdt;
-				ctdt.bode = new int [sct];
-				ctdt.dapan = new int [sct];
-				lop *l = traVeLopTuMSSV(dsl, masv);
-				FunctionThi(l, masv, dsm, pMonThi,tg,sct,diem,ctdt);
-				stop = 1;
-				if(ctdt.bode != NULL)
-				{
-					float diemthi = StringToFloat(diem);
-					nodeSV *sv;
-					for(int i = 0; i < dsl.solop; i++)
-					{
-						sv = search_SV(dsl.l[i]->danhsach,masv);
-						if(sv == NULL)
-						{
-							continue;
-						}
-						else
-						{
-							break;
-						}
-					}
-					diemThi diemsv;
-					diemsv.ctdt = ctdt;
-					diemsv.diem = diemthi;
-					diemsv.idMonHoc = pMonThi->id;
-					if (sv->info.diem.First == NULL) 
-					{
-						Insert_Diem_First(sv->info.diem.First,diemsv);
-					}
-					else 
-					{
-						nodediemThi *p = sv->info.diem.First;
-						while (p->pNext != NULL)
-						{
-							p = p->pNext;
-						}
-						Insert_Diem_after(p,diemsv);
-					}
-				}
-				else break;
 				break;
 			}
 		case 1:
@@ -11020,27 +11234,28 @@ void mainProcess(dslop &dsl, dssv &ds, DSMH &dsm, int arr1[], int arr2[])
 						{
 							ChangeColor(15);
 							system("cls");
+							TextColor(241);
 							FunctionLop(dsl);
 							break;
 						}
 						case 1: //SINH VIEN
 						{
-							ChangeColor(15);
 							system("cls");
+							TextColor(241);
 							FunctionSV(dsl);
 							break;
 						}
 						case 2://MON HOC
 						{
-							ChangeColor(15);
 							system("cls");
+							TextColor(241);
 							FunctionMH(dsm, dsl, idlonnhat, arr1, arr2);
 							break;
 						}	
 						case 3://DIEM
 						{
-							ChangeColor(15);
 							system("cls");
+							TextColor(241);
 							FunctionDiem(dsl,ds,dsm,idlonnhat);
 							break;	
 						}
@@ -11061,6 +11276,7 @@ void mainProcess(dslop &dsl, dssv &ds, DSMH &dsm, int arr1[], int arr2[])
 				{	
 					system("cls");
 					gotoxy(0,0);
+					TextColor(241);
 					veKhungThuCong();
 					LuuFileDSlop(dsm, dsl,"DSLOP.txt");
 					LuuFileMH(dsm,"DSMONHOCVACH.txt", idlonnhat);
@@ -11085,7 +11301,6 @@ void mainProcess(dslop &dsl, dssv &ds, DSMH &dsm, int arr1[], int arr2[])
 				}
 			}
 		}
-			
 	}
 }
 #endif
