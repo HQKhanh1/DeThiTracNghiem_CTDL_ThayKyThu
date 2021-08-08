@@ -3959,28 +3959,28 @@ void inSuaCH(cauHoi ch, int &dem, int &xND, int &yND, int &xA, int &yA, int &xB,
 	
 		if(ch.dapAn == "A")
 		{
-			ChangeColor(240);
+			ChangeColor(112);
 			gotoxy(6,16-2);
 			cout << "DAP AN A: ";
 			ChangeColor(15);
 		}
 		else if(ch.dapAn == "B")
 		{
-			ChangeColor(240);
+			ChangeColor(112);
 			gotoxy(6,22-2);
 			cout << "DAP AN B: ";
 			ChangeColor(15);
 		}
 		else if(ch.dapAn == "C")
 		{
-			ChangeColor(240);
+			ChangeColor(112);
 			gotoxy(6,28-2);
 			cout << "DAP AN C: ";
 			ChangeColor(15);
 		}
 		else if(ch.dapAn == "D")
 		{
-			ChangeColor(240);
+			ChangeColor(112);
 			gotoxy(6,34-2);
 			cout << "DAP AN D: ";
 			ChangeColor(15);
@@ -8777,6 +8777,7 @@ int FunctionThi(lop *l, string mssv, DSMH dsm, DSMH monThi, int tg, int sct, str
 // ==================== IN 1 CH + DAN AN CUA SV ==========================
 void InCH_DASV(cauHoi ch, string da)
 {
+	TextColor(241);
 	for(int i = 0; i < 30;i++)
 	{
 		gotoxy(20,5+i);
@@ -8866,28 +8867,28 @@ void InCH_DASV(cauHoi ch, string da)
 		}
 		if(ch.dapAn == "A")
 		{
-			ChangeColor(240);
+			ChangeColor(112);
 			gotoxy(6,16-2);
 			cout << "DAP AN A: ";
 			ChangeColor(15);
 		}
 		else if(ch.dapAn == "B")
 		{
-			ChangeColor(240);
+			ChangeColor(112);
 			gotoxy(6,22-2);
 			cout << "DAP AN B: ";
 			ChangeColor(15);
 		}
 		else if(ch.dapAn == "C")
 		{
-			ChangeColor(240);
+			ChangeColor(112);
 			gotoxy(6,28-2);
 			cout << "DAP AN C: ";
 			ChangeColor(15);
 		}
 		else if(ch.dapAn == "D")
 		{
-			ChangeColor(240);
+			ChangeColor(112);
 			gotoxy(6,34-2);
 			cout << "DAP AN D: ";
 			ChangeColor(15);
@@ -8899,6 +8900,7 @@ void InChiTiet1LanThi(nodediemThi *p, DSCH dsch, nodeSV *k)
 {
 	system("cls");
 	gotoxy(0,0);
+	TextColor(241);
 	veKhungThuCong();
 	string diem = FloatToString(p->info.diem);
 	gotoxy(130,2);
@@ -8987,6 +8989,7 @@ void InChiTiet1LanThi(nodediemThi *p, DSCH dsch, nodeSV *k)
 	}
 	InCH_DASV(*dsch.listCauHoi[p->info.ctdt.bode[stt]],da);
 	gotoxy(5,1);
+	TextColor(241);
 	cout << "CAU " << stt + 1;
 	gotoxy(19,44);
 	TextColor(241);
@@ -9016,8 +9019,7 @@ void InChiTiet1LanThi(nodediemThi *p, DSCH dsch, nodeSV *k)
 				stt--;
 				gotoxy(19 + (stt%10)*10,44);
 				TextColor(241);
-	cout << muitenlen;
-//				NODECH ch = Search_CH(dsch,p->info.ctdt.bode[stt]);
+				cout << muitenlen;
 				if(p->info.ctdt.dapan[stt] == 1)
 				{
 					da = "A";
@@ -9040,8 +9042,10 @@ void InChiTiet1LanThi(nodediemThi *p, DSCH dsch, nodeSV *k)
 				}
 				InCH_DASV(*dsch.listCauHoi[p->info.ctdt.bode[stt]],da);
 				gotoxy(5,1);
+				TextColor(241);
 				cout << "       ";
 				gotoxy(5,1);
+				TextColor(241);
 				cout << "CAU " << stt + 1;
 			}
 		}
@@ -9065,7 +9069,7 @@ void InChiTiet1LanThi(nodediemThi *p, DSCH dsch, nodeSV *k)
 				stt++;
 				gotoxy(19 + (stt%10)*10,44);
 				TextColor(241);
-	cout << muitenlen;
+				cout << muitenlen;
 				if(p->info.ctdt.dapan[stt] == 1)
 				{
 					da = "A";
@@ -9088,8 +9092,10 @@ void InChiTiet1LanThi(nodediemThi *p, DSCH dsch, nodeSV *k)
 				}
 				InCH_DASV(*dsch.listCauHoi[p->info.ctdt.bode[stt]],da);
 				gotoxy(5,1);
+				TextColor(241);
 				cout << "       ";
 				gotoxy(5,1);
+				TextColor(241);
 				cout << "CAU " << stt + 1;
 			} 
 		}
@@ -9105,7 +9111,7 @@ void InChiTiet1LanThi(nodediemThi *p, DSCH dsch, nodeSV *k)
 				stt -= 10;
 				gotoxy(19 + (stt%10)*10,44);
 				TextColor(241);
-	cout << muitenlen;
+				cout << muitenlen;
 //				NODECH ch = Search_CH(dsch,p->info.ctdt.bode[stt]);
 				if(p->info.ctdt.dapan[stt] == 1)
 				{
@@ -9140,7 +9146,7 @@ void InChiTiet1LanThi(nodediemThi *p, DSCH dsch, nodeSV *k)
 				stt = 0;
 				gotoxy(19 + (stt%10)*10,44);
 				TextColor(241);
-	cout << muitenlen;
+				cout << muitenlen;
 //				NODECH ch = Search_CH(dsch,p->info.ctdt.bode[stt]);
 				if(p->info.ctdt.dapan[stt] == 1)
 				{
@@ -9181,7 +9187,7 @@ void InChiTiet1LanThi(nodediemThi *p, DSCH dsch, nodeSV *k)
 				stt += 10;
 				gotoxy(19 + (stt%10)*10,44);
 				TextColor(241);
-	cout << muitenlen;
+				cout << muitenlen;
 //				NODECH ch = Search_CH(dsch,p->info.ctdt.bode[stt]);
 				if(p->info.ctdt.dapan[stt] == 1)
 				{
@@ -9205,8 +9211,10 @@ void InChiTiet1LanThi(nodediemThi *p, DSCH dsch, nodeSV *k)
 				}
 				InCH_DASV(*dsch.listCauHoi[p->info.ctdt.bode[stt]],da);
 				gotoxy(5,1);
+				TextColor(241);
 				cout << "       ";
 				gotoxy(5,1);
+				TextColor(241);
 				cout << "CAU " << stt + 1;	
 			}
 			else
@@ -9218,11 +9226,12 @@ void InChiTiet1LanThi(nodediemThi *p, DSCH dsch, nodeSV *k)
 					VeKhungDA(page,p->info.ctdt.sct,p->info.ctdt); 
 				}
 				gotoxy(19 + (stt%10)*10,44);
+				TextColor(241);
 				cout << " ";
 				stt = max - 1;
 				gotoxy(19 + (stt%10)*10,44);
 				TextColor(241);
-	cout << muitenlen;
+				cout << muitenlen;
 				cauHoi ch = *dsch.listCauHoi[p->info.ctdt.bode[stt]];
 				if(p->info.ctdt.dapan[stt] == 1)
 				{
@@ -9246,8 +9255,10 @@ void InChiTiet1LanThi(nodediemThi *p, DSCH dsch, nodeSV *k)
 				}
 				InCH_DASV(ch,da);
 				gotoxy(5,1);
+				TextColor(241);
 				cout << "       ";
 				gotoxy(5,1);
+				TextColor(241);
 				cout << "CAU " << stt + 1;
 			}
 		}
@@ -11218,7 +11229,8 @@ void mainProcess(dslop &dsl, dssv &ds, DSMH &dsm, int arr1[], int arr2[])
 						}
 					}
 					else break;
-					if(checkThi == 0) break;
+					if(checkThi == 0) {LuuFileDSlop(dsm,dsl,"DSLOP.txt"); break;}
+					LuuFileDSlop(dsm,dsl,"DSLOP.txt");
 				}
 				break;
 			}
