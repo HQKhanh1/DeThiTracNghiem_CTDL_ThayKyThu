@@ -18,7 +18,13 @@ int main()
 	dslop dsl;
 	DSMH dsm;
 	khoiTaoCay(dsm);
-	TextColor(241);
+//	for(int i = 0; i < 256; i++){
+//		gotoxy(0,i);
+//		TextColor(i);
+//		cout<<"Mau: "<<i<<" @@@@@@@@@@@@";
+//	}
+//	system("pause");
+	TextColor(9);
 	mainProcess(dsl,ds,dsm,arr1,arr2);
 	return 0;
 }
