@@ -440,6 +440,12 @@ void InHoaChuoi(string &s)
     	s[i]=toupper(s[i]);
 	}
 }
+bool checkChuoiRong(string s){
+	for(int i = 0; i < s.length(); i++){
+		if(s[i] != ' ') return true;
+	}
+	return false;
+}
 // ==================== VE NUT ==========================
 void veNut(int dai, int rong, int x, int y, string text, int mau )
 {
