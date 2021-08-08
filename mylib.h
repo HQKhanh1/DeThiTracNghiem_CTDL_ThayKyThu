@@ -455,7 +455,7 @@ void veNut(int dai, int rong, int x, int y, string text, int mau )
 	ChangeColor(mau);
 	gotoxy(x+(rong-text.length())/2,y+(dai/2));
 	cout << text;
-	TextColor(9);
+	ChangeColor(9);
 }
 // ==================== VE NUT MAIN MENU ==========================
 void veNutMenu(int dai, int x, int y, string text, int mau )
