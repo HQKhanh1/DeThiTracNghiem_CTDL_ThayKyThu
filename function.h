@@ -1763,7 +1763,7 @@ void NhapSinhVien(lop *&l )
 					}
 			}
 		}
-		if (((s >= 'a' && s <= 'z') || (s >= 'A' && s <= 'Z') || (s >= '0' && s <= '9'))  && sCheck == true)
+		if (((s >= 'a' && s <= 'z') || (s >= 'A' && s <= 'Z'))  && sCheck == true)
 		{
 			HienConTro();
 			switch(state)
@@ -2153,7 +2153,7 @@ void SuaSinhVien(lop *&l, sinhVien a)
 					}
 			}
 		}
-		if (((s >= 'a' && s <= 'z') || (s >= 'A' && s <= 'Z') || (s >= '0' && s <= '9'))  && sCheck == true)
+		if (((s >= 'a' && s <= 'z') || (s >= 'A' && s <= 'Z'))  && sCheck == true)
 		{
 			HienConTro();
 			switch(state)
@@ -2630,7 +2630,7 @@ void XoaSinhVien(lop *&l ,int page)
 	gotoxy(7, 6 + 3*state);
 	cout<<" ";
 }
-// ==================== XOA SINH VIEN ==========================
+// ====================SUA SINH VIEN ==========================
 void NhapSinhVienSua(lop *&l ,int page)
 {
 	for (int i=2; i<23; i++)
@@ -2789,7 +2789,7 @@ void NhapSinhVienSua(lop *&l ,int page)
 						cout << "                      ";
 					}
 				gotoxy(wherex()-1,wherey());
-						TextColor(9);
+				TextColor(9);
 				cout << " ";
 				gotoxy(7,6);
 				cout << muiten;
@@ -3487,15 +3487,6 @@ void FunctionMH(DSMH &dsm, dslop dsl, int &idlonnhat, int arr1[], int arr2[])
 			if(s == F2){
 					suaMonHoc_Test(dsm, state, page, sl, idlonnhat, arr);
 					XoaTB(130,26);
-					for(int i = 0; i < 28;i++)
-					{
-						gotoxy(15,6+i);
-						cout << "      ";
-						gotoxy(37,6+i);
-						cout << "              ";
-						gotoxy(57,6+i);
-						cout << "                                                             ";
-					}
 					InDSMH_CoCauHoi(dsm,page, maxpage, arr);
 					gotoxy(7,6 + 3*state);
 					cout<<muiten;
@@ -6644,6 +6635,15 @@ void suaMonHoc_Test(DSMH &dsm, int &state, int &page,int sl, int idlonnhat, int 
 						AnConTro();
 						Sleep(1000);
 						XoaTB(130,26);
+						for(int i = 0; i < 28;i++)
+						{
+							gotoxy(15,6+i);
+							cout << "      ";
+							gotoxy(37,6+i);
+							cout << "              ";
+							gotoxy(57,6+i);
+							cout << "                                                             ";
+						}
 						break;
 					}
 				}
