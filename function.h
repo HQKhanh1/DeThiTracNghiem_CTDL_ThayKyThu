@@ -1763,7 +1763,7 @@ void NhapSinhVien(lop *&l )
 					}
 			}
 		}
-		if (((s >= 'a' && s <= 'z') || (s >= 'A' && s <= 'Z'))  && sCheck == true)
+		if (((s >= 'a' && s <= 'z') || (s >= 'A' && s <= 'Z') || (s >='0' && s<='9'))  && sCheck == true)
 		{
 			HienConTro();
 			switch(state)
@@ -2153,7 +2153,7 @@ void SuaSinhVien(lop *&l, sinhVien a)
 					}
 			}
 		}
-		if (((s >= 'a' && s <= 'z') || (s >= 'A' && s <= 'Z'))  && sCheck == true)
+		if (((s >= 'a' && s <= 'z') || (s >= 'A' && s <= 'Z')|| (s >='0' && s<='9'))  && sCheck == true)
 		{
 			HienConTro();
 			switch(state)
