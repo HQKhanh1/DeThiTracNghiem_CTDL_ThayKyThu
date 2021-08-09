@@ -25,6 +25,12 @@
 #define xInTen 80
 #define yInTen 40
 
+#define xDangNhap 50
+#define yDangNhap 5
+#define xVeThiTracNghiem 10
+#define yVeThiTracNghiem 26
+#define xKhungCoDinh 45
+#define yKhungCoDinh 165
 #define doc (char)179
 #define ngang (char)196
 #define traitren (char)218
@@ -1090,14 +1096,14 @@ void vekhungNhapTG()
 }
 void InTen()
 {
-	gotoxy(xInTen,yInTen);
+	gotoxy(xDangNhap + 60,yDangNhap);
 	TextColor(9);
 	cout<<"          NHOM 34";
-	gotoxy(xInTen,yInTen + 2);
+	gotoxy(xDangNhap + 60,yDangNhap + 2);
 	cout << "N18DCCN098 - HUYNH QUOC KHANH";
-	gotoxy(xInTen,yInTen + 4);
+	gotoxy(xDangNhap + 60,yDangNhap + 4);
 	cout << "N18DCCN116 - VO NGUYEN DUY LONG";
-	gotoxy(xInTen,yInTen + 6);
+	gotoxy(xDangNhap + 60,yDangNhap + 6);
 	cout << "N17DCAT034 - NGUYEN QUOC HUY";
 }
 #endif

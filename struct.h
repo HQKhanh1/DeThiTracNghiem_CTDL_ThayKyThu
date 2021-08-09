@@ -11,16 +11,16 @@ using namespace std;
 // DANH SACH CAU HOI THEO DANH SACH TUYEN TINH
 struct cauHoi
 {
-	string noiDung;
-	string A;
-	string B;
-	string C;
-	string D;
-	string dapAn;
+	string noiDung ="";
+	string A = "";
+	string B = "";
+	string C = "";
+	string D = "";
+	string dapAn = "";
 };
 typedef struct dsCauHoi {
 	int n = 0;
-  	cauHoi *listCauHoi[MAXCAUHOI] = {NULL}; // danh sach mang 1 chieu
+  	cauHoi listCauHoi[MAXCAUHOI]; // danh sach mang 1 chieu
 } DSCH;
 // DANH SACH MON HOC THEO CAY NHI PHAN TIM KIEM
 struct monHoc{
