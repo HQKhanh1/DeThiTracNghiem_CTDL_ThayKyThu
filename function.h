@@ -26,7 +26,7 @@ void NhapLopXoa(dslop &dsl,int &page);
 
 void ChinhLop(dslop &dsl, int &page);
 void NhapLopChinh(dslop &dsl , int &page);
-void SuaLop(dslop dsl, lop *&l);
+void SuaLop(dslop dsl, lop *&l, int vitri);
 
 // ==================== Function SV  ==========================
 void FunctionSV(dslop &dsl);
@@ -39,6 +39,11 @@ void Them1SinhVien(lop *l, sinhVien sv);
 void XoaSinhVien(lop *&l ,int page);
 void DeleteInfo_SV(dssv &ds , string maSV);
 int DemLanThi(dsdiemThi diem);
+
+void NhapSinhVienSua(lop *&l ,int page);
+void SuaSinhVien(lop *&l, sinhVien a);
+void sua1SinhVien(lop *&l, sinhVien a, string masv);
+
 // ==================== Function MH ==========================
 //void FunctionMon(DSMH &dsm, dslop dsl, NODECH &dsch);
 void FunctionMH(DSMH &dsm, dslop dsl, int &idlonnhat, int arr1[], int arr2[]);
@@ -67,6 +72,7 @@ void FunctionDiem(dslop dsl, dssv ds,DSMH dsm, int idlongnhat);
 int *LayDeThi(DSCH dsch, int sct);
 void NhapMonThi(DSMH dsm, DSMH &pTam, int &idlonnhat, int &tg, int &sct, bool &check);
 int FunctionThiGV(DSMH monThi, int tg, int sct, string &diem, CTdethi &ctdt);
+void InChiTiet1LanThiGV(CTdethi ctdt, DSCH dsch, string diem, int soCauDung);
 
 
 
@@ -1093,11 +1099,11 @@ bool CheckLopNhap (dslop dsl, string malop, string tenlop)
 // ==================== KIEM TRA MA MON & TEN MON TRONG DS ==========================
 
 // ==================== KIEM TRA TEN LOP TRONG DS  ==========================
-bool CheckTenLop (dslop dsl, string tenlop)
+bool CheckTenLop (dslop dsl, string tenlop, int vitri)
 {
 	for(int i = 0; i < dsl.solop; i++)
 	{
-		if(tenlop.compare(dsl.l[i]->tenLop) == 0 )
+		if(tenlop.compare(dsl.l[i]->tenLop) == 0 && i != vitri)
 		{
 			return true;
 		}
@@ -2012,7 +2018,7 @@ void SuaSinhVien(lop *&l, sinhVien a)
 	cout << "GIOI TINH";
 	gotoxy(140-15,22);
 	TextColor(240);
-	cout << " NHAP SINH VIEN ";
+	cout << " SUA SINH VIEN ";
 	TextColor(9);
 	gotoxy(110,2);
 	veKhung(20,44);
@@ -6434,6 +6440,44 @@ bool ExitXoa (string tb, char &s, bool &sCheck)
 	}
 	XoaTB(130,26);
 }
+int ThongBaoKetThucThiGV(char &s, bool sCheck)
+{
+	string tbThoat = "Nhap su lua chon: ";
+	AnConTro();
+	gotoxy(127,26);
+	vekhungTB(10,36);
+	InTB(tbThoat,129,30);
+	string tbThoat1 = "     ESC: THOAT";
+	AnConTro();
+	InTB(tbThoat1,129,31);
+	string tbThoat2 = "     F1: TIEP TUC THI";
+	AnConTro();
+	InTB(tbThoat2,129,32);
+	string tbThoat3 = "     F2: XEM LAI CAU HOI THI ";
+	AnConTro();
+	InTB(tbThoat3,129,33);
+	batPhim(s,sCheck);
+	while(1)
+	{
+		AnConTro();
+		if(s == ESC)
+		{
+			XoaTB(130,26);
+			return 0;
+		}
+		else if(s == F1)
+		{
+			XoaTB(130,26);
+			return 1;
+		}
+		else if(s == F2){
+			XoaTB(130,26);
+			return -1;
+		}
+		batPhim(s,sCheck);
+	}
+	XoaTB(130,26);
+}
 //Xoa Mon
 
 void xoaMMH_Test(DSMH &dsm, int &sl,int &state ,int &page, int &maxpage, int &idlonnhat, int *arr[])
@@ -6998,7 +7042,7 @@ void XoaLop (dslop &dsl, int &page)
 	}
 }
 // ==================== SUA LOP ==========================
-void SuaLop(dslop dsl, lop *&l)
+void SuaLop(dslop dsl, lop *&l, int vitri)
 {
 	gotoxy(5,38);
 	veKhung(5,120);
@@ -7087,7 +7131,7 @@ void SuaLop(dslop dsl, lop *&l)
 			}
 			else
 			{
-				if(CheckTenLop(dsl, tenlop) == true)
+				if(CheckTenLop(dsl, tenlop, vitri) == true)
 				{
 					string tb = "Ten lop bi trung! Vui long nhap lai!";
 					gotoxy(129,30);
@@ -7301,7 +7345,7 @@ void NhapLopChinh(dslop &dsl , int &page)
 			else
 			{
 				// ham nhap thong tin de sua
-				SuaLop(dsl, dsl.l[state + page * 10]);
+				SuaLop(dsl, dsl.l[state + page * 10], state + page * 10);
 				string tb = "Chinh sua lop thanh cong!";
 				InTB(tb,129,30);
 				AnConTro();
@@ -7525,8 +7569,27 @@ void FunctionLuaChonGV(dslop &dsl, DSMH &dsm, dssv &ds, int idlonnhat, int arr1[
 	cout << "ENTER: Chon	ESC: Thoat	LEFT/RIGTH: DI CHUYEN LUA CHON";
 	bool state = true;
 	AnConTro();
-	veNut(5,20, xDangNhap, yDangNhap + 10, "THI THU", 112);
-	veNut(5,20, xDangNhap + 30, yDangNhap + 10, "QUAN LY", 30);
+	gotoxy(xDangNhap +1, yDangNhap);
+	veKhung(12, 69);
+	veNut(5,20, xDangNhap + 11, yDangNhap + 3, "THI THU", 112);
+	veNut(5,20, xDangNhap + 30 + 11, yDangNhap + 3, "QUAN LY", 30);
+	gotoxy(xVeThiTracNghiem,yVeThiTracNghiem);
+	cout << " /$$$$$$$$ /$$   /$$ /$$$$$$       /$$$$$$$$ /$$$$$$$   /$$$$$$   /$$$$$$        /$$   /$$  /$$$$$$  /$$   /$$ /$$$$$$ /$$$$$$$$ /$$      /$$";
+	gotoxy(xVeThiTracNghiem,yVeThiTracNghiem + 1);
+	cout << "|__  $$__/| $$  | $$|_  $$_/      |__  $$__/| $$__  $$ /$$__  $$ /$$__  $$      | $$$ | $$ /$$__  $$| $$  | $$|_  $$_/| $$_____/| $$$    /$$$";
+	gotoxy(xVeThiTracNghiem,yVeThiTracNghiem + 2);
+	cout << "   | $$   | $$  | $$  | $$           | $$   | $$  \\ $$| $$  \\ $$| $$  \\__/      | $$$$| $$| $$  \\__/| $$  | $$  | $$  | $$      | $$$$  /$$$$";
+	gotoxy(xVeThiTracNghiem,yVeThiTracNghiem + 3);
+	cout << "   | $$   | $$$$$$$$  | $$           | $$   | $$$$$$$/| $$$$$$$$| $$            | $$ $$ $$| $$ /$$$$| $$$$$$$$  | $$  | $$$$$   | $$ $$/$$ $$";
+	gotoxy(xVeThiTracNghiem,yVeThiTracNghiem + 4);
+	cout << "   | $$   | $$__  $$  | $$           | $$   | $$__  $$| $$__  $$| $$            | $$  $$$$| $$|_  $$| $$__  $$  | $$  | $$__/   | $$  $$$| $$";
+	gotoxy(xVeThiTracNghiem,yVeThiTracNghiem + 5);
+	cout << "   | $$   | $$  | $$  | $$           | $$   | $$  \\ $$| $$  | $$| $$    $$      | $$\\  $$$| $$  \\ $$| $$  | $$  | $$  | $$      | $$\\  $ | $$";
+	gotoxy(xVeThiTracNghiem,yVeThiTracNghiem + 6);
+	cout << "   | $$   | $$  | $$ /$$$$$$         | $$   | $$  | $$| $$  | $$|  $$$$$$/      | $$ \\  $$|  $$$$$$/| $$  | $$ /$$$$$$| $$$$$$$$| $$ \\/  | $$";
+	gotoxy(xVeThiTracNghiem,yVeThiTracNghiem + 7);
+	cout << "   |__/   |__/  |__/|______/         |__/   |__/  |__/|__/  |__/ \\______/       |__/  \\__/ \\______/ |__/  |__/|______/|________/|__/     |__/";
+     
 	char s;
 	bool sCheck;
 	batPhim(s,sCheck);
@@ -7534,23 +7597,26 @@ void FunctionLuaChonGV(dslop &dsl, DSMH &dsm, dssv &ds, int idlonnhat, int arr1[
 	{
 		if(s == LEFT)
 		{
-			if(state == false){
+			if(state == false)
+			{
 				AnConTro();
-				veNut(5,20, xDangNhap, yDangNhap + 10, "THI THU", 112);
-				veNut(5,20, xDangNhap + 30, yDangNhap + 10, "QUAN LY", 30);
+				veNut(5,20, xDangNhap + 11, yDangNhap + 3, "THI THU", 112);
+				veNut(5,20, xDangNhap + 30 + 11, yDangNhap + 3, "QUAN LY", 30);
 				state = true;
 			}
 		}
 		if(s == RIGHT)
 		{
-			if(state == true){
+			if(state == true)
+			{
 				AnConTro();
-				veNut(5,20, xDangNhap, yDangNhap + 10, "THI THU", 30);
-				veNut(5,20, xDangNhap + 30, yDangNhap + 10, "QUAN LY", 112);
+				veNut(5,20, xDangNhap + 11, yDangNhap + 3, "THI THU", 30);
+				veNut(5,20, xDangNhap + 30 + 11, yDangNhap + 3, "QUAN LY", 112);
 				state = false;
 			}
 		}
-		if(s == ENTER){
+		if(s == ENTER)
+		{
 			if(state == true)
 			{
 				while(1)
@@ -7564,6 +7630,31 @@ void FunctionLuaChonGV(dslop &dsl, DSMH &dsm, dssv &ds, int idlonnhat, int arr1[
 					NhapMonThi(dsm, pMonThi, idlonnhat, tg,sct, check);
 					if(check == false)
 					{
+						gotoxy(0,0);
+						veKhungThuCong();
+						gotoxy(50,43);
+						cout << "ENTER: Chon	ESC: Thoat	LEFT/RIGTH: DI CHUYEN LUA CHON";
+						state = true;
+						gotoxy(xDangNhap +1, yDangNhap);
+						veKhung(12, 69);
+						veNut(5,20, xDangNhap + 11, yDangNhap + 3, "THI THU", 112);
+						veNut(5,20, xDangNhap + 30 + 11, yDangNhap + 3, "QUAN LY", 30);
+						gotoxy(xVeThiTracNghiem,yVeThiTracNghiem);
+						cout << " /$$$$$$$$ /$$   /$$ /$$$$$$       /$$$$$$$$ /$$$$$$$   /$$$$$$   /$$$$$$        /$$   /$$  /$$$$$$  /$$   /$$ /$$$$$$ /$$$$$$$$ /$$      /$$";
+						gotoxy(xVeThiTracNghiem,yVeThiTracNghiem + 1);
+						cout << "|__  $$__/| $$  | $$|_  $$_/      |__  $$__/| $$__  $$ /$$__  $$ /$$__  $$      | $$$ | $$ /$$__  $$| $$  | $$|_  $$_/| $$_____/| $$$    /$$$";
+						gotoxy(xVeThiTracNghiem,yVeThiTracNghiem + 2);
+						cout << "   | $$   | $$  | $$  | $$           | $$   | $$  \\ $$| $$  \\ $$| $$  \\__/      | $$$$| $$| $$  \\__/| $$  | $$  | $$  | $$      | $$$$  /$$$$";
+						gotoxy(xVeThiTracNghiem,yVeThiTracNghiem + 3);
+						cout << "   | $$   | $$$$$$$$  | $$           | $$   | $$$$$$$/| $$$$$$$$| $$            | $$ $$ $$| $$ /$$$$| $$$$$$$$  | $$  | $$$$$   | $$ $$/$$ $$";
+						gotoxy(xVeThiTracNghiem,yVeThiTracNghiem + 4);
+						cout << "   | $$   | $$__  $$  | $$           | $$   | $$__  $$| $$__  $$| $$            | $$  $$$$| $$|_  $$| $$__  $$  | $$  | $$__/   | $$  $$$| $$";
+						gotoxy(xVeThiTracNghiem,yVeThiTracNghiem + 5);
+						cout << "   | $$   | $$  | $$  | $$           | $$   | $$  \\ $$| $$  | $$| $$    $$      | $$\\  $$$| $$  \\ $$| $$  | $$  | $$  | $$      | $$\\  $ | $$";
+						gotoxy(xVeThiTracNghiem,yVeThiTracNghiem + 6);
+						cout << "   | $$   | $$  | $$ /$$$$$$         | $$   | $$  | $$| $$  | $$|  $$$$$$/      | $$ \\  $$|  $$$$$$/| $$  | $$ /$$$$$$| $$$$$$$$| $$ \\/  | $$";
+						gotoxy(xVeThiTracNghiem,yVeThiTracNghiem + 7);
+						cout << "   |__/   |__/  |__/|______/         |__/   |__/  |__/|__/  |__/ \\______/       |__/  \\__/ \\______/ |__/  |__/|______/|________/|__/     |__/";
 						break;
 					}
 					//THI
@@ -7574,14 +7665,31 @@ void FunctionLuaChonGV(dslop &dsl, DSMH &dsm, dssv &ds, int idlonnhat, int arr1[
 					int checkThi = FunctionThiGV(pMonThi,tg,sct,diem,ctdt);
 					stop = 1;
 					if(checkThi == 0){
-						system("cls");
 						gotoxy(0,0);
 						veKhungThuCong();
 						gotoxy(50,43);
 						cout << "ENTER: Chon	ESC: Thoat	LEFT/RIGTH: DI CHUYEN LUA CHON";
-						bool state = true;
-						veNut(5,20, xDangNhap, yDangNhap + 10, "THI THU", 112);
-						veNut(5,20, xDangNhap + 30, yDangNhap + 10, "QUAN LY", 30);
+						state = true;
+						gotoxy(xDangNhap +1, yDangNhap);
+						veKhung(12, 69);
+						veNut(5,20, xDangNhap + 11, yDangNhap + 3, "THI THU", 112);
+						veNut(5,20, xDangNhap + 30 + 11, yDangNhap + 3, "QUAN LY", 30);
+						gotoxy(xVeThiTracNghiem,yVeThiTracNghiem);
+						cout << " /$$$$$$$$ /$$   /$$ /$$$$$$       /$$$$$$$$ /$$$$$$$   /$$$$$$   /$$$$$$        /$$   /$$  /$$$$$$  /$$   /$$ /$$$$$$ /$$$$$$$$ /$$      /$$";
+						gotoxy(xVeThiTracNghiem,yVeThiTracNghiem + 1);
+						cout << "|__  $$__/| $$  | $$|_  $$_/      |__  $$__/| $$__  $$ /$$__  $$ /$$__  $$      | $$$ | $$ /$$__  $$| $$  | $$|_  $$_/| $$_____/| $$$    /$$$";
+						gotoxy(xVeThiTracNghiem,yVeThiTracNghiem + 2);
+						cout << "   | $$   | $$  | $$  | $$           | $$   | $$  \\ $$| $$  \\ $$| $$  \\__/      | $$$$| $$| $$  \\__/| $$  | $$  | $$  | $$      | $$$$  /$$$$";
+						gotoxy(xVeThiTracNghiem,yVeThiTracNghiem + 3);
+						cout << "   | $$   | $$$$$$$$  | $$           | $$   | $$$$$$$/| $$$$$$$$| $$            | $$ $$ $$| $$ /$$$$| $$$$$$$$  | $$  | $$$$$   | $$ $$/$$ $$";
+						gotoxy(xVeThiTracNghiem,yVeThiTracNghiem + 4);
+						cout << "   | $$   | $$__  $$  | $$           | $$   | $$__  $$| $$__  $$| $$            | $$  $$$$| $$|_  $$| $$__  $$  | $$  | $$__/   | $$  $$$| $$";
+						gotoxy(xVeThiTracNghiem,yVeThiTracNghiem + 5);
+						cout << "   | $$   | $$  | $$  | $$           | $$   | $$  \\ $$| $$  | $$| $$    $$      | $$\\  $$$| $$  \\ $$| $$  | $$  | $$  | $$      | $$\\  $ | $$";
+						gotoxy(xVeThiTracNghiem,yVeThiTracNghiem + 6);
+						cout << "   | $$   | $$  | $$ /$$$$$$         | $$   | $$  | $$| $$  | $$|  $$$$$$/      | $$ \\  $$|  $$$$$$/| $$  | $$ /$$$$$$| $$$$$$$$| $$ \\/  | $$";
+						gotoxy(xVeThiTracNghiem,yVeThiTracNghiem + 7);
+						cout << "   |__/   |__/  |__/|______/         |__/   |__/  |__/|__/  |__/ \\______/       |__/  \\__/ \\______/ |__/  |__/|______/|________/|__/     |__/";
 						break;
 					}
 				}
@@ -7625,23 +7733,38 @@ void FunctionLuaChonGV(dslop &dsl, DSMH &dsm, dssv &ds, int idlonnhat, int arr1[
 						case -1://THOAT
 						{
 							check = false;
+							gotoxy(0,0);
+							veKhungThuCong();
+							gotoxy(50,43);
+							cout << "ENTER: Chon	ESC: Thoat	LEFT/RIGTH: DI CHUYEN LUA CHON";
+							state = false;
+							gotoxy(xDangNhap +1, yDangNhap);
+							veKhung(12, 69);
+							veNut(5,20, xDangNhap + 11, yDangNhap + 3, "THI THU", 30);
+							veNut(5,20, xDangNhap + 30 + 11, yDangNhap + 3, "QUAN LY", 112);
+							gotoxy(xVeThiTracNghiem,yVeThiTracNghiem);
+							cout << " /$$$$$$$$ /$$   /$$ /$$$$$$       /$$$$$$$$ /$$$$$$$   /$$$$$$   /$$$$$$        /$$   /$$  /$$$$$$  /$$   /$$ /$$$$$$ /$$$$$$$$ /$$      /$$";
+							gotoxy(xVeThiTracNghiem,yVeThiTracNghiem + 1);
+							cout << "|__  $$__/| $$  | $$|_  $$_/      |__  $$__/| $$__  $$ /$$__  $$ /$$__  $$      | $$$ | $$ /$$__  $$| $$  | $$|_  $$_/| $$_____/| $$$    /$$$";
+							gotoxy(xVeThiTracNghiem,yVeThiTracNghiem + 2);
+							cout << "   | $$   | $$  | $$  | $$           | $$   | $$  \\ $$| $$  \\ $$| $$  \\__/      | $$$$| $$| $$  \\__/| $$  | $$  | $$  | $$      | $$$$  /$$$$";
+							gotoxy(xVeThiTracNghiem,yVeThiTracNghiem + 3);
+							cout << "   | $$   | $$$$$$$$  | $$           | $$   | $$$$$$$/| $$$$$$$$| $$            | $$ $$ $$| $$ /$$$$| $$$$$$$$  | $$  | $$$$$   | $$ $$/$$ $$";
+							gotoxy(xVeThiTracNghiem,yVeThiTracNghiem + 4);
+							cout << "   | $$   | $$__  $$  | $$           | $$   | $$__  $$| $$__  $$| $$            | $$  $$$$| $$|_  $$| $$__  $$  | $$  | $$__/   | $$  $$$| $$";
+							gotoxy(xVeThiTracNghiem,yVeThiTracNghiem + 5);
+							cout << "   | $$   | $$  | $$  | $$           | $$   | $$  \\ $$| $$  | $$| $$    $$      | $$\\  $$$| $$  \\ $$| $$  | $$  | $$  | $$      | $$\\  $ | $$";
+							gotoxy(xVeThiTracNghiem,yVeThiTracNghiem + 6);
+							cout << "   | $$   | $$  | $$ /$$$$$$         | $$   | $$  | $$| $$  | $$|  $$$$$$/      | $$ \\  $$|  $$$$$$/| $$  | $$ /$$$$$$| $$$$$$$$| $$ \\/  | $$";
+							gotoxy(xVeThiTracNghiem,yVeThiTracNghiem + 7);
+							cout << "   |__/   |__/  |__/|______/         |__/   |__/  |__/|__/  |__/ \\______/       |__/  \\__/ \\______/ |__/  |__/|______/|________/|__/     |__/";							
 							break;
 						}
 					}
 				}
-				system("cls");
-				gotoxy(0,0);
-				veKhungThuCong();
-				gotoxy(50,43);
-				cout << "ENTER: Chon	ESC: Thoat	LEFT/RIGTH: DI CHUYEN LUA CHON";
-				bool state = false;
-				veNut(5,20, xDangNhap, yDangNhap + 10, "THI THU", 30);
-				veNut(5,20, xDangNhap + 30, yDangNhap + 10, "QUAN LY", 112);
 			}
 		}
-		
-		
-	batPhim(s,sCheck);	
+		batPhim(s,sCheck);	
 	}
 }
 // ====================SELECT FUNCTION SV ==========================
@@ -8347,11 +8470,15 @@ void NhapTG (int &tg, int &sct, DSMH pMonThi)
 		{
 			if(ntg.length() == 0 || nsct.length() == 0)
 			{
+				int x = wherex();
+				int y = wherey() ;
 				string tb = "Thoi gian thi hoac so cau thi khong hop le";
 				InTB(tb,129,30);
 				AnConTro();
 				Sleep(1000);
 				XoaTB(130,26);	
+				gotoxy(x,y);
+				HienConTro();		
 			}
 			else
 			{
@@ -8380,6 +8507,8 @@ void NhapTG (int &tg, int &sct, DSMH pMonThi)
 					}
 				else
 				{
+					int x = wherex();
+					int y = wherey() ;
 					string tb = "Thoi gian thi hoac so cau thi phai lon hon '0'";
 					InTB(tb,129,30);
 					AnConTro();
@@ -8392,7 +8521,7 @@ void NhapTG (int &tg, int &sct, DSMH pMonThi)
 					ntg = "";
 					nsct = "";
 					state = 0;
-					gotoxy(68+ntg.length(),20);
+					gotoxy(x,y);
 					HienConTro();
 				}
 			}		
@@ -8700,7 +8829,6 @@ void NhapMonThi(DSMH dsm, DSMH &pTam, int &idlonnhat, int &tg, int &sct, bool &c
 		batPhim(s,sCheck);
 	}
 	check = false;
-	return;
 }
 // ==================== VE KHUNG DAP AN THI SINH DA CHON ==========================
 void VeKhungDA(int page, int sct,CTdethi ctdt)
@@ -8950,6 +9078,47 @@ int ketThucBaiThi (CTdethi ctdt, DSCH dsch, string &diem)
 	string tbThoat = "Ban co muon tiep tuc thi mon khac khong?(Y/N)";
 	if(ExitXoa(tbThoat,s, sCheck) == true) return 1;
 	else return 0;
+}
+int ketThucBaiThiGV (CTdethi ctdt, DSCH dsch, string &diem)
+{
+	system("cls");
+	TextColor(9);
+	gotoxy(0,0);
+	veKhungThuCong();
+	gotoxy(15,7);
+	cout << "	 _______  _______  __    _  _______  ______    _______  _______  __   __  ___      _______  _______  ___   _______  __    _  __  ";
+	gotoxy(15,8);
+	cout << "	|       ||       ||  |  | ||       ||    _ |  |   _   ||       ||  | |  ||   |    |   _   ||       ||   | |       ||  |  | ||  | ";
+	gotoxy(15,9);
+	cout << "	|       ||   _   ||   |_| ||    ___||   | ||  |  |_|  ||_     _||  | |  ||   |    |  |_|  ||_     _||   | |   _   ||   |_| ||  | ";
+	gotoxy(15,10);
+	cout << "	|       ||  | |  ||       ||   | __ |   |_||_ |       |  |   |  |  |_|  ||   |    |       |  |   |  |   | |  | |  ||       ||  | ";
+	gotoxy(15,11);
+	cout << "	|      _||  |_|  ||  _    ||   ||  ||    __  ||       |  |   |  |       ||   |___ |       |  |   |  |   | |  |_|  ||  _    ||__| ";
+	gotoxy(15,12);
+	cout << "	|     |_ |       || | |   ||   |_| ||   |  | ||   _   |  |   |  |       ||       ||   _   |  |   |  |   | |       || | |   | __  ";
+	gotoxy(15,13);
+	cout << "	|_______||_______||_|  |__||_______||___|  |_||__| |__|  |___|  |_______||_______||__| |__|  |___|  |___| |_______||_|  |__||__| ";
+	float a = (float)TinhDiem(ctdt,dsch);
+	int b = (float)ctdt.sct;
+	float diemtam = (a / b)*10;
+	diem = FloatToString(diemtam);
+	gotoxy(50,25);
+	cout << "CHUC MUNG BAN DA HOAN THANH BAI THI!";
+	gotoxy(50,30);
+	ChangeColor(175);
+	cout << "DIEM CUA BAN LA: " << diem;
+	ChangeColor(241);
+	char s;
+	bool sCheck;
+	int chonKTThi =ThongBaoKetThucThiGV(s, sCheck);
+	if(chonKTThi == 1) return 1;
+	if(chonKTThi == 0) return 0;
+	if(chonKTThi == -1)
+	{
+		InChiTiet1LanThiGV(ctdt, dsch, diem, (int)a);
+		return 0;
+	}
 }
 // ==================== FUNCTION THI ==========================
 int FunctionThi(lop *l, string mssv, DSMH dsm, DSMH monThi, int tg, int sct, string &diem, CTdethi &ctdt)
@@ -10203,7 +10372,7 @@ int FunctionThiGV(DSMH monThi, int tg, int sct, string &diem, CTdethi &ctdt)
 				{
 					stop = 0;
 					clock.join();
-					if(ketThucBaiThi(ctdt,monThi->mh.cauHoiMH, diem) == 1) return 1;
+					if(ketThucBaiThiGV(ctdt,monThi->mh.cauHoiMH, diem) == 1) return 1;
 					else return 0;
 				}
 				else if((s == 'n' || s == 'N') && sCheck == true)
@@ -10222,7 +10391,7 @@ int FunctionThiGV(DSMH monThi, int tg, int sct, string &diem, CTdethi &ctdt)
 			InTB(tb,129,30);
 			Sleep(1000);
 			clock.join();
-			if(ketThucBaiThi(ctdt,monThi->mh.cauHoiMH, diem) == 1) return 1;
+			if(ketThucBaiThiGV(ctdt,monThi->mh.cauHoiMH, diem) == 1) return 1;
 			else return 0;
 		}
 		batPhim(s,sCheck);
@@ -10363,7 +10532,7 @@ void InChiTiet1LanThi(nodediemThi *p, DSCH dsch, nodeSV *k)
 	gotoxy(130,2);
 	veKhung(21,35);
 	gotoxy(133,4);
-	cout << "GV";
+	cout << "MSSV";
 	gotoxy(139,4);
 	cout << k->info.maSV;
 	gotoxy(133,7);
@@ -10722,6 +10891,377 @@ void InChiTiet1LanThi(nodediemThi *p, DSCH dsch, nodeSV *k)
 		batPhim(s,sCheck);
 	}
 }
+
+// ==================== IN CHI TIET 1 LAN THI CUA GV ==========================
+void InChiTiet1LanThiGV(CTdethi ctdt, DSCH dsch, string diem, int soCauDung)
+{
+	system("cls");
+	gotoxy(0,0);
+	TextColor(9);
+	veKhungThuCong();
+	gotoxy(130,2);
+	veKhung(21,35);
+	gotoxy(133,4);
+	cout << "THI THU GV";
+//	gotoxy(139,4);
+//	cout << k->info.maSV;
+//	gotoxy(133,7);
+//	cout << "HO VA TEN: ";
+//	gotoxy(144,7);
+//	cout << k->info.ho << " " << k->info.ten;
+//	gotoxy(133,10);
+//	cout << "GIOI TINH: ";
+//	gotoxy(144,10);
+//	cout << k->info.gioiTinh;
+	gotoxy(133,13);
+	cout << "SO CAU DUNG: ";
+	gotoxy(150,13);
+	cout << soCauDung;
+	gotoxy(133,16);
+	cout << "SO CAU THI: ";
+	gotoxy(150,16);
+	cout << ctdt.sct;
+	gotoxy(133,19);
+	cout << "DIEM: ";
+	gotoxy(150,19);
+	cout << diem;
+	gotoxy(5,2);
+	veKhung(36,125);
+	gotoxy(6,7-2);
+	cout << "NOI DUNG CH: ";
+	gotoxy(19,6-2);
+	veKhung(7,100);
+	gotoxy(6,16-2);
+	cout << "DAP AN A: ";
+	gotoxy(19,15-2);
+	veKhung(5,100);
+	gotoxy(6,22-2);
+	cout << "DAP AN B: ";
+	gotoxy(19,21-2);
+	veKhung(5,100);
+	gotoxy(6,28-2);
+	cout << "DAP AN C: ";
+	gotoxy(19,27-2);
+	veKhung(5,100);
+	gotoxy(6,34-2);
+	cout << "DAP AN D: ";
+	gotoxy(19,33-2);
+	veKhung(5,100);
+	int page = 0;
+	int stt = 0;
+	int maxpage;
+	VeKhungDA(page,ctdt.sct,ctdt);
+	bool qt = false;
+	int max =ctdt.sct;
+	if(max <= 10)
+	{
+		maxpage = 0;
+	}
+	else if(max > 10 && max % 10 == 0)
+	{
+		maxpage = (max/10) - 1;
+	}
+	else maxpage = max/10;
+	string da;
+	if(ctdt.dapan[stt] == 1)
+	{
+		da = "A";
+	}
+	else if (ctdt.dapan[stt] == 2)
+	{
+		da = "B";
+	}
+	else if(ctdt.dapan[stt] == 3)
+	{
+		da = "C";
+	}
+	else if(ctdt.dapan[stt] == 4)
+	{
+		da = "D";
+	}
+	else if(ctdt.dapan[stt] == 0)
+	{
+		da = "";
+	}
+	InCH_DASV(dsch.listCauHoi[ctdt.bode[stt]],da);
+	gotoxy(5,1);
+	TextColor(9);
+	cout << "CAU " << stt + 1;
+	gotoxy(19,44);
+	TextColor(9);
+	cout << muitenlen;
+	char s;
+	bool sCheck;
+	batPhim(s,sCheck);
+	while (s != ESC)
+	{
+		if(s == LEFT && sCheck == false)
+		{
+			if(page > 0 && (stt + 1) % 10 == 1)
+			{
+				page--;
+				qt = true;
+			}
+			if (qt == true)
+			{
+				XoaDA();
+				VeKhungDA(page,ctdt.sct,ctdt);
+				qt = false;
+			}
+			if(stt > 0)
+			{
+				gotoxy(19 + (stt%10)*10,44);
+				cout << " ";
+				stt--;
+				gotoxy(19 + (stt%10)*10,44);
+				TextColor(9);
+				cout << muitenlen;
+				if(ctdt.dapan[stt] == 1)
+				{
+					da = "A";
+				}
+				else if (ctdt.dapan[stt] == 2)
+				{
+					da = "B";
+				}
+				else if(ctdt.dapan[stt] == 3)
+				{
+					da = "C";
+				}
+				else if(ctdt.dapan[stt] == 4)
+				{
+					da = "D";
+				}
+				else if(ctdt.dapan[stt] == 0)
+				{
+					da = "";
+				}
+				InCH_DASV(dsch.listCauHoi[ctdt.bode[stt]],da);
+				gotoxy(5,1);
+				TextColor(9);
+				cout << "       ";
+				gotoxy(5,1);
+				TextColor(9);
+				cout << "CAU " << stt + 1;
+			}
+		}
+		if(s == RIGHT && sCheck == false)
+		{
+			if(page < maxpage && (stt + 1) % 10 == 0)
+			{
+				page++;
+				qt = true;
+			}
+			if (qt == true)
+			{
+				XoaDA();
+				VeKhungDA(page,ctdt.sct,ctdt);
+				qt = false;
+			}
+			if(stt < max - 1)
+			{
+				gotoxy(19 + (stt%10)*10,44);
+				cout << " ";
+				stt++;
+				gotoxy(19 + (stt%10)*10,44);
+				TextColor(9);
+				cout << muitenlen;
+				if(ctdt.dapan[stt] == 1)
+				{
+					da = "A";
+				}
+				else if (ctdt.dapan[stt] == 2)
+				{
+					da = "B";
+				}
+				else if(ctdt.dapan[stt] == 3)
+				{
+					da = "C";
+				}
+				else if(ctdt.dapan[stt] == 4)
+				{
+					da = "D";
+				}
+				else if(ctdt.dapan[stt] == 0)
+				{
+					da = "";
+				}
+				InCH_DASV(dsch.listCauHoi[ctdt.bode[stt]],da);
+				gotoxy(5,1);
+				TextColor(9);
+				cout << "       ";
+				gotoxy(5,1);
+				TextColor(9);
+				cout << "CAU " << stt + 1;
+			} 
+		}
+		if(s == PAGEUP && sCheck == false)
+		{
+			if(stt > 9)
+			{
+				page--;
+				XoaDA();
+				VeKhungDA(page,ctdt.sct,ctdt);
+				gotoxy(19 + (stt%10)*10,44);
+				cout << " ";
+				stt -= 10;
+				gotoxy(19 + (stt%10)*10,44);
+				TextColor(9);
+				cout << muitenlen;
+//				NODECH ch = Search_CH(dsch,ctdt.bode[stt]);
+				if(ctdt.dapan[stt] == 1)
+				{
+					da = "A";
+				}
+				else if (ctdt.dapan[stt] == 2)
+				{
+					da = "B";
+				}
+				else if(ctdt.dapan[stt] == 3)
+				{
+					da = "C";
+				}
+				else if(ctdt.dapan[stt] == 4)
+				{
+					da = "D";
+				}
+				else if(ctdt.dapan[stt] == 0)
+				{
+					da = "";
+				}
+				InCH_DASV(dsch.listCauHoi[ctdt.bode[stt]],da);
+				gotoxy(5,1);
+				cout << "       ";
+				gotoxy(5,1);
+				cout << "CAU " << stt + 1;
+			}
+			else
+			{
+				gotoxy(19 + (stt%10)*10,44);
+				cout << " ";
+				stt = 0;
+				gotoxy(19 + (stt%10)*10,44);
+				TextColor(9);
+				cout << muitenlen;
+//				NODECH ch = Search_CH(dsch,ctdt.bode[stt]);
+				if(ctdt.dapan[stt] == 1)
+				{
+					da = "A";
+				}
+				else if (ctdt.dapan[stt] == 2)
+				{
+					da = "B";
+				}
+				else if(ctdt.dapan[stt] == 3)
+				{
+					da = "C";
+				}
+				else if(ctdt.dapan[stt] == 4)
+				{
+					da = "D";
+				}
+				else if(ctdt.dapan[stt] == 0)
+				{
+					da = "";
+				}
+				InCH_DASV(dsch.listCauHoi[ctdt.bode[stt]],da);
+				gotoxy(5,1);
+				cout << "       ";
+				gotoxy(5,1);
+				cout << "CAU " << stt + 1;
+			}
+		}
+		if(s == PAGEDOWN && sCheck == false)
+		{
+			if(stt < max - 10)
+			{
+				page++;
+				XoaDA();
+				VeKhungDA(page,ctdt.sct,ctdt);
+				gotoxy(19 + (stt%10)*10,44);
+				cout << " ";
+				stt += 10;
+				gotoxy(19 + (stt%10)*10,44);
+				TextColor(9);
+				cout << muitenlen;
+//				NODECH ch = Search_CH(dsch,ctdt.bode[stt]);
+				if(ctdt.dapan[stt] == 1)
+				{
+					da = "A";
+				}
+				else if (ctdt.dapan[stt] == 2)
+				{
+					da = "B";
+				}
+				else if(ctdt.dapan[stt] == 3)
+				{
+					da = "C";
+				}
+				else if(ctdt.dapan[stt] == 4)
+				{
+					da = "D";
+				}
+				else if(ctdt.dapan[stt] == 0)
+				{
+					da = "";
+				}
+				InCH_DASV(dsch.listCauHoi[ctdt.bode[stt]],da);
+				gotoxy(5,1);
+				TextColor(9);
+				cout << "       ";
+				gotoxy(5,1);
+				TextColor(9);
+				cout << "CAU " << stt + 1;	
+			}
+			else
+			{
+				if((max - 1)/10 > stt/10)
+				{
+					page++;
+					XoaDA();
+					VeKhungDA(page,ctdt.sct,ctdt); 
+				}
+				gotoxy(19 + (stt%10)*10,44);
+				TextColor(9);
+				cout << " ";
+				stt = max - 1;
+				gotoxy(19 + (stt%10)*10,44);
+				TextColor(9);
+				cout << muitenlen;
+				cauHoi ch = dsch.listCauHoi[ctdt.bode[stt]];
+				if(ctdt.dapan[stt] == 1)
+				{
+					da = "A";
+				}
+				else if (ctdt.dapan[stt] == 2)
+				{
+					da = "B";
+				}
+				else if(ctdt.dapan[stt] == 3)
+				{
+					da = "C";
+				}
+				else if(ctdt.dapan[stt] == 4)
+				{
+					da = "D";
+				}
+				else if(ctdt.dapan[stt] == 0)
+				{
+					da = "";
+				}
+				InCH_DASV(ch,da);
+				gotoxy(5,1);
+				TextColor(9);
+				cout << "       ";
+				gotoxy(5,1);
+				TextColor(9);
+				cout << "CAU " << stt + 1;
+			}
+		}
+		batPhim(s,sCheck);
+	}
+}
+
 // ==================== IN BANG DIEM THI TN 1 MH CUA SV ==========================
 void InBangDiemSV (nodeSV *sv, int page,int idMon, DSCH dsch)
 {
