@@ -6442,18 +6442,18 @@ bool ExitXoa (string tb, char &s, bool &sCheck)
 }
 int ThongBaoKetThucThiGV(char &s, bool sCheck)
 {
-	string tbThoat = "Nhap su lua chon: ";
+	string tbThoat = "         NHAP LUA CHON ";
 	AnConTro();
 	gotoxy(127,26);
 	vekhungTB(10,36);
-	InTB(tbThoat,129,30);
-	string tbThoat1 = "     ESC: THOAT";
+	InTB(tbThoat,129,27);
+	string tbThoat1 = "  ESC: THOAT";
 	AnConTro();
-	InTB(tbThoat1,129,31);
-	string tbThoat2 = "     F1: TIEP TUC THI";
+	InTB(tbThoat1,129,29);
+	string tbThoat2 = "  F1: TIEP TUC THI";
 	AnConTro();
-	InTB(tbThoat2,129,32);
-	string tbThoat3 = "     F2: XEM LAI CAU HOI THI ";
+	InTB(tbThoat2,129,31);
+	string tbThoat3 = "  F2: XEM LAI CHI TIET THI ";
 	AnConTro();
 	InTB(tbThoat3,129,33);
 	batPhim(s,sCheck);
@@ -7566,7 +7566,7 @@ void FunctionLuaChonGV(dslop &dsl, DSMH &dsm, dssv &ds, int idlonnhat, int arr1[
 	gotoxy(0,0);
 	veKhungThuCong();
 	gotoxy(50,43);
-	cout << "ENTER: Chon	ESC: Thoat	LEFT/RIGTH: DI CHUYEN LUA CHON";
+	cout << "ENTER: Chon	ESC: Thoat	LEFT/RIGTH: Di chuyen";
 	bool state = true;
 	AnConTro();
 	gotoxy(xDangNhap +1, yDangNhap);
@@ -7633,7 +7633,7 @@ void FunctionLuaChonGV(dslop &dsl, DSMH &dsm, dssv &ds, int idlonnhat, int arr1[
 						gotoxy(0,0);
 						veKhungThuCong();
 						gotoxy(50,43);
-						cout << "ENTER: Chon	ESC: Thoat	LEFT/RIGTH: DI CHUYEN LUA CHON";
+						cout << "ENTER: Chon	ESC: Thoat	LEFT/RIGTH: Di chuyen";
 						state = true;
 						gotoxy(xDangNhap +1, yDangNhap);
 						veKhung(12, 69);
@@ -7668,7 +7668,7 @@ void FunctionLuaChonGV(dslop &dsl, DSMH &dsm, dssv &ds, int idlonnhat, int arr1[
 						gotoxy(0,0);
 						veKhungThuCong();
 						gotoxy(50,43);
-						cout << "ENTER: Chon	ESC: Thoat	LEFT/RIGTH: DI CHUYEN LUA CHON";
+						cout << "ENTER: Chon	ESC: Thoat	LEFT/RIGTH: Di chuyen";
 						state = true;
 						gotoxy(xDangNhap +1, yDangNhap);
 						veKhung(12, 69);
@@ -7736,7 +7736,7 @@ void FunctionLuaChonGV(dslop &dsl, DSMH &dsm, dssv &ds, int idlonnhat, int arr1[
 							gotoxy(0,0);
 							veKhungThuCong();
 							gotoxy(50,43);
-							cout << "ENTER: Chon	ESC: Thoat	LEFT/RIGTH: DI CHUYEN LUA CHON";
+							cout << "ENTER: Chon	ESC: Thoat	LEFT/RIGTH: Di chuyen";
 							state = false;
 							gotoxy(xDangNhap +1, yDangNhap);
 							veKhung(12, 69);
@@ -10528,6 +10528,8 @@ void InChiTiet1LanThi(nodediemThi *p, DSCH dsch, nodeSV *k)
 	gotoxy(0,0);
 	TextColor(9);
 	veKhungThuCong();
+	gotoxy(40,45);
+	cout << "ENTER: Chon       ESC: Thoat      Left/Right: Di chuyen cau hoi     ";
 	string diem = FloatToString(p->info.diem);
 	gotoxy(130,2);
 	veKhung(21,35);
@@ -10899,20 +10901,18 @@ void InChiTiet1LanThiGV(CTdethi ctdt, DSCH dsch, string diem, int soCauDung)
 	gotoxy(0,0);
 	TextColor(9);
 	veKhungThuCong();
+	gotoxy(40,45);
+	cout << "ENTER: Chon       ESC: Thoat      Left/Right: Di chuyen cau hoi     ";
 	gotoxy(130,2);
 	veKhung(21,35);
-	gotoxy(133,4);
-	cout << "THI THU GV";
-//	gotoxy(139,4);
-//	cout << k->info.maSV;
-//	gotoxy(133,7);
-//	cout << "HO VA TEN: ";
-//	gotoxy(144,7);
-//	cout << k->info.ho << " " << k->info.ten;
-//	gotoxy(133,10);
-//	cout << "GIOI TINH: ";
-//	gotoxy(144,10);
-//	cout << k->info.gioiTinh;
+	gotoxy(143,4);
+	cout << "THI THU";
+	gotoxy(143,7);
+	cout << "GIAO VIEN";
+	gotoxy(133,10);
+	cout << "THOI GIAN THI: ";
+	gotoxy(150,10);
+	cout << ctdt.tg<<" PHUT";
 	gotoxy(133,13);
 	cout << "SO CAU DUNG: ";
 	gotoxy(150,13);
@@ -12805,6 +12805,8 @@ int DangNhap(dslop &dsl ,string &masv)
 {
 	system("cls");
 	veKhungThuCong();
+	gotoxy(40,45);
+	cout << "ENTER: Chon       ESC: Thoat      UP/DOWN: Di chuyen     ";
 	InTen();
 	gotoxy(xVeThiTracNghiem,yVeThiTracNghiem);
 	cout << " /$$$$$$$$ /$$   /$$ /$$$$$$       /$$$$$$$$ /$$$$$$$   /$$$$$$   /$$$$$$        /$$   /$$  /$$$$$$  /$$   /$$ /$$$$$$ /$$$$$$$$ /$$      /$$";
@@ -12920,9 +12922,11 @@ int DangNhap(dslop &dsl ,string &masv)
 			{
 				AnConTro();
 				gotoxy(35,43);
+				TextColor(244);
 				cout<<"Ten dang nhap va mat khau khong duoc de trong";
 				Sleep(2000);
 				gotoxy(35,43);
+				TextColor(9);
 				cout<<"                                             ";
 				gotoxy(xDangNhap+18+user.length(),yDangNhap+3);
 				state = false;
@@ -12932,9 +12936,11 @@ int DangNhap(dslop &dsl ,string &masv)
 			else if(user.length() == 0 )
 			{
 				AnConTro();
+				TextColor(244);
 				InTB("Ten dang nhap khong duoc de trong",35,43);
 				Sleep(2000);
 				gotoxy(35,43);
+				TextColor(9);
 				cout<<"                                             ";
 				gotoxy(xDangNhap+18+user.length(),yDangNhap+3);
 				state = false;
@@ -12943,9 +12949,11 @@ int DangNhap(dslop &dsl ,string &masv)
 			else if(pass.length() == 0)
 			{
 				AnConTro();
+				TextColor(244);
 				InTB("Mat khau khong duoc de trong",35,43);
 				Sleep(2000);
 				gotoxy(35,43);
+				TextColor(9);
 				cout<<"                                             ";
 				gotoxy(xDangNhap+18+pass.length(),yDangNhap+7);
 				state = true;
@@ -12978,9 +12986,11 @@ int DangNhap(dslop &dsl ,string &masv)
 				}
 				AnConTro();
 				gotoxy(35,43);
+				TextColor(244);
 				cout<<"Dang nhap khong thanh cong! Vui long thu lai";
 				Sleep(2000);
 				gotoxy(35,43);
+				TextColor(9);
 				cout<<"                                                ";
 				gotoxy(xDangNhap+18+user.length(),yDangNhap+3);
 				state = false;
